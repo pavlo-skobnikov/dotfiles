@@ -1,0 +1,18 @@
+[submodule "alacritty"]
+	path = alacritty
+	url = git@github.com:pavlo-skobnikov/alacritty.git
+[submodule "ideavim"]
+	path = ideavim
+	url = git@github.com:pavlo-skobnikov/ideavim.git
+[submodule "karabiner"]
+	path = karabiner
+	url = git@github.com:pavlo-skobnikov/karabiner.git
+[submodule "nvim"]
+	path = nvim
+	url = git@github.com:pavlo-skobnikov/nvim.git
+[submodule "tmux"]
+	path = tmux
+	url = git@github.com:pavlo-skobnikov/tmux.git
+[submodule "zsh"]
+	path = zsh
+	url = git@github.com:pavlo-skobnikov/zsh.git
