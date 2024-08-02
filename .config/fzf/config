@@ -1,0 +1,9 @@
+--style=minimal
+--layout=default
+--height 100%
+--ansi
+--preview-window 'right:50%'
+--bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-k:preview-half-page-up,ctrl-j:preview-half-page-down
+--color='pointer:blue,prompt:blue,marker:magenta'
+--color='current-bg:black,current-fg:white'
+

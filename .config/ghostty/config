@@ -1,0 +1,25 @@
+# Fonts 🖋️
+font-family = JetBrainsMono NFM Regular
+font-family-bold = JetBrainsMono NFM Bold
+font-family-italic = JetBrainsMono NFM Italic
+font-family-bold-italic = JetBrainsMono NFM Bold Italic
+
+font-size = 14
+
+# Themeing 🎨
+theme = light:Catppuccin Latte,dark:Catppuccin Frappe
+
+cursor-color = cell-foreground
+
+window-padding-balance = true
+window-padding-color = extend
+
+# Command 🤖
+command = /opt/homebrew/bin/zsh --login  -c "/opt/homebrew/bin/tmux new-session -A -s home -c ~/"
+
+# Key Bindings ⌨️
+macos-option-as-alt = true
+
+# Title
+title = "Ghostty 👻"
+

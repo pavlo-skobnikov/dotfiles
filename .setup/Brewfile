@@ -1,0 +1,55 @@
+# vim: ft=ruby
+
+## Taps 🚰
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/services"
+
+## Formalae 🏎️
+
+# Some essentials.
+brew "zsh"
+brew "git"
+
+# "Better" ...
+brew "eza"     # ... ls.
+brew "bat"     # ... cat.
+brew "ripgrep" # ... grep.
+brew "fd"      # ... find.
+
+brew "coreutils" # The religiously correct set ot utils 🙏
+brew "moreutils" # The devilishly enticing extensions to the coreutils 😈
+brew "gh"        # git in the clouds 🌩️
+brew "stow"      # .files manager 💼
+brew "pandoc"    # Document filetype converter 📁
+brew "nvm"       # Because what do you mean you don't have JS on the back-end?
+
+brew "tesseract" # 🤖👀
+
+brew "neovim" # Modernity? In my terminal? Impossible 🤯
+brew "fzf"    # Fuzzy search, fuzzy life 🌳
+brew "tmux"   # Session, windows, panes, and the other goodness 🧘
+
+brew "lazygit"    # I'm so-o-o lazy 😴🛏️
+brew "lazydocker"
+
+
+## Casks 🍺
+cask "karabiner-elements" # 🎹
+cask "raycast"            # 🔍
+cask "voiceink"           # 🗣️
+
+cask "arc"      # 🔗
+cask "obsidian" # 🪨
+
+cask "docker" # 🐳
+
+cask "ghostty"       # 👻
+cask "intellij-idea" # 💡
+
+
+## Apple Store stuff 🍏
+mas "Xcode", id: 497799835  # 📱
+mas "Things", id: 904280696 # 📑

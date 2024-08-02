@@ -1,0 +1,8 @@
+{
+  "name": "personal-snippet-collection",
+  "contributes": {
+    "snippets": [
+      { "language": "all", "path": "./global.json" }
+    ]
+  }
+}

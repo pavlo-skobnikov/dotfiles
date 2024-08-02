@@ -1,0 +1,6 @@
+{
+  "TODO":  { "prefix": "todo", "body": "TODO: " },
+  "NOTE":  { "prefix": "fix",  "body": "NOTE: " },
+  "FIXME": { "prefix": "fix",  "body": "FIXME: " }
+}
+

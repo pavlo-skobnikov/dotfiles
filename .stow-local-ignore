@@ -1,0 +1,29 @@
+# Git.
+.gitignore
+.gitmodules
+
+# Extra ignore files.
+.ignore
+.stow-local-ignore
+
+# Documentation.
+README.md
+LICENSE
+
+# Karabiner.
+./assets/*
+./automatic_backups/*
+
+# Emacs.
+./.emacs.d/history
+./.emacs.d/places
+./.emacs.d/recentf
+./.emacs.d/auto-save-list/*
+./.emacs.d/eln-cache/*
+./.emacs.d/straight/*
+./.emacs.d/transient/*
+./.emacs.d/.cache/*
+
+
+# Trash.
+.DS_Store

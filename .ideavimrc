@@ -1,0 +1,316 @@
+""" Options 🛠️
+" REFERENCE: https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+" A spacious leader indeed.
+let mapleader = " "
+
+" Show the current editing mode.
+set showmode
+
+" Never timeout when waiting for the next key of a keymap.
+set notimeout
+
+" Only j/k can move the cursor to the next/previous line.
+set whichwrap=""
+
+" Case-insensitive searching unless upper case letters are present in the search term.
+set ignorecase
+set smartcase
+
+" Visual markers for column widths and current line.
+set colorcolumn=80,100,120
+set cursorline
+
+" Enable relative line numbers.
+set number
+set relativenumber
+
+" Don't soft-wrap lines.
+set nowrap
+
+" Minimum number of rows/columns to keep visible when scrolling.
+set scrolloff=8
+set sidescrolloff=3
+
+" Use visual bell instead of beeping.
+set visualbell
+
+" Remember command-line history.
+set history=1000
+
+" Search as characters are entered.
+set incsearch
+
+" Highlight search results.
+set hlsearch
+
+" Wrap around the buffer when searching.
+set wrapscan
+
+" Indent soft wrapped lines to match the first line's indent
+set breakindent
+
+" Use the IntelliJ's `smart join` feature for `J` motion.
+set ideajoin=true
+
+" Keep the currently active mode when activating a refactor.
+set idearefactormode=keep
+
+
+
+""" Keymaps 🎹
+"" Mappings utilities 🔧
+
+" Adds a `which-key` description for the given left-hand side.
+" NOTE: In IdeaVim, the description is added for all modes simultaneously.
+let s:desc_ctr = 0
+function! Desc(lhs, desc = '')
+    if a:desc != ''
+        let s:desc_ctr += 1
+        execute 'let g:WhichKeyDesc_' . s:desc_ctr . ' = "' a:lhs . ' ' a:desc . '"'
+    endif
+endfunction
+
+" Removes a `which-key` description for the given left-hand side.
+let s:rem_desc_ctr = 0
+function! RemDesc(lhs)
+    let s:rem_desc_ctr += 1
+    execute 'let g:WhichKeyDesc_' . s:rem_desc_ctr . ' = "' a:lhs . '"'
+endfunction
+
+" Resolves mode and creates a Vim mapping.
+" NOTE: This function is to be used only by other mapping utility functions.
+let s:modes_map = {
+            \ 'n': 'nmap',
+            \ 'v': 'vmap',
+            \ 'x': 'xmap',
+            \ 'o': 'omap',
+            \ 'nn': 'nnoremap',
+            \ 'vn': 'vnoremap',
+            \ 'xn': 'xnoremap',
+            \ 'on': 'onoremap',
+            \ }
+function! Set(mode, lhs, rhs)
+    let map_cmd = get(s:modes_map, a:mode)
+    execute map_cmd . ' ' . a:lhs . ' ' . a:rhs
+endfunction
+
+" Creates a mapping with an optional `which-key` description.
+function! Map(mode, lhs, rhs, desc = '')
+    call Set(a:mode, a:lhs, a:rhs)
+    call Desc(a:lhs, a:desc)
+endfunction
+
+" Like `Map` but for multiple modes simultaneously.
+function! MapM(modes, lhs, rhs, desc = '')
+    for mode in a:modes
+        call Set(mode, a:lhs, a:rhs)
+    endfor
+    call Desc(a:lhs, a:desc)
+endfunction
+
+
+"" Text editing section 📝
+" NOTE: The y-, d-, c- maps are for simple (i.e. "dumb" or, in other words
+" language-agnostic) text editing.
+call RemDesc('ys')
+call Desc('ys', '+add surround')
+call Desc('yss', 'line')
+call Desc('cs', '+change surround')
+call Desc('ds', '+delete surround')
+
+call Map('n', 'cr', '<Plug>ReplaceWithRegisterOperator', '+replace')
+call Map('n', 'crr', '<Plug>ReplaceWithRegisterLine', 'line')
+call MapM(['x', 'o'], 'R', '<Plug>ReplaceWithRegisterVisual')
+
+call Desc('cx', '+exchange')
+call Desc('cxx', 'line')
+call Desc('cxc', 'clear')
+
+call Map('nn', 'cS', ':%s/', ':%substitute ...')
+call MapM(['xn', 'on'], 's', ':s/', ":'<,'>substitute ...")
+
+call Map('nn', 'cX', ':%normal ', ':normal ...')
+call MapM(['xn', 'on'], 'x', ':normal ', ":'<,'>normal ...")
+
+
+"" Goto section 🚎
+call RemDesc('g%')
+
+call Map('nn', 'g.', 'gi', 'goto last insert')
+call Desc('g,', 'goto later change')
+call Desc('g;', 'goto earlier change')
+
+call MapM(['nn', 'xn'], 'ga', '<C-^>', 'goto last accessed')
+call MapM(['n', 'x'], 'gA', '<Action>(GotoTest)', 'goto alternate file')
+
+call Desc('gd', 'goto definition')
+
+call MapM(['n', 'x'], 'gk', '<Action>(QuickImplementations)', 'peek definition')
+call MapM(['n', 'x'], 'gK', '<Action>(ExpressionTypeInfo)', 'peek type definition')
+
+call MapM(['n', 'x'], 'gy', '<Action>(GotoTypeDeclaration)', 'goto type definition')
+
+call MapM(['n', 'x'], 'gi', '<Action>(GotoImplementation)', 'goto implementation')
+call MapM(['n', 'x'], 'gp', '<Action>(GotoSuperMethod)', 'goto parent')
+
+call MapM(['n', 'x'], 'gr', '<Action>(ShowUsages)', 'find references')
+call MapM(['n', 'x'], 'gR', '<Action>(FindUsages)', 'references | qflist')
+
+call Desc('ge', 'word end backward')
+call Desc('gE', 'WORD end backward')
+
+call Desc('gI', 'insert at line begin')
+
+call Desc('gn', 'select next match')
+call Desc('gN', 'select prev match')
+
+call MapM(['nn', 'xn', 'on'], 'gs', '"+', 'system register')
+call MapM(['nn', 'xn', 'on'], 'gb', '"_', 'blackhole register')
+
+call Desc('gv', 'reselect')
+
+
+"" Unimpaired maps section 🦅
+call MapM(['n', 'x'], '[d', '<Action>(GotoPreviousError)', 'prev diagnostic')
+call MapM(['n', 'x'], ']d', '<Action>(GotoNextError)', 'next diagnostic')
+
+call MapM(['n', 'x'], '[f', '<Action>(MethodUp)', 'prev fn')
+call MapM(['n', 'x'], ']f', '<Action>(MethodDown)', 'next fn')
+
+call MapM(['n', 'x'], '[g', '<Action>(VcsShowPrevChangeMarker)', 'prev change')
+call MapM(['n', 'x'], ']g', '<Action>(VcsShowNextChangeMarker)', 'next change')
+
+call MapM(['n', 'x'], '[q', '<Action>(PreviousOccurence)', 'prev qf entry')
+call MapM(['n', 'x'], ']q', '<Action>(NextOccurence)', 'next qf entry')
+
+call Map('nn', '[<Space>', 'mzO<esc>`z', 'add line above')
+call Map('vn', '[<Space>', '<esc>O<esc>gv')
+call Map('nn', ']<Space>', 'mzo<esc>`z', 'add line below')
+call Map('vn', ']<Space>', '<esc>O<esc>gv')
+
+
+"" Multicursor section 🎶
+call MapM(['n', 'x'], '<Right>', '<Action>(SelectNextOccurrence)', 'select next match')
+call MapM(['n', 'x'], '<C-Right>', '<Action>(FindNext)', 'skip a match')
+call MapM(['n', 'x'], '<S-Right>', '<Action>(SelectAllOccurrences)', 'select all matches')
+
+call MapM(['n', 'x'], '<Down>', '<Action>(EditorCloneCaretBelow)', 'add cursor below')
+call MapM(['n', 'x'], '<Up>', '<Action>(EditorCloneCaretAbove)', 'add cursor above')
+
+call MapM(['n', 'x'], '<C-Up>', '<Action>(UnselectPreviousOccurrence)', 'remove cursor above')
+
+call MapM(['n', 'x'], '<S-Left>', '<Action>(EditorAddCaretPerSelectedLine)', 'split selection on newlines')
+
+
+"" Miscellaneous maps section 🤷
+call MapM(['n', 'x'], '<Leader>', '<Action>(LeaderAction)', 'launch ataman')
+call MapM(['n', 'x'], '<C-.>', '<Action>(RepeatLatestAtamanCommandAction)', 'repeat last ataman actions')
+
+call Map('nn', 'Q', '@q', 'replay @q')
+
+call Map('nn', 'Y', 'y$', "yank 'till end of line")
+
+call MapM(['n', 'x'], '<C-]>', '<Action>(GotoDeclarationOnly)', 'goto definition')
+
+call MapM(['nn', 'xn'], '<C-u>', '<C-u>zz', 'scroll half-screen up and center')
+call MapM(['nn', 'xn'], '<C-d>', '<C-d>zz', 'scroll half-screen down and center')
+
+call MapM(['nn', 'xn'], '<C-f>', 'zL', 'scroll half-screen forward')
+call MapM(['nn', 'xn'], '<C-b>', 'zH', 'scroll half-screen backward')
+
+call MapM(['n', 'x'], '<C-h>', '<Action>(HighlightUsagesInFile)', 'highlight usages')
+
+call MapM(['n', 'x'], '<C-j>', '<Action>(EditorUnSelectWord)', 'increase selection')
+call MapM(['n', 'x'], '<C-k>', '<Action>(EditorSelectWord)', 'decrease selection')
+
+call Map('nn', '<C-l>', ':nohlsearch<Cr>', 'clear highlights')
+
+
+"" Insert mode maps section 🖋️
+" Accept completion Vim-style.
+imap <C-y> <Action>(EditorChooseLookupItem)
+imap <C-S-y> <Action>(EditorChooseLookupItemReplace)
+
+" Show parameter information.
+imap <C-s> <Action>(ParameterInfo)
+
+" Move around snippet jump places.
+imap <C-h> <Action>(PreviousTemplateVariable)
+imap <C-l> <Action>(NextTemplateVariable)
+
+" Regular LSP completion.
+imap <C-x> <Action>(CodeCompletion)
+
+" Extra 'smart' completions.
+imap <C-S-c> <Action>(ClassNameCompletion)
+imap <C-S-t> <Action>(SmartTypeCompletion)
+imap <C-S-s> <Action>(EditorCompleteStatement)
+
+" Hippie completion.
+imap <C-S-p> <Action>(HippieBackwardCompletion)
+imap <C-S-n> <Action>(HippieCompletion)
+
+
+"" Copilot section 🤖
+imap <Right> <Action>(copilot.applyInlaysNextWord)
+imap <S-Right> <Action>(copilot.applyInlaysNextLine)
+imap <C-Right> <Action>(copilot.applyInlays)
+imap <Up> <Action>(copilot.cyclePrevInlays)
+imap <Down> <Action>(copilot.cycleNextInlays)
+
+
+""" Plugins 🔌
+" REFERENCE: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+" Plugin requirements:
+"   - https://plugins.jetbrains.com/plugin/25897-vim-functiontextobj
+" NOTE: Plugins are set after the mappings because some plugins will not set
+" their default mappings if custom ones are set.
+
+" Let's see what we're actually doing 👀
+let g:highlightedyank_highlight_duration = "500"
+set highlightedyank
+
+" Text editing improvements.
+set commentary
+let g:surround_no_mappings = 1
+set surround
+set ReplaceWithRegister
+set exchange
+set matchit
+set vim-paragraph-motion
+
+" More text objects.
+set textobj-indent
+set functiontextobj
+let g:argtextobj_pairs = "(:),{:},[:],<:>"
+set argtextobj
+
+" Vim in the project drawer (w/ Oil-like keys).
+let g:NERDTreeMapJumpRoot = '<C-h>'
+let g:NERDTreeMapJumpParent = 'H'
+let g:NERDTreeMapActivateNode = 'L'
+
+let g:NERDTreeMapJumpFirstChild = 'K'
+let g:NERDTreeMapJumpLastChild = 'J'
+let g:NERDTreeMapJumpNextSibling = '<C-j>'
+let g:NERDTreeMapJumpPrevSibling = '<C-k>'
+
+let g:NERDTreeMapPreview = '<C-p>'
+let g:NERDTreeMapOpenSplit = '<C-s>'
+let g:NERDTreeMapOpenVSplit = '<C-v>'
+
+let g:NERDTreeMapCloseDir = 'x'
+let g:NERDTreeMapCloseChildren = 'X'
+
+let g:NERDTreeMapRefreshRoot = '<C-l>'
+
+let g:NERDTreeMapNewDir = 'o'
+let g:NERDTreeMapNewFile = 'O'
+let g:NERDTreeMapDelete = 'd'
+
+let g:NERDTreeMapMenu = 'm'
+let g:NERDTreeMapQuit = 'q'
+
+let g:NERDTreeMapToggleZoom = 'z'
+
+set NERDTree

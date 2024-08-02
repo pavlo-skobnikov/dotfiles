@@ -1,0 +1,18 @@
+[user]
+    name = Pavlo Skobnikov
+    email = pavlo.skobnikov@gmail.com
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[core]
+    autocrlf = input
