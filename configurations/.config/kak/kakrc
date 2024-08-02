@@ -1,0 +1,55 @@
+## Basic configurations.
+
+# A purrfect theme 🐈
+colorscheme catppuccin-frappe
+
+# An obvious companion choice 🐾
+set-option global ui_options terminal_assistant=cat
+
+# Show relative line numbers.
+add-highlighter global/ number-lines -hlcursor -relative -separator "  " -cursor-separator " |"
+
+# Color column 80.
+add-highlighter global/ column 80 default,rgb:424460
+
+# Highlight matching braces.
+add-highlighter global/ show-matching
+
+# 2-space tabs by default.
+set-option global tabstop 2
+set-option global indentwidth 2
+
+# Always show at least 10 vertical rows and 5 columns around the cursor.
+set-option global scrolloff 10,5
+
+
+## Maps.
+
+# Unselect and collapse on <esc>.
+map global normal <esc> ';,'
+
+# Undo accidental <esc>.
+map global normal <a-esc> '<a-u><a-u>'
+
+# Comment lines.
+map global normal '#' :comment-line<ret>
+
+
+## User mode.
+
+# Add newlines.
+map -docstring 'insert newline above' global user [ '"nZO<esc>"nz'
+map -docstring 'insert newline below' global user ] '"nZo<esc>"nz'
+
+map global user -docstring 'find file' f ':nop %sh{ tmux new-window "~/.config/kak/scripts/tmux.nu $kak_session $kak_client" }<ret>'
+map global user -docstring 'lazygit' g ':nop %sh{ tmux new-window lazygit }<ret>'
+map global user -docstring 'lazydocker' d ':nop %sh{ tmux new-window lazydocker }<ret>'
+
+# Window sub-mode.
+declare-user-mode 'window'
+map -docstring 'window' global user w ':enter-user-mode window<ret>'
+
+# New split/window w/ Kakoune.
+map -docstring 'split below' global window s ':tmux-terminal-vertical kak -c %val{session} %val{buffile}<ret>'
+map -docstring 'split right' global window v ':tmux-terminal-horizontal kak -c %val{session} %val{buffile}<ret>'
+map -docstring 'new window' global window n ':tmux-terminal-window kak -c %val{session} %val{buffile}<ret>'

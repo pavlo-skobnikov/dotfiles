@@ -1,0 +1,14 @@
+# MacOS.
+.DS_Store
+
+# Ignore files.
+.ignore
+.gitignore
+.stow-local-ignore
+
+# Documentation.
+README.md
+
+# Karabiner.
+./assets/*
+./automatic_backups/*
