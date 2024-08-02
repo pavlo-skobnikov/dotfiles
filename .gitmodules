@@ -1,0 +1,40 @@
+[submodule "alacritty"]
+	path = alacritty
+	url = git@github.com:pavlo-skobnikov/alacritty.git
+	branch = main
+[submodule "zsh"]
+	path = zsh
+	url = git@github.com:pavlo-skobnikov/zsh.git
+	branch = main
+[submodule "nushell"]
+	path = nushell
+	url = git@github.com:pavlo-skobnikov/nushell.git
+	branch = main
+[submodule "starship"]
+	path = starship
+	url = git@github.com:pavlo-skobnikov/starship.git
+	branch = main
+[submodule "bat"]
+	path = bat
+	url = git@github.com:pavlo-skobnikov/bat.git
+	branch = main
+[submodule "lf"]
+	path = lf
+	url = git@github.com:pavlo-skobnikov/lf.git
+	branch = main
+[submodule "tmux"]
+	path = tmux
+	url = git@github.com:pavlo-skobnikov/tmux.git
+	branch = main
+[submodule "helix"]
+	path = helix
+	url = git@github.com:pavlo-skobnikov/helix.git
+	branch = main
+[submodule "ideavim"]
+	path = ideavim
+	url = git@github.com:pavlo-skobnikov/ideavim.git
+	branch = main
+[submodule "karabiner"]
+	path = karabiner
+	url = git@github.com:pavlo-skobnikov/karabiner.git
+	branch = main
