@@ -13,6 +13,3 @@
 [submodule "zsh"]
 	path = zsh
 	url = git@github.com:pavlo-skobnikov/zsh.git
-[submodule "helix"]
-	path = helix
-	url = git@github.com:pavlo-skobnikov/helix.git
