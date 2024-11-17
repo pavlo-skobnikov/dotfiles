@@ -16,3 +16,6 @@
 [submodule "vim"]
 	path = vim
 	url = git@github.com:pavlo-skobnikov/vim.git
+[submodule "helix"]
+	path = helix
+	url = git@github.com:pavlo-skobnikov/helix.git
