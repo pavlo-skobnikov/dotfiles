@@ -22,3 +22,15 @@
 [submodule "aerospace"]
 	path = aerospace
 	url = git@github.com:pavlo-skobnikov/aerospace.git
+[submodule "lf"]
+	path = lf
+	url = git@github.com:pavlo-skobnikov/lf.git
+[submodule "zellij"]
+	path = zellij
+	url = git@github.com:pavlo-skobnikov/zellij.git
+[submodule "nushell"]
+	path = nushell
+	url = git@github.com:pavlo-skobnikov/nushell.git
+[submodule "starship"]
+	path = starship
+	url = git@github.com:pavlo-skobnikov/starship.git
