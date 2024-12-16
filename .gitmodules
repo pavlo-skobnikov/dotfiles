@@ -25,9 +25,6 @@
 [submodule "lf"]
 	path = lf
 	url = git@github.com:pavlo-skobnikov/lf.git
-[submodule "zellij"]
-	path = zellij
-	url = git@github.com:pavlo-skobnikov/zellij.git
 [submodule "nushell"]
 	path = nushell
 	url = git@github.com:pavlo-skobnikov/nushell.git
