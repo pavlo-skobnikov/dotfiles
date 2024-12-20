@@ -1,33 +1,44 @@
 [submodule "alacritty"]
 	path = alacritty
 	url = git@github.com:pavlo-skobnikov/alacritty.git
-[submodule "ideavim"]
-	path = ideavim
-	url = git@github.com:pavlo-skobnikov/ideavim.git
-[submodule "karabiner"]
-	path = karabiner
-	url = git@github.com:pavlo-skobnikov/karabiner.git
-[submodule "tmux"]
-	path = tmux
-	url = git@github.com:pavlo-skobnikov/tmux.git
+	branch = main
 [submodule "zsh"]
 	path = zsh
 	url = git@github.com:pavlo-skobnikov/zsh.git
-[submodule "vim"]
-	path = vim
-	url = git@github.com:pavlo-skobnikov/vim.git
-[submodule "helix"]
-	path = helix
-	url = git@github.com:pavlo-skobnikov/helix.git
-[submodule "aerospace"]
-	path = aerospace
-	url = git@github.com:pavlo-skobnikov/aerospace.git
-[submodule "lf"]
-	path = lf
-	url = git@github.com:pavlo-skobnikov/lf.git
-[submodule "nushell"]
-	path = nushell
-	url = git@github.com:pavlo-skobnikov/nushell.git
+	branch = main
 [submodule "starship"]
 	path = starship
 	url = git@github.com:pavlo-skobnikov/starship.git
+	branch = main
+[submodule "nushell"]
+	path = nushell
+	url = git@github.com:pavlo-skobnikov/nushell.git
+	branch = main
+[submodule "tmux"]
+	path = tmux
+	url = git@github.com:pavlo-skobnikov/tmux.git
+	branch = main
+[submodule "lf"]
+	path = lf
+	url = git@github.com:pavlo-skobnikov/lf.git
+	branch = main
+[submodule "vim"]
+	path = vim
+	url = git@github.com:pavlo-skobnikov/vim.git
+	branch = main
+[submodule "helix"]
+	path = helix
+	url = git@github.com:pavlo-skobnikov/helix.git
+	branch = main
+[submodule "ideavim"]
+	path = ideavim
+	url = git@github.com:pavlo-skobnikov/ideavim.git
+	branch = main
+[submodule "karabiner"]
+	path = karabiner
+	url = git@github.com:pavlo-skobnikov/karabiner.git
+	branch = main
+[submodule "aerospace"]
+	path = aerospace
+	url = git@github.com:pavlo-skobnikov/aerospace.git
+	branch = main
