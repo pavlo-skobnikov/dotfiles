@@ -18,17 +18,9 @@
 	path = bat
 	url = git@github.com:pavlo-skobnikov/bat.git
 	branch = main
-[submodule "lf"]
-	path = lf
-	url = git@github.com:pavlo-skobnikov/lf.git
-	branch = main
 [submodule "tmux"]
 	path = tmux
 	url = git@github.com:pavlo-skobnikov/tmux.git
-	branch = main
-[submodule "helix"]
-	path = helix
-	url = git@github.com:pavlo-skobnikov/helix.git
 	branch = main
 [submodule "ideavim"]
 	path = ideavim
@@ -38,3 +30,6 @@
 	path = karabiner
 	url = git@github.com:pavlo-skobnikov/karabiner.git
 	branch = main
+[submodule "neovim"]
+	path = neovim
+	url = git@github.com:pavlo-skobnikov/neovim.git
