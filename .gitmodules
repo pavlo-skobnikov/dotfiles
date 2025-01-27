@@ -14,17 +14,13 @@
 	path = bat
 	url = git@github.com:pavlo-skobnikov/bat.git
 	branch = main
-[submodule "smartcat"]
-	path = smartcat
-	url = git@github.com:pavlo-skobnikov/smartcat.git
-	branch = main
 [submodule "tmux"]
 	path = tmux
 	url = git@github.com:pavlo-skobnikov/tmux.git
 	branch = main
-[submodule "helix"]
-	path = helix
-	url = git@github.com:pavlo-skobnikov/helix.git
+[submodule "neovim"]
+	path = neovim
+	url = git@github.com:pavlo-skobnikov/neovim.git
 	branch = main
 [submodule "ideavim"]
 	path = ideavim
