@@ -2,10 +2,6 @@
 	path = alacritty
 	url = git@github.com:pavlo-skobnikov/alacritty.git
 	branch = main
-[submodule "zsh"]
-	path = zsh
-	url = git@github.com:pavlo-skobnikov/zsh.git
-	branch = main
 [submodule "nushell"]
 	path = nushell
 	url = git@github.com:pavlo-skobnikov/nushell.git
