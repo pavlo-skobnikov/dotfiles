@@ -2,6 +2,10 @@
 	path = alacritty
 	url = git@github.com:pavlo-skobnikov/alacritty.git
 	branch = main
+[submodule "zsh"]
+	path = zsh
+	url = git@github.com:pavlo-skobnikov/zsh.git
+	branch = main
 [submodule "nushell"]
 	path = nushell
 	url = git@github.com:pavlo-skobnikov/nushell.git
@@ -10,17 +14,9 @@
 	path = starship
 	url = git@github.com:pavlo-skobnikov/starship.git
 	branch = main
-[submodule "bat"]
-	path = bat
-	url = git@github.com:pavlo-skobnikov/bat.git
-	branch = main
 [submodule "tmux"]
 	path = tmux
 	url = git@github.com:pavlo-skobnikov/tmux.git
-	branch = main
-[submodule "neovim"]
-	path = neovim
-	url = git@github.com:pavlo-skobnikov/neovim.git
 	branch = main
 [submodule "ideavim"]
 	path = ideavim
