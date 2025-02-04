@@ -1,7 +1,8 @@
+[submodule "scripts/private-scripts"]
+	path = scripts/private-scripts
+	url = git@github.com:pavlo-skobnikov/private-scripts.git
+	branch = main
 [submodule "secrets"]
 	path = secrets
 	url = git@github.com:pavlo-skobnikov/secrets.git
 	branch = main
-[submodule "scripts/private-scripts"]
-	path = scripts/private-scripts
-	url = git@github.com:pavlo-skobnikov/private-scripts.git
