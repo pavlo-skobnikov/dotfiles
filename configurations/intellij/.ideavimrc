@@ -1,0 +1,169 @@
+" Source common configurations for both Neovim and IdeaVim.
+source ~/.config/nvim/common.vim
+
+
+
+""" Options section.
+" REFERENCE: https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+
+" Use the IntelliJ's `smart join` feature for `J` motion.
+set ideajoin=true
+
+" Keep the currently active mode when activating a refactor.
+set idearefactormode=keep
+
+
+
+""" Plugins section.
+" REFERENCE: https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+
+" Vim-ish project structure navigation.
+set NERDTree
+
+" Quick and dot-repeatable text operations.
+set surround
+set commentary
+set ReplaceWithRegister
+set exchange
+
+" More text objects.
+set textobj-entire
+set textobj-indent
+set mini-ai
+set functiontextobj
+set argtextobj
+let g:argtextobj_pairs = "(:),{:},[:],<:>"
+
+" Better visibility for verb-object actions.
+set highlightedyank
+let g:highlightedyank_highlight_duration = "250"
+
+" Improved navigation.
+set vim-paragraph-motion
+set matchit
+
+" Switch over common patterns.
+set switch
+let g:switch_definitions = "group:basic,group:java,group:javascript,group:markdown"
+
+" Multicursors, duh!
+set multicursor
+
+
+
+""" Mappings section.
+
+
+"" Ataman.
+map <Leader> <Action>(LeaderAction)
+
+
+"" Miscellaneous.
+
+" Clear highlights.
+noremap <silent> <C-l> :nohlsearch<cr>
+
+" Invoke Intellij built-in completions.
+imap <C-x> <Action>(CodeCompletion)
+imap <C-t> <Action>(SmartTypeCompletion)
+imap <C-f> <Action>(EditorCompleteStatement)
+
+" Invoke Github Copilot completions.
+imap <C-h> <Action>(copilot.requestCompletions)
+imap <C-k> <Action>(copilot.cyclePrevInlays)
+imap <C-j> <Action>(copilot.cycleNextInlays)
+
+" Switch forwards/backwards.
+noremap <C-s> :Switch<CR>
+noremap <C-S-s> :SwitchReverse<CR>
+
+"" Harpoon mappings.
+
+" Add file to the Harpoon mark list.
+map <C-q> <Action>(HarpoonerAddFile)
+
+" Open the Harpoon marks list.
+map <C-e> <Action>(HarpoonerQuickMenu)
+
+" Goto Harpoon marks directly.
+map <C-1> <Action>(HarpoonerOpenFile0)
+map <C-2> <Action>(HarpoonerOpenFile1)
+map <C-3> <Action>(HarpoonerOpenFile2)
+map <C-4> <Action>(HarpoonerOpenFile3)
+map <C-5> <Action>(HarpoonerOpenFile4)
+map <C-6> <Action>(HarpoonerOpenFile5)
+map <C-7> <Action>(HarpoonerOpenFile6)
+map <C-8> <Action>(HarpoonerOpenFile7)
+map <C-9> <Action>(HarpoonerOpenFile8)
+map <C-0> <Action>(HarpoonerOpenFile9)
+
+
+"" Multicursors.
+
+" Add cursor for next match/all matches.
+map mm <Action>(SelectNextOccurrence)
+map mM <Action>(SelectAllOccurrences)
+
+" Split selection on line ends (newlines).
+map me <Action>(EditorAddCaretPerSelectedLine)
+
+" Copy selection onto the next/previous line (Add cursor below/above).
+map mb <Action>(EditorCloneCaretBelow)
+map ma <Action>(EditorCloneCaretAbove)
+
+" Move last cursor to the next match/remove last cursor (undo).
+map m> <Action>(FindNext)
+map m< <Action>(UnselectPreviousOccurrence)
+
+" Align selection in columns (by the rightmost cursor).
+map ml <Action>(VerticalAlign.VerticalAlignAction)
+
+
+"" Gotos.
+
+" Goto definition.
+map gd <Action>(GotoDeclarationOnly)
+
+" Goto document/workspace symbol.
+map gS <Action>(FileStructurePopup)
+map gW <Action>(GotoSymbol)
+
+" Goto type declaration.
+map gy <Action>(GotoTypeDeclaration)
+
+" Goto workspace class symbol.
+map gC <Action>(GotoClass)
+
+" Goto references/send references to qflist.
+map gR <Action>(ShowUsages)
+map gQ <Action>(FindUsages)
+
+" Goto implementation/super.
+map gi <Action>(GotoImplementation)
+map gI <Action>(GotoSuperMethod)
+
+" Test suite/implementation.
+map gX <Action>(GotoTest)
+
+
+"" Previous/next pairs.
+
+" Goto previous/next diagnostic.
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
+
+" Goto previous/next function.
+map [f <Action>(MethodUp)
+map ]f <Action>(MethodDown)
+
+" Goto previous/next change.
+map [c <Action>(VcsShowPrevChangeMarker)
+map ]c <Action>(VcsShowNextChangeMarker)
+
+" Goto previous/next qflist item.
+map [q <Action>(PreviousOccurence)
+map ]q <Action>(NextOccurence)
+
+" Shrink/expand selection.
+map [v <Action>(EditorUnSelectWord)
+map ]v <Action>(EditorSelectWord)
