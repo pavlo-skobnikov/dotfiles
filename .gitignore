@@ -1,1 +1,6 @@
+# MacOS.
 .DS_Store
+
+# Karabiner.
+**/assets/*
+**/automatic_backups/*
