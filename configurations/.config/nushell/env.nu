@@ -3,13 +3,9 @@ $env.PATH = (
   $env.PATH
   | split row (char esep)
   # Homebrew's binaries.
-  | prepend '/opt/homebrew/bin'
+  | prepend "/opt/homebrew/bin"
   # User-installed binaries.
   | append ($env.HOME | path join ".local/bin")
-  # Public scripts.
-  | append ($env.HOME | path join dotfiles scripts "public-scripts")
-  # Private scripts.
-  | append ($env.HOME | path join dotfiles scripts "private-scripts")
   # Add GNU coreutils to the PATH.
   | append "/opt/homebrew/opt/coreutils/libexec/gnubin"
   # Add GNU sed to the PATH.

@@ -1,17 +1,25 @@
 #!/usr/bin/env nu
 
-use std/dirs
+## This script is used to (re-)stow my various dotfiles from this repository
+## to target directories
+## that found in the
+## ../../configurations/ directory.
 
-# Add directory w/ public scripts to the the directory stack.
-dirs add ~/dotfiles/configurations
+def stow_with_target [source, target] {
+  print $"Removing stow links for `($source)` at `($target)`..."
+  stow --dir $source --target $target --delete .
 
-ls | filter { $in.type == dir } | get name | each { 
-  print $"Removing stow links for ($in)..."
-  stow -t $env.HOME -D $in
-
-  print $"Stowing ($in)..."
-  stow -t $env.HOME $in
+  print $"Stowing `($source)` at `($target)`..."
+  stow --dir $source --target $target .
 }
 
-# Clean up the directory stack.
-dirs drop
+# Configuration files.
+stow_with_target $"($env.HOME)/dotfiles/configurations/" $env.HOME
+
+# Scripts.
+["private-scripts" "public-scripts"] | each { |dir|
+  stow_with_target $"($env.HOME)/dotfiles/scripts/($dir)" $"($env.HOME)/.local/bin"
+}
+
+# Secrets.
+stow_with_target $"($env.HOME)/dotfiles/secrets" $env.HOME

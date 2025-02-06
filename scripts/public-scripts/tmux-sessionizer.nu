@@ -55,7 +55,6 @@ def get_session_name_from_path [path: string] {
 def select_common_path_for_session [] {
     (fd .
         ~
-        ~/dotfiles
         ~/dev/projects
         ~/dev/projects/work
         ~/dev/projects/personal

@@ -2,6 +2,8 @@
 vim.cmd([[
   " Hide the banner.
   let g:netrw_banner = 0
+  " Use the tree view.
+  let g:netrw_liststyle = 3
   " Show relative numbers in Netrw.
   let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
   " Keep the current directory and the browsing directory synced, avoiding the
@@ -14,5 +16,5 @@ vim.cmd([[
 ]])
 
 -- Access Netrw maps.
-vim.keymap.set('n', '<LEADER>e', ':Explore<CR>', { silent = true, desc = 'Select current file in Netrw' })
-vim.keymap.set('n', '<LEADER>E', ':Explore ./<CR>', { silent = true, desc = 'Open project root in Netrw' })
+vim.keymap.set('n', '-', ':Explore<CR>', { silent = true, desc = 'Select current file in Netrw' })
+vim.keymap.set('n', '_', ':Explore ./<CR>', { silent = true, desc = 'Open project root in Netrw' })
