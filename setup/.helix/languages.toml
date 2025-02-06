@@ -1,3 +1,0 @@
-[[language]]
-name = "yaml"
-language-servers = ["ansible-language-server", "yaml-language-server"]
