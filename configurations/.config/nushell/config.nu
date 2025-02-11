@@ -43,7 +43,7 @@ alias cat = bat
 alias rg = rg --color=auto
 
 # fd search including hidden files/directories but excluding git folder.
-alias fdhf = fd --unrestricted --exclude '.git/'
+alias fdhf = fd --unrestricted --exclude '.git/' --type=file
 alias fdhd = fd --unrestricted --exclude '.git/' --type=directory
 
 # Change directories w/ fzf.
@@ -52,9 +52,9 @@ alias cf = cd (fdhd | fzf)
 # Fzf with bat preview.
 alias fzp = fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
-# Kakoune.
-alias kf = kak (fzp)
-alias kd = kak (fdhd | fzf)
+# Vim.
+alias vf = vim (fzp)
+alias vd = vim (fdhd | fzf)
 
 # Lazytools
 alias lg = lazygit
