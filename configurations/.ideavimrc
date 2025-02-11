@@ -1,63 +1,15 @@
-" Set `space` as the leader key.
-let mapleader = " "
-
+"" Source common configurations for Vim and IdeaVim. 
+source ~/.vimrc
 
 
 """ Options section.
 " REFERENCE: https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
-
-" Show the current editing mode.
-set showmode
-
-" Never timeout when waiting for the next key of a keymap.
-set notimeout
-
-" Only j/k can move the cursor to the next/previous line.
-set whichwrap=""
-
-" Case-insensitive searching unless upper case letters are present in the search term.
-set ignorecase
-set smartcase
-
-" Visual markers for column widths and current line.
-set colorcolumn=80,100,120
-set cursorline
-
-" Enable relative line numbers.
-set number
-set relativenumber
-
-" Don't soft-wrap lines.
-set nowrap
-
-" Minimum number of rows/columns to keep visible when scrolling.
-set scrolloff=10
-set sidescrolloff=10
-
-" Use visual bell instead of beeping.
-set visualbell
-
-" Remember command-line history.
-set history=1000
-
-" Search as characters are entered.
-set incsearch
-
-" Highlight search results.
-set hlsearch
-
-" Wrap around the buffer when searching.
-set wrapscan
-
-" Indent soft wrapped lines to match the first line's indent
-set breakindent
 
 " Use the IntelliJ's `smart join` feature for `J` motion.
 set ideajoin=true
 
 " Keep the currently active mode when activating a refactor.
 set idearefactormode=keep
-
 
 
 """ Plugins section.
@@ -92,139 +44,107 @@ let g:switch_definitions = "group:basic,group:java,group:javascript,group:markdo
 " Multicursors, duh!
 set multicursor
 
+" Better maps for the project explorer.
+set NERDTree
+
+let g:NERDTreeMapJumpParent = 'h'
+let g:NERDTreeMapJumpRoot = 'H'
+
+let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapOpenRecursively = 'L'
+let g:NERDTreeMapPreview = 'gl'
+
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapPreviewSplit = 'gs'
+let g:NERDTreeMapOpenVSplit = 'v'
+let g:NERDTreeMapPreviewVSplit = 'gv'
 
 
-""" Mappings section.
+""" Maps section.
 
 
-"" Ataman.
-map <Leader> <Action>(LeaderAction)
+"" Folds.
+" Toggle fold
+map za <Action>(ExpandCollapseToggleAction)
 
 
-"" Miscellaneous.
+"" Extra window actions.
+" Toggle tool windows
+map <C-w>t <Action>(HideAllWindows)
+" Transpose splits
+map <C-w>T <Action>(ChangeSplitOrientation)
 
-" Clear highlights.
-noremap <silent> <C-l> :nohlsearch<cr>
 
+"" Completions.
 " Invoke Intellij built-in completions.
 imap <C-x> <Action>(CodeCompletion)
 imap <C-t> <Action>(SmartTypeCompletion)
 imap <C-f> <Action>(EditorCompleteStatement)
+imap <C-h> <Action>(HippieCompletion)
 
 " Invoke Github Copilot completions.
-imap <C-h> <Action>(copilot.requestCompletions)
+imap <C-l> <Action>(copilot.requestCompletions)
 imap <C-k> <Action>(copilot.cyclePrevInlays)
 imap <C-j> <Action>(copilot.cycleNextInlays)
 
-" Center screen on page movement.
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
 
-" Add newline above/below.
-nnoremap [<space> mzO<esc>`z
-vnoremap [<space> <esc>O<esc>gv
-
-nnoremap ]<space> mzo<esc>`z
-vnoremap ]<space> <esc>O<esc>gv
-
-" Use system clipboard/blackhole register.
-noremap gs "+
-noremap gb "_
-
-" Replay q register macro.
-noremap Q @q
-
-" Quickly replace (substitute) text.
-nnoremap R :%s/
-vnoremap R :s/
-
-"" Harpoon mappings.
-
-" Add file to the Harpoon mark list.
-map <C-q> <Action>(HarpoonerAddFile)
-
-" Open the Harpoon marks list.
-map <C-e> <Action>(HarpoonerQuickMenu)
-
-" Goto Harpoon marks directly.
-map <C-1> <Action>(HarpoonerOpenFile0)
-map <C-2> <Action>(HarpoonerOpenFile1)
-map <C-3> <Action>(HarpoonerOpenFile2)
-map <C-4> <Action>(HarpoonerOpenFile3)
-map <C-5> <Action>(HarpoonerOpenFile4)
-map <C-6> <Action>(HarpoonerOpenFile5)
-map <C-7> <Action>(HarpoonerOpenFile6)
-map <C-8> <Action>(HarpoonerOpenFile7)
-map <C-9> <Action>(HarpoonerOpenFile8)
-map <C-0> <Action>(HarpoonerOpenFile9)
-
-
-"" Multicursors.
-
-" Add cursor for next match/all matches.
-map mm <Action>(SelectNextOccurrence)
-map mM <Action>(SelectAllOccurrences)
-
-" Split selection on line ends (newlines).
-map me <Action>(EditorAddCaretPerSelectedLine)
-
-" Copy selection onto the next/previous line (Add cursor below/above).
-map mb <Action>(EditorCloneCaretBelow)
-map ma <Action>(EditorCloneCaretAbove)
-
-" Move last cursor to the next match/remove last cursor (undo).
-map m> <Action>(FindNext)
-map m< <Action>(UnselectPreviousOccurrence)
-
-" Align selection in columns (by the rightmost cursor).
-map ml <Action>(VerticalAlign.VerticalAlignAction)
-
-
-"" Gotos.
-
-" Goto definition.
-map gd <Action>(GotoDeclarationOnly)
-
-" Goto document/workspace symbol.
-map gS <Action>(FileStructurePopup)
-map gW <Action>(GotoSymbol)
-
-" Goto type declaration.
-map gy <Action>(GotoTypeDeclaration)
-
-" Goto workspace class symbol.
-map gC <Action>(GotoClass)
-
-" Goto references/send references to qflist.
-map gR <Action>(ShowUsages)
-map gQ <Action>(FindUsages)
-
-" Goto implementation/super.
-map gi <Action>(GotoImplementation)
-map gI <Action>(GotoSuperMethod)
-
-" Test suite/implementation.
-map gX <Action>(GotoTest)
-
-
-"" Previous/next pairs.
-
-" Goto previous/next diagnostic.
+"" Previous/next.
+" Previous/next diagnostic.
 map [d <Action>(GotoPreviousError)
 map ]d <Action>(GotoNextError)
 
-" Goto previous/next function.
+" Previous/next function.
 map [f <Action>(MethodUp)
 map ]f <Action>(MethodDown)
 
-" Goto previous/next change.
+" Previous/next change.
 map [c <Action>(VcsShowPrevChangeMarker)
 map ]c <Action>(VcsShowNextChangeMarker)
 
-" Goto previous/next qflist item.
+" Previous/next qflist item.
 map [q <Action>(PreviousOccurence)
 map ]q <Action>(NextOccurence)
 
 " Shrink/expand selection.
 map [v <Action>(EditorUnSelectWord)
 map ]v <Action>(EditorSelectWord)
+
+
+"" Switcher.
+nnoremap - :Switch<CR>
+nnoremap + :SwitchReverse<CR>
+
+
+"" Intellij-native mutlicursors.
+" Add cursor for next match
+map mm <Action>(SelectNextOccurrence)
+
+" Add cursors for all matches
+map mA <Action>(SelectAllOccurrences)
+
+" Add cursor above
+map ma <Action>(EditorCloneCaretAbove)
+
+" Add cursor below
+map mb <Action>(EditorCloneCaretBelow)
+
+" Split selection on line ends
+map me <Action>(EditorAddCaretPerSelectedLine)
+
+" Skip occurence
+map mn <Action>(FindNext)
+
+" Undo last cursor
+map mu <Action>(UnselectPreviousOccurrence)
+
+" Align selections by the rightmost cursor
+map ml <Action>(VerticalAlign.VerticalAlignAction)
+
+
+"" Ataman.
+" Launch Ataman.
+map <Leader> <Action>(LeaderAction)
+
+" Repeat last Ataman action.
+map <C-.> <Action>(RepeatLatestAtamanCommandAction)
+
