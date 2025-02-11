@@ -2,21 +2,21 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Kakoune Anywhere: With Selection
+# @raycast.title Vim Anywhere: With Selection
 # @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 📝
 
 # Documentation:
-# @raycast.description Open a new temporary Alacritty window with an empty Kakoune buffer to compose text in.
+# @raycast.description Open a new temporary Alacritty window with an empty Vim buffer to compose text in.
 # @raycast.author paulie
 # @raycast.authorURL https://raycast.com/paulie
 
 # This script is a simplified adaptation of the `vim-anywhere` project by
 # Chris Knadler. REFERENCE: https://github.com/cknadler/vim-anywhere
 #
-# This script quickly opens an Alacritty window with a Kakoune buffer containing
+# This script quickly opens an Alacritty window with a Vim buffer containing
 # the currently selected text from another application for editing. After saving
 # and quitting, the buffer is copied into the system clipboard for further
 # usage.
@@ -25,8 +25,8 @@
 current_app=$(osascript -e 'tell application "System Events"' \
                          -e 'copy (name of application processes whose frontmost is true) to stdout' \
                          -e 'end tell')
-# This file will hold the result text edited by Kakoune.
-compose_file="/tmp/kakoune-anywhere.md"
+# This file will hold the result text edited by Vim.
+compose_file="/tmp/vim-anywhere.md"
 
 # Use osascript to copy the current selection to the clipboard
 osascript -e 'tell application "System Events" to keystroke "c" using command down'
@@ -38,8 +38,8 @@ sleep 0.15
 # doesn't exist.
 pbpaste > "$compose_file"
 
-# Edit the compose file with Kakoune.
-alacritty -e /opt/homebrew/bin/nu -c "kak $compose_file"
+# Edit the compose file with Vim.
+alacritty -e /opt/homebrew/bin/nu -c "vim $compose_file"
 
 # Copy the contents of the compose file into the system clipboard.
 cat "$compose_file" | pbcopy

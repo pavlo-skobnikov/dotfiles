@@ -10,3 +10,4 @@ while IFS= read -r line; do
     # Export the environment variables.
     export "$key=$value"
 done <<< "$output"
+

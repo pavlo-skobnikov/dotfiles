@@ -8,6 +8,13 @@ $env.config = {
     # Disable the welcome banner at startup.
     show_banner: false
 
+    # Emacs? Not in my shell!
+    edit_mode: 'vi'
+    cursor_shape: {
+      vi_insert: line
+      vi_normal: block
+    }
+
     # Steal fish's completions 🌚
     completions: {
         external: {
