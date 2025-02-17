@@ -47,18 +47,6 @@ set multicursor
 " Better maps for the project explorer.
 set NERDTree
 
-let g:NERDTreeMapJumpParent = 'h'
-let g:NERDTreeMapJumpRoot = 'H'
-
-let g:NERDTreeMapActivateNode = 'l'
-let g:NERDTreeMapOpenRecursively = 'L'
-let g:NERDTreeMapPreview = 'gl'
-
-let g:NERDTreeMapOpenSplit = 's'
-let g:NERDTreeMapPreviewSplit = 'gs'
-let g:NERDTreeMapOpenVSplit = 'v'
-let g:NERDTreeMapPreviewVSplit = 'gv'
-
 
 """ Maps section.
 
