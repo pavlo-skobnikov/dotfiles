@@ -53,7 +53,7 @@ alias fdhd = fd --unrestricted --exclude '.git/' --type=directory
 alias cf = cd (fdhd | fzf)
 
 # Fzf with bat preview.
-alias fzp = fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+alias fzp = fzf --preview "bat --color=always --theme='Catppuccin Frappe' --style=numbers --line-range=:500 {}"
 
 # Vim.
 alias vf = vim (fzp)

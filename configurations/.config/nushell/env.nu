@@ -42,7 +42,7 @@ load-env {
   # Hide Starship warnings.
   "STARSHIP_LOG": "error"
   # Bat theme.
-  "BAT_THEME": "base16"
+  "BAT_THEME": "Catppuccin Frappe"
   # Set up Java and Maven PATHs via SDKMAN
   "JAVA_HOME": ($env.SDKMAN_DIR | path join candidates java current)
   "M2_HOME": ($env.SDKMAN_DIR | path join candidates maven current)
