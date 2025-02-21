@@ -25,7 +25,7 @@
          ; Right Command + right-hand side keys -> Hyper + [PRESSED_KEY]
          ; NOTE 1: Hyper == Command + Control + Option + Shift modifiers.
          ; NOTE 2: h/j/k/l are not mapped to Hyper + [PRESSED_KEY] but rather
-         ; to vim arrow keys for convenience.
+         ; to (Vim-style) arrow keys directly for convenience.
          :rules [[:!Cq :!CTOSq]
                  [:!Cw :!CTOSw]
                  [:!Ce :!CTOSe]
@@ -98,9 +98,4 @@
                  [:!Q##9 :f9]
                  [:!Q##0 :f10]
                  [:!Q##hyphen :f11]
-                 [:!Q##equal_sign :f12]]}
-
-        {:des "Simple forward delete"
-         ; Left Shift + Delete -> Forward delete.
-         ; NOTE: Other left modifiers are also allowed.
-         :rules [[:!S#C#Odelete_or_backspace :delete_forward]]}]}
+                 [:!Q##equal_sign :f12]]}]}
