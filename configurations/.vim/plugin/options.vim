@@ -8,6 +8,8 @@ set fileencoding="utf-8"
 set shortmess="lF"
 " When set case is ignored when completing file names and directories.
 set wildignorecase
+" Always show statusline.
+set laststatus=2
 
 " Don't create a backup, swap, or backup files.
 set nobackup
