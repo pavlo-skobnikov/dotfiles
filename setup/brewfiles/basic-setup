@@ -17,6 +17,7 @@ brew "lazygit" # TUI for `git`.
 brew "lazydocker" # TUI for `docker`.
 brew "stow" # Symlinking for dotfiles.
 brew "tmux" # An unreplaceable terminal multiplexer.
+brew "leader-key" # MacOS-wide which-key for applications and actions.
 
 cask "font-jetbrains-mono-nerd-font"
 cask "docker"
