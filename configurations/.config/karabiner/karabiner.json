@@ -42,6 +42,21 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "Left control + spacebar to caps lock",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "spacebar",
+            "modifiers" : {
+              "mandatory" : [ "left_control" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "caps_lock"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "Hyper keys & vim arrow keys mode",
         "manipulators" : [ {
           "from" : {

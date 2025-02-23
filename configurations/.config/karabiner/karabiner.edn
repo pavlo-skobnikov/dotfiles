@@ -13,12 +13,13 @@
 
 {:global {:show-in-menu-bar false}
  :main [{:des "Mirror controls & caps lock to escape"
-         ; Caps Lock -> Left Control when held down.
-         ; Caps Lock -> turned into the Escape when tapped.
-         ; Quote (') -> Right Control when held down.
-         ; Quote (') -> Quote (') when tapped.
-         :rules [[:##caps_lock :left_control nil {:alone :escape}]
+         ; Caps Lock/Quote (') -> Left/Right Control when held down.
+         ; Caps Lock -> Escape when pressed alone.
+         :rules [[:##caps_lock :##left_control nil {:alone :escape}]
                  [:##quote :right_control nil {:alone :quote}]]}
+
+         {:des "Left control + spacebar to caps lock"
+          :rules [[:!T#Pspacebar :caps_lock]]}
 
         {:des "Hyper keys & vim arrow keys mode"
          ; Left Command + left-hand side keys -> Hyper + [PRESSED_KEY]
@@ -99,3 +100,4 @@
                  [:!Q##0 :f10]
                  [:!Q##hyphen :f11]
                  [:!Q##equal_sign :f12]]}]}
+
