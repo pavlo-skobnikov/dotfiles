@@ -2,156 +2,247 @@
   "type" : "group",
   "actions" : [
     {
-      "key" : "!",
       "label" : "Confetti!",
       "type" : "url",
+      "key" : "!",
       "value" : "raycast://confetti"
     },
     {
-      "key" : "e",
-      "label" : "Search Emojis",
       "type" : "url",
-      "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
+      "key" : "e",
+      "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+      "label" : "Search Emojis"
     },
     {
-      "key" : "o",
-      "label" : "Open applications...",
       "type" : "group",
+      "label" : "Open applications...",
       "actions" : [
         {
-          "key" : "a",
-          "label" : "",
           "type" : "application",
-          "value" : "/Applications/Alacritty.app"
+          "value" : "/Applications/Alacritty.app",
+          "key" : "a",
+          "label" : ""
         },
         {
-          "key" : "i",
-          "label" : "",
           "type" : "application",
+          "label" : "",
+          "key" : "i",
           "value" : "/Applications/IntelliJ IDEA.app"
         },
         {
-          "key" : "x",
           "label" : "",
           "type" : "application",
-          "value" : "/Applications/Xcode.app"
+          "value" : "/Applications/Xcode.app",
+          "key" : "x"
         },
         {
+          "value" : "/Applications/Docker.app",
           "key" : "d",
-          "label" : "",
           "type" : "application",
-          "value" : "/Applications/Docker.app"
+          "label" : ""
         },
         {
           "key" : "s",
-          "label" : "",
+          "value" : "/Applications/Safari.app",
           "type" : "application",
-          "value" : "/Applications/Safari.app"
+          "label" : ""
         },
         {
+          "type" : "application",
           "key" : "g",
           "label" : "",
-          "type" : "application",
           "value" : "/Applications/Google Chrome.app"
         },
         {
+          "value" : "/Applications/Bear.app",
           "key" : "b",
-          "label" : "",
           "type" : "application",
-          "value" : "/Applications/Bear.app"
+          "label" : ""
         },
         {
-          "key" : "t",
           "label" : "",
+          "value" : "/Applications/Things3.app",
           "type" : "application",
-          "value" : "/Applications/Things3.app"
+          "key" : "t"
         },
         {
+          "type" : "application",
+          "value" : "/System/Applications/Calendar.app",
           "key" : "c",
-          "label" : "",
-          "type" : "application",
-          "value" : "/System/Applications/Calendar.app"
+          "label" : ""
         },
         {
-          "key" : "m",
-          "label" : "",
+          "value" : "/System/Applications/Mail.app",
           "type" : "application",
-          "value" : "/System/Applications/Mail.app"
+          "key" : "m",
+          "label" : ""
         },
         {
           "key" : "S",
-          "label" : "",
           "type" : "application",
+          "label" : "",
           "value" : "/Applications/Slack.app"
         },
         {
-          "key" : "T",
-          "label" : "",
           "type" : "application",
-          "value" : "/Applications/Telegram.app"
+          "value" : "/Applications/Telegram.app",
+          "label" : "",
+          "key" : "T"
         },
         {
           "key" : "D",
           "label" : "",
-          "type" : "application",
-          "value" : "/Applications/Discord.app"
+          "value" : "/Applications/Discord.app",
+          "type" : "application"
         },
         {
-          "key" : "f",
-          "label" : "",
           "type" : "application",
+          "label" : "",
+          "key" : "f",
           "value" : "/System/Library/CoreServices/Finder.app"
         },
         {
+          "type" : "application",
           "key" : "p",
           "label" : "",
-          "type" : "application",
           "value" : "/System/Applications/Passwords.app"
         }
-      ]
+      ],
+      "key" : "o"
     },
     {
       "key" : "f",
       "label" : "Files...",
-      "type" : "group",
       "actions" : [
         {
-          "label" : "~/Downloads",
           "value" : "/Users/pavlo.skobnikov/Downloads",
-          "type" : "folder",
-          "key" : "d"
+          "key" : "d",
+          "label" : "~/Downloads",
+          "type" : "folder"
         },
         {
-          "label" : "~/Desktop",
+          "type" : "folder",
           "key" : "t",
-          "value" : "/Users/pavlo.skobnikov/Desktop",
-          "type" : "folder"
+          "label" : "~/Desktop",
+          "value" : "/Users/pavlo.skobnikov/Desktop"
         },
         {
           "key" : "a",
-          "value" : "/Applications",
+          "label" : "/Applications",
           "type" : "folder",
-          "label" : "/Applications"
+          "value" : "/Applications"
         },
         {
+          "type" : "folder",
+          "key" : "i",
           "label" : "iCloud",
-          "value" : "/Users/pavlo.skobnikov/Library/Mobile Documents/com~apple~CloudDocs",
-          "type" : "folder",
-          "key" : "i"
+          "value" : "/Users/pavlo.skobnikov/Library/Mobile Documents/com~apple~CloudDocs"
         },
         {
-          "key" : "p",
+          "type" : "folder",
           "value" : "/Users/pavlo.skobnikov/Library/CloudStorage/GoogleDrive-pavlo.skobnikov@gmail.com",
           "label" : "Google Drive - Personal",
-          "type" : "folder"
+          "key" : "p"
         },
         {
+          "key" : "m",
           "label" : "Google Drive - Miro",
           "type" : "folder",
-          "value" : "/Users/pavlo.skobnikov/Library/CloudStorage/GoogleDrive-pavlo.s@miro.com",
-          "key" : "m"
+          "value" : "/Users/pavlo.skobnikov/Library/CloudStorage/GoogleDrive-pavlo.s@miro.com"
         }
-      ]
+      ],
+      "type" : "group"
+    },
+    {
+      "key" : "w",
+      "label" : "Windows...",
+      "actions" : [
+        {
+          "type" : "url",
+          "key" : "f",
+          "value" : "raycast://extensions/raycast/window-management/toggle-fullscreen",
+          "label" : "Toggle fullscreen"
+        },
+        {
+          "type" : "url",
+          "key" : "m",
+          "value" : "raycast://extensions/raycast/window-management/maximize",
+          "label" : "Maximize"
+        },
+        {
+          "type" : "url",
+          "key" : "a",
+          "value" : "raycast://extensions/raycast/window-management/almost-maximize",
+          "label" : "Almost maximize"
+        },
+        {
+          "type" : "url",
+          "key" : "r",
+          "value" : "raycast://extensions/raycast/window-management/reasonable-size",
+          "label" : "Reasonable size"
+        },
+        {
+          "type" : "url",
+          "key" : "+",
+          "value" : "raycast://extensions/raycast/window-management/make-larger",
+          "label" : "Make larger"
+        },
+        {
+          "type" : "url",
+          "key" : "-",
+          "value" : "raycast://extensions/raycast/window-management/make-smaller",
+          "label" : "Make smaller"
+        },
+        {
+          "type" : "url",
+          "key" : "h",
+          "value" : "raycast://extensions/raycast/window-management/left-half",
+          "label" : "Left half"
+        },
+        {
+          "type" : "url",
+          "key" : "j",
+          "value" : "raycast://extensions/raycast/window-management/bottom-half",
+          "label" : "Bottom half"
+        },
+        {
+          "type" : "url",
+          "key" : "k",
+          "value" : "raycast://extensions/raycast/window-management/top-half",
+          "label" : "Top half"
+        },
+        {
+          "type" : "url",
+          "key" : "l",
+          "value" : "raycast://extensions/raycast/window-management/right-half",
+          "label" : "Right half"
+        },
+        {
+          "type" : "url",
+          "key" : "u",
+          "value" : "raycast://extensions/raycast/window-management/top-left-quarter",
+          "label" : "Top left quarter"
+        },
+        {
+          "type" : "url",
+          "key" : "i",
+          "value" : "raycast://extensions/raycast/window-management/bottom-left-quarter",
+          "label" : "Bottom left quarter"
+        },
+        {
+          "type" : "url",
+          "key" : "o",
+          "value" : "raycast://extensions/raycast/window-management/bottom-right-quarter",
+          "label" : "Bottom right quarter"
+        },
+        {
+          "type" : "url",
+          "key" : "p",
+          "value" : "raycast://extensions/raycast/window-management/top-right-quarter",
+          "label" : "Top right quarter"
+        }
+      ],
+      "type" : "group"
     }
   ]
 }
