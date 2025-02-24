@@ -1,0 +1,157 @@
+{
+  "type" : "group",
+  "actions" : [
+    {
+      "key" : "!",
+      "label" : "Confetti!",
+      "type" : "url",
+      "value" : "raycast://confetti"
+    },
+    {
+      "key" : "e",
+      "label" : "Search Emojis",
+      "type" : "url",
+      "value" : "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
+    },
+    {
+      "key" : "o",
+      "label" : "Open applications...",
+      "type" : "group",
+      "actions" : [
+        {
+          "key" : "a",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Alacritty.app"
+        },
+        {
+          "key" : "i",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/IntelliJ IDEA.app"
+        },
+        {
+          "key" : "x",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Xcode.app"
+        },
+        {
+          "key" : "d",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Docker.app"
+        },
+        {
+          "key" : "s",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Safari.app"
+        },
+        {
+          "key" : "g",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Google Chrome.app"
+        },
+        {
+          "key" : "b",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Bear.app"
+        },
+        {
+          "key" : "t",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Things3.app"
+        },
+        {
+          "key" : "c",
+          "label" : "",
+          "type" : "application",
+          "value" : "/System/Applications/Calendar.app"
+        },
+        {
+          "key" : "m",
+          "label" : "",
+          "type" : "application",
+          "value" : "/System/Applications/Mail.app"
+        },
+        {
+          "key" : "S",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Slack.app"
+        },
+        {
+          "key" : "T",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Telegram.app"
+        },
+        {
+          "key" : "D",
+          "label" : "",
+          "type" : "application",
+          "value" : "/Applications/Discord.app"
+        },
+        {
+          "key" : "f",
+          "label" : "",
+          "type" : "application",
+          "value" : "/System/Library/CoreServices/Finder.app"
+        },
+        {
+          "key" : "p",
+          "label" : "",
+          "type" : "application",
+          "value" : "/System/Applications/Passwords.app"
+        }
+      ]
+    },
+    {
+      "key" : "f",
+      "label" : "Files...",
+      "type" : "group",
+      "actions" : [
+        {
+          "label" : "~/Downloads",
+          "value" : "/Users/pavlo.skobnikov/Downloads",
+          "type" : "folder",
+          "key" : "d"
+        },
+        {
+          "label" : "~/Desktop",
+          "key" : "t",
+          "value" : "/Users/pavlo.skobnikov/Desktop",
+          "type" : "folder"
+        },
+        {
+          "key" : "a",
+          "value" : "/Applications",
+          "type" : "folder",
+          "label" : "/Applications"
+        },
+        {
+          "label" : "iCloud",
+          "value" : "/Users/pavlo.skobnikov/Library/Mobile Documents/com~apple~CloudDocs",
+          "type" : "folder",
+          "key" : "i"
+        },
+        {
+          "key" : "p",
+          "value" : "/Users/pavlo.skobnikov/Library/CloudStorage/GoogleDrive-pavlo.skobnikov@gmail.com",
+          "label" : "Google Drive - Personal",
+          "type" : "folder"
+        },
+        {
+          "label" : "Google Drive - Miro",
+          "type" : "folder",
+          "value" : "/Users/pavlo.skobnikov/Library/CloudStorage/GoogleDrive-pavlo.s@miro.com",
+          "key" : "m"
+        }
+      ]
+    }
+  ]
+}

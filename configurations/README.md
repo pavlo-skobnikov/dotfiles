@@ -72,3 +72,10 @@ the [karabiner.json](./.config/karabiner/karabiner.json) file. So, if you want
 to referency my configuration, you should look at the `goku` configuration file
 [here](./.config/karabiner/karabiner.edn).
 
+## [Leader Key](./Library/Application Support/Leader Key/config.json)
+
+My customized setup for the incredible
+[Leader Key](https://github.com/mikker/LeaderKey.app) MacOS application.
+
+NOTE: A lot of actions there are [Raycast](https://www.raycast.com)-based.
+
