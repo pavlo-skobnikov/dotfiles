@@ -39,6 +39,9 @@
                  [:!Q##hyphen :f11]
                  [:!Q##equal_sign :f12]]}
 
+         {:des "Simultaneous Left Option + Right Option -> Hyper + F20"
+          :rules [[[:left_option :right_option] :!!f20]]}
+
         {:des "Proper Modifiers Mode"
          ; Don't allow Left/Right Command/Option + left/right-hand side key
          ; combinations respectively.
