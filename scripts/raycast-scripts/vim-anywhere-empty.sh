@@ -31,7 +31,19 @@ compose_file="/tmp/vim-anywhere.md"
 > "$compose_file"
 
 # Edit the compose file with Vim.
-alacritty -e /opt/homebrew/bin/nu -c "vim $compose_file"
+alacritty -e /opt/homebrew/bin/nu -c "vim $compose_file" &
+
+# Get the PID of the Alacritty process.
+alacritty_pid=$!
+
+# Wait for 100 milliseconds.
+sleep 0.25
+
+# Move the window to the bottom half of the screen.
+open -g raycast://extensions/raycast/window-management/bottom-half &
+
+# Wait for the Alacritty process to finish.
+wait $alacritty_pid
 
 # Copy the contents of the compose file into the system clipboard.
 cat "$compose_file" | pbcopy

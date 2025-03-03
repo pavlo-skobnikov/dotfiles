@@ -28,10 +28,10 @@ current_app=$(osascript -e 'tell application "System Events"' \
 # This file will hold the result text edited by Vim.
 compose_file="/tmp/vim-anywhere.md"
 
-# Use osascript to copy the current selection to the clipboard
+# Use osascript to copy the current selection to the clipboard.
 osascript -e 'tell application "System Events" to keystroke "c" using command down'
 
-# Wait a moment to ensure the clipboard has the copied text
+# Wait a moment to ensure the clipboard has the copied text.
 sleep 0.15
 
 # Pipes the clipboard contents to the compose file, optionally creating it if it
@@ -39,7 +39,19 @@ sleep 0.15
 pbpaste > "$compose_file"
 
 # Edit the compose file with Vim.
-alacritty -e /opt/homebrew/bin/nu -c "vim $compose_file"
+alacritty -e /opt/homebrew/bin/nu -c "vim $compose_file" &
+
+# Get the PID of the Alacritty process.
+alacritty_pid=$!
+
+# Wait for 100 milliseconds.
+sleep 0.25
+
+# Move the window to the bottom half of the screen.
+open -g raycast://extensions/raycast/window-management/bottom-half &
+
+# Wait for the Alacritty process to finish.
+wait $alacritty_pid
 
 # Copy the contents of the compose file into the system clipboard.
 cat "$compose_file" | pbcopy
