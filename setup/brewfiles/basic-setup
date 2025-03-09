@@ -4,20 +4,19 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
-brew "nushell" # New-new-new shell.
-brew "fish" # He-e-ere, fishy-fishy-fish. Come give me your completions.
-brew "starship" # Starry prompt.
-brew "bat" # Prettier `cat`.
-brew "gnu-sed" # GNU implementation of `sed`.
-brew "fzf" # Command-line fuzzy finder.
-brew "ripgrep" # A better `grep`.
-brew "fd" # A simple alternative to `find`.
-brew "pandoc" # Document conversions.
-brew "lazygit" # TUI for `git`.
-brew "lazydocker" # TUI for `docker`.
-brew "stow" # Symlinking for dotfiles.
-brew "tmux" # An unreplaceable terminal multiplexer.
-brew "leader-key" # MacOS-wide which-key for applications and actions.
+brew "nushell"
+brew "fish"
+brew "starship"
+brew "bat"
+brew "gnu-sed"
+brew "fzf"
+brew "ripgrep"
+brew "fd"
+brew "pandoc"
+brew "lazygit"
+brew "lazydocker"
+brew "stow"
+brew "tmux"
 
 cask "font-jetbrains-mono-nerd-font"
 cask "docker"
@@ -25,8 +24,7 @@ cask "alacritty"
 cask "intellij-idea"
 cask "raycast"
 cask "karabiner-elements"
-cask "google-chrome"
-cask "google-drive"
+cask "arc"
 cask "telegram"
 cask "discord"
 cask "slack"
