@@ -19,79 +19,80 @@
          {:des "Left Control + Space -> Caps Lock"
           :rules [[:!T#Pspacebar :caps_lock]]}
 
-        {:des "Right Command + h/j/k/l -> Vim-like arrow keys"
-         :rules [[:!Q##h :left_arrow]
-                 [:!Q##j :down_arrow]
-                 [:!Q##k :up_arrow]
-                 [:!Q##l :right_arrow]]}
-
-        {:des "Left/Right Command + 1 'till = -> F1 'till F12"
+        {:des "Hyper keys, Function keys, and Vim arrow keys mode"
+         ; Left Command + left-hand side number keys -> F1 - F5
+         ; Left Command + left-hand side letter keys -> Hyper + [PRESSED_KEY]
+         ; Right Command + right-hand side number (+ symbol) keys -> F6 - F12
+         ; Right Command + right-hand side letter keys -> Hyper + [PRESSED_KEY]
+         ; Right Command + h/j/k/l -> Left/Down/Up/Right arrow keys
+         ; NOTE: Hyper == Command + Control + Option + Shift modifiers.
          :rules [[:!C##1 :f1]
                  [:!C##2 :f2]
                  [:!C##3 :f3]
                  [:!C##4 :f4]
                  [:!C##5 :f5]
+                 [:!Cq :!CTOSq]
+                 [:!Cw :!CTOSw]
+                 [:!Ce :!CTOSe]
+                 [:!Cr :!CTOSr]
+                 [:!Ct :!CTOSt]
+                 [:!Ca :!CTOSa]
+                 [:!Cs :!CTOSs]
+                 [:!Cd :!CTOSd]
+                 [:!Cf :!CTOSf]
+                 [:!Cg :!CTOSg]
+                 [:!Cz :!CTOSz]
+                 [:!Cx :!CTOSx]
+                 [:!Cc :!CTOSc]
+                 [:!Cv :!CTOSv]
+                 [:!Cb :!CTOSb]
                  [:!Q##6 :f6]
                  [:!Q##7 :f7]
                  [:!Q##8 :f8]
                  [:!Q##9 :f9]
                  [:!Q##0 :f10]
                  [:!Q##hyphen :f11]
-                 [:!Q##equal_sign :f12]]}
+                 [:!Q##equal_sign :f12]
+                 [:!Qy :!QWERy]
+                 [:!Qu :!QWERu]
+                 [:!Qi :!QWERi]
+                 [:!Qo :!QWERo]
+                 [:!Qp :!QWERp]
+                 [:!Q##h :left_arrow]
+                 [:!Q##j :down_arrow]
+                 [:!Q##k :up_arrow]
+                 [:!Q##l :right_arrow]
+                 [:!Qn :!QWERn]
+                 [:!Qm :!QWERm]]}
 
-         {:des "Simultaneous Left Option + Right Option -> Hyper + F20"
-          :rules [[[:left_option :right_option] :!!f20]]}
-
-        {:des "Proper Modifiers Mode"
-         ; Don't allow Left/Right Command/Option + left/right-hand side key
-         ; combinations respectively.
-         ; NOTE: An exception is made for Right Command + h/j/k/l.
-         :rules [[:!Cq :vk_none]
-                 [:!Cw :vk_none]
-                 [:!Ce :vk_none]
-                 [:!Cr :vk_none]
-                 [:!Ct :vk_none]
-                 [:!Ca :vk_none]
-                 [:!Cs :vk_none]
-                 [:!Cd :vk_none]
-                 [:!Cf :vk_none]
-                 [:!Cg :vk_none]
-                 [:!Cz :vk_none]
-                 [:!Cx :vk_none]
-                 [:!Cc :vk_none]
-                 [:!Cv :vk_none]
-                 [:!Cb :vk_none]
-                 [:!Qy :vk_none]
-                 [:!Qu :vk_none]
-                 [:!Qi :vk_none]
-                 [:!Qo :vk_none]
-                 [:!Qp :vk_none]
-                 [:!Qn :vk_none]
-                 [:!Qm :vk_none]
-                 [:!Oq :vk_none]
-                 [:!Ow :vk_none]
-                 [:!Oe :vk_none]
-                 [:!Or :vk_none]
-                 [:!Ot :vk_none]
-                 [:!Oa :vk_none]
-                 [:!Os :vk_none]
-                 [:!Od :vk_none]
-                 [:!Of :vk_none]
-                 [:!Og :vk_none]
-                 [:!Oz :vk_none]
-                 [:!Ox :vk_none]
-                 [:!Oc :vk_none]
-                 [:!Ov :vk_none]
-                 [:!Ob :vk_none]
-                 [:!Ey :vk_none]
-                 [:!Eu :vk_none]
-                 [:!Ei :vk_none]
-                 [:!Eo :vk_none]
-                 [:!Ep :vk_none]
-                 [:!Eh :vk_none]
-                 [:!Ej :vk_none]
-                 [:!Ek :vk_none]
-                 [:!El :vk_none]
-                 [:!En :vk_none]
-                 [:!Em :vk_none]]}]}
+        {:des "Super keys"
+         ; Left Command + left-hand side letter keys -> Super + [PRESSED_KEY]
+         ; Right Command + right-hand side letter keys -> Super + [PRESSED_KEY]
+         ; NOTE: Super == Command + Control + Option modifiers.
+         :rules [[:!Oq :!CTOq]
+                 [:!Ow :!CTOw]
+                 [:!Oe :!CTOe]
+                 [:!Or :!CTOr]
+                 [:!Ot :!CTOt]
+                 [:!Oa :!CTOa]
+                 [:!Os :!CTOs]
+                 [:!Od :!CTOd]
+                 [:!Of :!CTOf]
+                 [:!Og :!CTOg]
+                 [:!Oz :!CTOz]
+                 [:!Ox :!CTOx]
+                 [:!Oc :!CTOc]
+                 [:!Ov :!CTOv]
+                 [:!Ob :!CTOb]
+                 [:!Ey :!QWEy]
+                 [:!Eu :!QWEu]
+                 [:!Ei :!QWEi]
+                 [:!Eo :!QWEo]
+                 [:!Ep :!QWEp]
+                 [:!Eh :!QWEh]
+                 [:!Ej :!QWEj]
+                 [:!Ek :!QWEk]
+                 [:!El :!QWEl]
+                 [:!En :!QWEn]
+                 [:!Em :!QWEm]]}]}
 
