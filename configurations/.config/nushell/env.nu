@@ -18,6 +18,8 @@ $env.PATH = (
   | append ($env.HOME | path join "go/bin")
   # Rust toolkit.
   | append ($env.HOME | path join ".cargo/bin")
+  # Docker binaries.
+  | append "/Applications/Docker.app/Contents/Resources/bin/"
   # IntelliJ IDEA.
   | append "/Applications/IntelliJ IDEA.app/Contents/MacOS/"
   # Remove repeating entries.
