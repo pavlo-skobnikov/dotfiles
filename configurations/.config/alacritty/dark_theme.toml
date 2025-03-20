@@ -1,6 +1,5 @@
-# Taken from https://github.com/alacritty/alacritty-theme
-# All credit goes to the creators, maintainers, and contributors of the
-# `alacritty-theme` project 🙏
+# All credit goes to the maintainers of the
+# `https://github.com/alacritty/alacritty-theme` project.
 
 # Catppuccin Frappe
 
@@ -77,3 +76,4 @@ blue = '#8CAAEE' # blue
 magenta = '#F4B8E4' # pink
 cyan = '#81C8BE' # teal
 white = '#B5BFE2' # subtext1
+

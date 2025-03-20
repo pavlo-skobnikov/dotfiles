@@ -4,3 +4,6 @@
 # Karabiner.
 **/assets/*
 **/automatic_backups/*
+
+# Alacritty.
+configurations/.config/alacritty/_active_theme.toml
