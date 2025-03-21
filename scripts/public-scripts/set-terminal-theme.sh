@@ -14,5 +14,5 @@ else
 fi
 
 # Reload Alacritty's configuration.
-touch ~/.config/alacritty/alacritty.yml
+touch ~/.config/alacritty/alacritty.toml
 
