@@ -21,7 +21,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 git clone git@github.com:pavlo-skobnikov/dotfiles.git
 
 # Install basic environment tools.
-brew bundle install --file=~/dotfiles/setup/brewfiles/basic-setup
+brew bundle install --file=~/dotfiles/setup/setup.brewfile
 
 # Chmod my scripts.
 chmod -R +x ~/dotfiles/scripts/public-scripts/
