@@ -54,5 +54,15 @@ let &t_SI = "\<Esc>[6 q" " INSERT - |
 let &t_EI = "\<Esc>[2 q" " Other modes - █
 
 " The most polite colorscheme to ever exist 🐾
-colorscheme catppuccin_frappe
+" Why use redis and not the system() function?
+" -> My work MacOS machine refuses to do any system calls for built-in Vim :(
+redir => s:terminal_theme
+silent! echo $BAT_THEME
+redir END
+
+if s:terminal_theme =~ "Catppuccin Latte"
+  colorscheme catppuccin_latte
+else
+  colorscheme catppuccin_frappe
+endif
 
