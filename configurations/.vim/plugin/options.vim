@@ -1,5 +1,10 @@
 "" Options specific to Vim.
 
+" Time out key codes.
+" NOTE: Helps with having to press Escape/C-[ twice to exit INSERT.
+set ttimeout
+set ttimeoutlen=0
+
 " General terminal/file options.
 set termguicolors
 set fileencoding="utf-8"
@@ -66,3 +71,5 @@ else
   colorscheme catppuccin_frappe
 endif
 
+" Fixes the incorrect cursor.
+normal <C-l>
