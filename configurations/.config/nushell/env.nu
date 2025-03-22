@@ -43,12 +43,21 @@ load-env {
   "GOKU_EDN_CONFIG_FILE": ($env.HOME | path join .config karabiner karabiner.edn)
   # Hide Starship warnings.
   "STARSHIP_LOG": "error"
-  # Bat theme.
-  "BAT_THEME": "base16"
   # Set up Java and Maven PATHs via SDKMAN
   "JAVA_HOME": ($env.SDKMAN_DIR | path join candidates java current)
   "M2_HOME": ($env.SDKMAN_DIR | path join candidates maven current)
 }
+
+# Set terminal colors.
+if "" == (defaults read -g AppleInterfaceStyle | complete | get stdout) {
+  ln -fs ~/.config/alacritty/light_theme.toml ~/.config/alacritty/_active_theme.toml
+  $env.BAT_THEME = "Catppuccin Latte"
+} else {
+  ln -fs ~/.config/alacritty/dark_theme.toml ~/.config/alacritty/_active_theme.toml
+  $env.BAT_THEME = "Catppuccin Frappe"
+}
+
+touch ~/.config/alacritty/alacritty.toml
 
 # Source the secrets.
 # NOTE: The files is just a simple TOML file with simple definitions
