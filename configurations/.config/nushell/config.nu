@@ -1,6 +1,19 @@
 # Enable Starship prompt.
 use ~/.cache/starship/init.nu
 
+# Set terminal colors.
+if "" == (defaults read -g AppleInterfaceStyle | complete | get stdout) {
+  ln -fs ~/.config/alacritty/light_theme.toml ~/.config/alacritty/_active_theme.toml
+  $env.BAT_THEME = "Catppuccin Latte"
+  source ~/.config/nushell/themes/light_theme.nu
+} else {
+  ln -fs ~/.config/alacritty/dark_theme.toml ~/.config/alacritty/_active_theme.toml
+  $env.BAT_THEME = "Catppuccin Frappe"
+  source ~/.config/nushell/themes/dark_theme.nu
+}
+
+touch ~/.config/alacritty/alacritty.toml
+
 $env.config = {
     # Disable the welcome banner at startup.
     show_banner: false
