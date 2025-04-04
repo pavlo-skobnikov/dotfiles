@@ -35,7 +35,7 @@ $env.HOME | path join .config | { "XDG_CONFIG_HOME": $in } | load-env
 
 load-env {
   # Basic shell configuration.
-  "EDITOR": "vim"
+  "EDITOR": "hx"
   "PAGER": "less"
   "MANPAGER": "sh -c 'col -bx | bat -l man -p'"
   "MANWIDTH": 999

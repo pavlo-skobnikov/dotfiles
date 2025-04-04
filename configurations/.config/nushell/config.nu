@@ -73,6 +73,10 @@ alias fzp = fzf --preview "bat --color=always --style=numbers --line-range=:500 
 alias vf = vim (fzp)
 alias vd = vim (fdhd | fzf)
 
+# Helix.
+alias hf = hx (fzp)
+alias hd = hx (fdhd | fzf)
+
 # Lazytools
 alias lg = lazygit
 alias ld = lazydocker

@@ -45,6 +45,10 @@ Sane configuration for Vim as a terminal text editor:
 - option to make Vim resemble modern code editors;
 - better Netrw setup.
 
+## [Helix](./helix)
+
+Post-modernity? In my terminal? Impossible 🤯
+
 ## Intellij IDEA
 
 Two configuration files:

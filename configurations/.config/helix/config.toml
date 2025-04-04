@@ -1,0 +1,8 @@
+theme = "catppuccin_frappe"
+
+[editor.cursor-shape]
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
