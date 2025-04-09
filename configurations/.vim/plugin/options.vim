@@ -30,11 +30,11 @@ set undodir=~/.local/state/vim/undo
 set splitbelow
 set splitright
 
-" Use 2-space tabs by default.
+" Use 4-space tabs by default.
 set expandtab
 set shiftround
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 " Perform autoindenting when writing text.
 set smartindent
