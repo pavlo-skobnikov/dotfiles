@@ -64,7 +64,6 @@ alias fdhf = fd --unrestricted --exclude '.git/' --type=file
 alias fdhd = fd --unrestricted --exclude '.git/' --type=directory
 
 # Fzf.
-alias fzf = fzf --margin=1
 alias fzp = fzf --style=minimal --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
 # Change directories w/ fzf.
