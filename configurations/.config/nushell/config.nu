@@ -68,6 +68,25 @@ alias fzp = fzf --style=minimal --bind ctrl-y:preview-up,ctrl-e:preview-down,ctr
 
 # Change directories w/ fzf.
 alias cf = cd (fdhd | fzf)
+def select-parent-dir-num [] {
+    let selected_parent_num = pwd
+        | str replace "/Users/" ""
+        | split row '/'
+        | reverse
+        | enumerate
+        | each { |it| $"($it.index) - ($it.item)" }
+        | skip 1
+        | str join "\n"
+        | fzf
+        | split words
+        | get 0
+        | into int
+
+    use std repeat
+
+    '../' | repeat $selected_parent_num | str join
+}
+alias cb = cd (select-parent-dir-num)
 
 # Vim.
 alias vf = vim (fzp)
