@@ -88,6 +88,12 @@ endif
 
 """ Options specific to Vim.
 
+" More modern completion.
+set completeopt=menu,menuone,preview,noinsert,fuzzy
+
+" Enable Tab-completion for command mode.
+set wildmenu
+
 " Time out key codes.
 " NOTE: Helps with having to press Escape/C-[ twice to exit INSERT.
 set ttimeout
