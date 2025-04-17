@@ -507,10 +507,6 @@ let g:netrw_keepdir = 0
 " Change the copy command to enable recursive copy of directories.
 let g:netrw_localcopydircmd = 'cp -r'
 
-" Current directory and project root maps.
-map - :Explore<cr>
-map _ :Explore ./<cr>
-
 """ Custom native status lines for active and inactive windows.
 
 "" Active window statusline autocommand.
@@ -544,4 +540,20 @@ endfunction
 
 " Create a user command for setting tab spaces
 command! -nargs=1 SetTabSpaces call SetTabSpaces(<args>)
+
+""" Maps section.
+
+" Open current directory and project root maps via Netrw.
+map - :Explore<cr>
+map _ :Explore ./<cr>
+
+" Close current tab.
+map <C-w>t :tabclose<cr>
+map <C-w>T :tabclose!<cr>
+
+" Open LazyGit.
+map <Leader>g :tab terminal lazygit<cr>
+
+" Open LazyDocker.
+map <Leader>d :tab terminal lazydocker<cr>
 
