@@ -2,11 +2,11 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Vim Anywhere: With Selection
+# @raycast.title Vim Anywhere
 # @raycast.mode silent
 
 # Optional parameters:
-# @raycast.icon 📝
+# @raycast.icon ⌨️
 
 # Documentation:
 # @raycast.description Open a new temporary Alacritty window with an empty Vim buffer to compose text in.
@@ -38,17 +38,18 @@ sleep 0.15
 # doesn't exist.
 pbpaste > "$compose_file"
 
-# Edit the compose file with Vim.
-alacritty -e /opt/homebrew/bin/nu -c "vim $compose_file" &
+# Focus the Alacritty application.
+osascript -e 'tell application "Alacritty" to activate'
 
-# Get the PID of the Alacritty process.
-alacritty_pid=$!
+# Create a new tmux window named "vim-anywhere", run Vim with the compose file,
+# and signal completion via tmux wait-for when Vim exits.
+tmux new-window -n vim-anywhere "vim $compose_file; tmux wait-for -S vim_finished"
 
-# Wait for the Alacritty process to finish.
-wait $alacritty_pid
+# Wait for the vim_finished signal to ensure Vim has exited.
+tmux wait-for vim_finished
 
 # Copy the contents of the compose file into the system clipboard.
-cat "$compose_file" | pbcopy
+< "$compose_file" pbcopy
 
 # Switch back to the previous application.
 osascript -e "tell application \"$current_app\" to activate"
