@@ -88,6 +88,9 @@ endif
 
 """ Options specific to Vim.
 
+" Set 'bash' as the Vim's shell.
+set shell=/bin/bash
+
 " More modern completion.
 set completeopt=menu,menuone,preview,noinsert,fuzzy
 
@@ -152,16 +155,10 @@ let &t_SI = "\<Esc>[6 q" " INSERT - |
 let &t_EI = "\<Esc>[2 q" " Other modes - █
 
 " The most polite colorscheme to ever exist 🐾
-" Why use redir and not the system() function?
-" -> My work MacOS machine refuses to do any system calls for built-in Vim :(
-redir => s:terminal_theme
-silent! echo $BAT_THEME
-redir END
-
 " The colorschemes are taken from https://github.com/catppuccin/vim
 " All credit goes to the creators, maintainers, and contributors of the
 " `catppuccin/vim` project 🙏
-if s:terminal_theme =~ "Catppuccin Latte"
+if empty(system('defaults read -g AppleInterfaceStyle 2> /dev/null'))
     " Name: catppuccin_latte.vim
 
     set background=dark
