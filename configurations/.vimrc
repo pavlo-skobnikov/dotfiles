@@ -549,8 +549,8 @@ map <C-w>t :tabclose<cr>
 map <C-w>T :tabclose!<cr>
 
 " Open LazyGit.
-map <Leader>g :tab terminal lazygit<cr>
+map <Leader>g :call system('lazygit')<cr>
 
 " Open LazyDocker.
-map <Leader>d :tab terminal lazydocker<cr>
+map <Leader>d :call system('lazydocker')<cr>
 
