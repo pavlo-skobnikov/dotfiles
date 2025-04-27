@@ -558,7 +558,9 @@ map <Leader>d :call system('lazydocker')<Cr>
 function! FzfSelectFile()
     " Define commands for retrieving files and fzf.
     let list_project_files_command = 'fd --unrestricted --exclude ".git/" --type=file'
-    let fzf_with_preview_command = 'fzf --style=minimal --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+    let fzf_with_preview_command = 'fzf --style=minimal' .
+        \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' .
+        \ ' --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 
     " Compose commands.
     let select_file_command = list_project_files_command . ' | ' . fzf_with_preview_command
@@ -574,11 +576,52 @@ function! FzfSelectFile()
         " Use execute and fnameescape() to open the file safely
         " fnameescape() handles special characters in filenames
         execute 'edit ' . fnameescape(selected_file)
-
-        " Force redraw the screen.
-        execute 'redraw!'
     endif
+
+    " Force redraw the screen.
+    execute 'redraw!'
 endfunction
 
-nnoremap <Leader>. :call FzfSelectFile()<CR>
+nnoremap <Leader>. :call FzfSelectFile()<Cr>
+
+" Grep through project files.
+function! GrepFiles(search_term)
+    " Define commands for retrieving files and fzf.
+    let ripgrep_search_command = 'rg --color=always --line-number --no-heading --smart-case "' . a:search_term . '"'
+    let fzf_with_preview_command = 'fzf --style=minimal' .
+        \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' .
+        \ ' --preview "bat --color=always {1} --highlight-line {2} --style=numbers"' .
+        \ ' --preview-window "+{2}+3/3,~3"' .
+        \ ' --ansi --color "hl:-1:underline,hl+:-1:underline:reverse" --delimiter ":"'
+    " Compose commands.
+    let select_file_command = ripgrep_search_command . ' | ' . fzf_with_preview_command
+
+    " Run the command.
+    let selected_file_and_cursor_pos = system(select_file_command)
+
+
+    " Check if a file was selected (system() returns non-empty string on success).
+    if !empty(selected_file_and_cursor_pos)
+        " Remove trailing newline from the result.
+        let selected_file_and_cursor_pos = substitute(selected_file_and_cursor_pos, '\n\+$', '', '')
+
+        " Parse the selection: expected format is "filename:line:column:text"
+        " We want filename and line number.
+        let parts = split(selected_file_and_cursor_pos, ':', 3)
+        if len(parts) >= 2
+            let filename = parts[0]
+            let lnum = str2nr(parts[1])
+            " Open the file and jump to the line.
+            execute 'edit +' . lnum . ' ' . fnameescape(filename)
+        else
+            " Fallback: just open the file if parsing fails.
+            execute 'edit ' . fnameescape(selected_file_and_cursor_pos)
+        endif
+    endif
+
+    " Force redraw the screen.
+    execute 'redraw!'
+endfunction
+
+nnoremap <Leader>/ :call GrepFiles(input('grep: '))<Cr>
 
