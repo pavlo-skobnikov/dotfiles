@@ -551,11 +551,18 @@ map <C-w>T :tabclose!<Cr>
 " Echo currently selected file's path.
 map <Leader>f :echo expand('%:p')<Cr>
 
+" Helper function to open TUI application and force redraw Vim.
+function! OpenTUIApplication(command)
+    execute "call system('" . a:command . "')"
+
+    execute 'redraw!'
+endfunction
+
 " Open LazyGit.
-map <Leader>g :call system('lazygit')<Cr>
+map <Leader>g :call OpenTUIApplication('lazygit')<Cr>
 
 " Open LazyDocker.
-map <Leader>d :call system('lazydocker')<Cr>
+map <Leader>d :call OpenTUIApplication('lazydocker')<Cr>
 
 " Fuzzy find project files.
 function! FzfSelectFile()
