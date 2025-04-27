@@ -554,3 +554,31 @@ map <Leader>g :call system('lazygit')<cr>
 " Open LazyDocker.
 map <Leader>d :call system('lazydocker')<cr>
 
+" Fuzzy find project files.
+function! FzfSelectFile()
+    " Define commands for retrieving files and fzf.
+    let list_project_files_command = 'fd --unrestricted --exclude ".git/" --type=file'
+    let fzf_with_preview_command = 'fzf --style=minimal --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+    " Compose commands.
+    let select_file_command = list_project_files_command . ' | ' . fzf_with_preview_command
+
+    " Run the command.
+    let selected_file = system(select_file_command)
+
+    " Check if a file was selected (system() returns non-empty string on success).
+    if !empty(selected_file)
+        " fzf might return a trailing newline, remove it
+        let selected_file = substitute(selected_file, '\n', '', '')
+
+        " Use execute and fnameescape() to open the file safely
+        " fnameescape() handles special characters in filenames
+        execute 'edit ' . fnameescape(selected_file)
+
+        " Force redraw the screen.
+        execute 'redraw!'
+    endif
+endfunction
+
+nnoremap <Leader>. :call FzfSelectFile()<CR>
+
