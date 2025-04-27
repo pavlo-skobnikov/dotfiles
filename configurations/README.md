@@ -36,13 +36,13 @@ Basically the default provided configuration file.
 It's only used by Intellij IDEA for running various tasks. The configuration
 basically sources Nushell's environment and that's it.
 
-## [Vim](./.vimrc) (& [.vim directory](./.vim/))
+## [Vim](./.vimrc)
 
 Sane configuration for Vim as a terminal text editor:
 
-- custom theme;
+- custom theme based on the current shell's theme;
 - more pleasant native statusline;
-- option to make Vim resemble modern code editors;
+- options to make Vim resemble modern code editors;
 - better Netrw setup.
 
 ## Intellij IDEA
