@@ -548,6 +548,9 @@ map _ :Explore ./<Cr>
 map <C-w>t :tabclose<Cr>
 map <C-w>T :tabclose!<Cr>
 
+" Echo currently selected file's path.
+map <Leader>f :echo expand('%:p')<Cr>
+
 " Open LazyGit.
 map <Leader>g :call system('lazygit')<Cr>
 
