@@ -541,18 +541,18 @@ command! -nargs=1 SetTabSpaces call SetTabSpaces(<args>)
 """ Maps section.
 
 " Open current directory and project root maps via Netrw.
-map - :Explore<cr>
-map _ :Explore ./<cr>
+map - :Explore<Cr>
+map _ :Explore ./<Cr>
 
 " Close current tab.
-map <C-w>t :tabclose<cr>
-map <C-w>T :tabclose!<cr>
+map <C-w>t :tabclose<Cr>
+map <C-w>T :tabclose!<Cr>
 
 " Open LazyGit.
-map <Leader>g :call system('lazygit')<cr>
+map <Leader>g :call system('lazygit')<Cr>
 
 " Open LazyDocker.
-map <Leader>d :call system('lazydocker')<cr>
+map <Leader>d :call system('lazydocker')<Cr>
 
 " Fuzzy find project files.
 function! FzfSelectFile()
