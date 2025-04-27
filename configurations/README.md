@@ -59,7 +59,6 @@ The plugins I use:
 
 - [IdeaVim](https://plugins.jetbrains.com/plugin/164-ideavim);
 - [Vim FunctionTextObj](https://plugins.jetbrains.com/plugin/25897-vim-functiontextobj);
-- [Vim Switch](https://plugins.jetbrains.com/plugin/25899-vim-switch);
 - [Harpooner](https://plugins.jetbrains.com/plugin/21796-harpooner);
 - [Vertical Align](https://plugins.jetbrains.com/plugin/13382-vertical-align);
 - [Ataman](https://plugins.jetbrains.com/plugin/17567-ataman);

@@ -36,10 +36,6 @@ let g:highlightedyank_highlight_duration = "250"
 set vim-paragraph-motion
 set matchit
 
-" Switch over common patterns.
-set switch
-let g:switch_definitions = "group:basic,group:java,group:javascript,group:markdown"
-
 " Better maps for the project explorer.
 set NERDTree
 
