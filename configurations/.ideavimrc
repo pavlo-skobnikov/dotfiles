@@ -42,32 +42,83 @@ set NERDTree
 
 """ Maps section.
 
+"" Miscellaneous maps.
 
-"" Folds.
+" Launch Ataman.
+map <Leader> <Action>(LeaderAction)
+
+" Repeat last Ataman action.
+map <C-,> <Action>(RepeatLatestAtamanCommandAction)
+
 " Toggle fold
 map za <Action>(ExpandCollapseToggleAction)
 
-
-"" Windows.
 " Transpose splits.
-map <C-w>t <Action>(ChangeSplitOrientation)
+map <C-w>X <Action>(ChangeSplitOrientation)
+
+" Explore project.
 
 
-"" Gotos.
+"" Completions.
+" Regular LSP completion.
+imap <C-x> <Action>(CodeCompletion)
+
+" Extra 'smart' completions.
+imap <C-S-c> <Action>(ClassNameCompletion)
+imap <C-S-t> <Action>(SmartTypeCompletion)
+imap <C-S-s> <Action>(EditorCompleteStatement)
+
+" Hippie completion.
+imap <C-S-p> <Action>(HippieBackwardCompletion)
+imap <C-S-n> <Action>(HippieCompletion)
+
+" Copilot/AI completion.
+imap <C-S-a> <Action>(copilot.requestCompletions)
+
+imap <C-S-[> <Action>(copilot.cyclePrevInlays)
+imap <C-S-]> <Action>(copilot.cycleNextInlays)
+
+
+"" Multicursors.
+" Line-by-line add cursors.
+map <Up> <Action>(EditorCloneCaretAbove)
+map <Down> <Action>(EditorCloneCaretBelow)
+
+" Select next match.
+map <Right> <Action>(SelectNextOccurrence)
+
+" Select all matches.
+map <S-Right> <Action>(SelectAllOccurrences)
+
+" Move the current cursor to the next match removing the current one.
+map <C-Right> <Action>(FindNext)
+
+" Remove current cursor and move back to the previous one.
+map <Left> <Action>(UnselectPreviousOccurrence)
+
+" Add cursors to the end of all lines for the current visual selection.
+map <C-S-Right> <Action>(EditorAddCaretPerSelectedLine)
+
+" Align all cursors by the rightmost one.
+map ga <Action>(VerticalAlign.VerticalAlignAction)
+
+
+"" LSP actions (Neovim default mappings inspired).
 " Goto definition.
-map gd <Action>(GotoDeclarationOnly)
+map <C-]> <Action>(GotoDeclarationOnly)
 
 " Goto type declaration.
-map gD <Action>(GotoTypeDeclaration)
+map gd <Action>(GotoTypeDeclaration)
 
-" Goto references.
-map gR <Action>(ShowUsages)
+" Show expression type information.
+map gy <Action>(ExpressionTypeInfo)
 
-" Goto implementation.
-map gI <Action>(GotoImplementation)
+" Show diagnostic info.
+map <C-w>d <Action>(ShowErrorDescription)
 
-" Goto super.
-map gS <Action>(GotoSuperMethod)
+" Show parameter information.
+map <C-s> <Action>(ParameterInfo)
+imap <C-s> <Action>(ParameterInfo)
 
 
 "" Previous/next.
@@ -86,18 +137,4 @@ map ]c <Action>(VcsShowNextChangeMarker)
 " Previous/next qflist item.
 map [q <Action>(PreviousOccurence)
 map ]q <Action>(NextOccurence)
-
-
-"" Switcher.
-nnoremap - :Switch<CR>
-nnoremap + :SwitchReverse<CR>
-
-
-"" Ataman.
-" Launch Ataman.
-map <Leader> <Action>(LeaderAction)
-imap <C-g> <Action>(LeaderAction)
-
-" Repeat last Ataman action.
-map <C-.> <Action>(RepeatLatestAtamanCommandAction)
 
