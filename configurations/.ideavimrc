@@ -74,6 +74,10 @@ map g? :source ~/.ideavimrc<Cr>
 imap <C-y> <Action>(EditorChooseLookupItem)
 imap <C-S-y> <Action>(EditorChooseLookupItemReplace)
 
+" Move around snippet jump places.
+imap <C-h> <Action>(PreviousTemplateVariable)
+imap <C-l> <Action>(NextTemplateVariable)
+
 " Regular LSP completion.
 imap <C-x> <Action>(CodeCompletion)
 
