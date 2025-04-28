@@ -48,7 +48,7 @@ set NERDTree
 map <Leader> <Action>(LeaderAction)
 
 " Repeat last Ataman action.
-map <C-,> <Action>(RepeatLatestAtamanCommandAction)
+map <C-.> <Action>(RepeatLatestAtamanCommandAction)
 
 " Toggle fold
 map za <Action>(ExpandCollapseToggleAction)
@@ -56,7 +56,17 @@ map za <Action>(ExpandCollapseToggleAction)
 " Transpose splits.
 map <C-w>X <Action>(ChangeSplitOrientation)
 
-" Explore project.
+" Select current file in/focus project explorer.
+map - <Action>(SelectInProjectView)
+map _ <Action>(ActivateProjectToolWindow)
+
+" Decrease/increase selection.
+map <C-j> <Action>(EditorUnSelectWord)
+map <C-k> <Action>(EditorSelectWord)
+
+" Reload IdeaVim configuration.
+" NOTE: The secret code easter egg isn't present in IdeaVim :(
+map g? :source ~/.ideavimrc<Cr>
 
 
 "" Completions.
