@@ -70,6 +70,10 @@ map g? :source ~/.ideavimrc<Cr>
 
 
 "" Completions.
+" Accept completion Vim-style.
+imap <C-y> <Action>(EditorChooseLookupItem)
+imap <C-S-y> <Action>(EditorChooseLookupItemReplace)
+
 " Regular LSP completion.
 imap <C-x> <Action>(CodeCompletion)
 
