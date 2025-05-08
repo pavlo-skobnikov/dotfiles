@@ -118,7 +118,7 @@ map <Left> <Action>(UnselectPreviousOccurrence)
 map <C-S-Right> <Action>(EditorAddCaretPerSelectedLine)
 
 " Align all cursors by the rightmost one.
-map ga <Action>(VerticalAlign.VerticalAlignAction)
+map gl <Action>(VerticalAlign.VerticalAlignAction)
 
 
 "" LSP actions (Neovim default mappings inspired).
