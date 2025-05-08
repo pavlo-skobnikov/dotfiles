@@ -314,6 +314,35 @@ endfunction
 
 nnoremap <Leader>. :call FzfSelectFile()<Cr>
 
+" Fuzzy find project directories.
+function! FzfSelectDirectory()
+    " Define commands for retrieving directories and fzf.
+    let list_project_directories_command = "fd --unrestricted --exclude '.git/' --type=directory '' '" . getcwd(-1) . "'"
+    let fzf_command = 'fzf --style=minimal' .
+        \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
+
+    " Compose commands.
+    let select_directory_command = list_project_directories_command . ' | ' . fzf_command
+
+    " Run the command.
+    let selected_directory = system(select_directory_command)
+
+    " Check if a directory was selected (system() returns non-empty string on success).
+    if !empty(selected_directory)
+        " fzf might return a trailing newline, remove it
+        let selected_directory = substitute(selected_directory, '\n', '', '')
+
+        " Use execute and fnameescape() to open the file safely
+        " fnameescape() handles special characters in filenames
+        execute 'Explore ' . fnameescape(selected_directory)
+    endif
+
+    " Force redraw the screen.
+    execute 'redraw!'
+endfunction
+
+nnoremap <Leader>- :call FzfSelectDirectory()<Cr>
+
 " Grep through project files.
 function! GrepFiles(search_term)
     " Define commands for retrieving files and fzf.
