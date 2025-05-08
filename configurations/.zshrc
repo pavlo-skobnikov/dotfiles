@@ -21,9 +21,6 @@ if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
 else
     compinit -C;
 fi;
-# autoload -U compinit; compinit
-# _comp_options+=(globdots)
-# source /usr/bin/
 
 ## Aliases
 # Require confirmation for the following commands.
