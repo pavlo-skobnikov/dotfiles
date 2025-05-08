@@ -287,8 +287,7 @@ map <Leader>d :call OpenTUIApplication('lazydocker')<Cr>
 
 " Fuzzy find project files.
 function! FzfSelectFile()
-    " Define commands for retrieving files and fzf.
-    let list_project_files_command = 'fd --unrestricted --exclude ".git/" --type=file'
+    let list_project_files_command = "fd --unrestricted --exclude '.git/' --type=file '' '" . getcwd(-1) . "'"
     let fzf_with_preview_command = 'fzf --style=minimal' .
         \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' .
         \ ' --preview "bat --color=always --style=numbers --line-range=:500 {}"'
@@ -319,7 +318,7 @@ nnoremap <Leader>. :call FzfSelectFile()<Cr>
 function! GrepFiles(search_term)
     " Define commands for retrieving files and fzf.
     let ripgrep_search_command = 'rg --hidden --iglob "!.git/" --color=always --line-number --no-heading --smart-case "' .
-        \ a:search_term . '"'
+        \ a:search_term . '" "' . getcwd(-1) . '"'
     let fzf_with_preview_command = 'fzf --style=minimal' .
         \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' .
         \ ' --preview "bat --color=always {1} --highlight-line {2} --style=numbers"' .
