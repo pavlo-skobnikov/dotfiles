@@ -54,7 +54,7 @@ set breakindent
 
 """ Maps section.
 " Clear highlights.
-nnoremap <silent> <C-l> :nohlsearch<cr>
+nnoremap <silent> <C-l> :nohlsearch<Cr>:redraw!<Cr>
 
 " Center screen on page movement.
 nnoremap <C-d> <C-d>zz
@@ -84,6 +84,10 @@ vnoremap [<space> <esc>O<esc>gv
 
 nnoremap ]<space> mzo<esc>`z
 vnoremap ]<space> <esc>O<esc>gv
+
+" Change around/inside double quotes.
+nnoremap caq ca"
+nnoremap ciq ci"
 
 """ Exit early when evaluating this file w/ IdeaVim.
 if has('ide')
