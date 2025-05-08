@@ -1,82 +1,33 @@
 # All credit goes to the maintainers of the
 # `https://github.com/alacritty/alacritty-theme` project.
 
-# Catppuccin Latte
+# Gruvbox Light theme.
 
-# Default colors
+# Default colors.
 [colors.primary]
-background = '#EFF1F5' # base
-foreground = '#4C4F69' # text
-# Bright and dim foreground colors
-dim_foreground = '#4C4F69' # text
-bright_foreground = '#4C4F69' # text
+background = '#f9f5d7' # Hard.
+# background = '#fbf1c7' # Medium.
+# background = '#f2e5bc' # Soft.
+foreground = '#3c3836'
 
-# Cursor colors
-[colors.cursor]
-text = '#EFF1F5' # base
-cursor = '#DC8A78' # rosewater
-
-[colors.vi_mode_cursor]
-text = '#EFF1F5' # base
-cursor = '#7287FD' # lavender
-
-# Search colors
-[colors.search.matches]
-foreground = '#EFF1F5' # base
-background = '#6C6F85' # subtext0
-
-[colors.search.focused_match]
-foreground = '#EFF1F5' # base
-background = '#40A02B' # green
-
-[colors.footer_bar]
-foreground = '#EFF1F5' # base
-background = '#6C6F85' # subtext0
-
-# Keyboard regex hints
-[colors.hints.start]
-foreground = '#EFF1F5' # base
-background = '#DF8E1D' # yellow
-
-[colors.hints.end]
-foreground = '#EFF1F5' # base
-background = '#6C6F85' # subtext0
-
-# Selection colors
-[colors.selection]
-text = '#EFF1F5' # base
-background = '#DC8A78' # rosewater
-
-# Normal colors
+# Normal colors.
 [colors.normal]
-black = '#5C5F77' # subtext1
-red = '#D20F39' # red
-green = '#40A02B' # green
-yellow = '#DF8E1D' # yellow
-blue = '#1E66F5' # blue
-magenta = '#EA76CB' # pink
-cyan = '#179299' # teal
-white = '#ACB0BE' # surface2
+black   = '#fbf1c7'
+red     = '#cc241d'
+green   = '#98971a'
+yellow  = '#d79921'
+blue    = '#458588'
+magenta = '#b16286'
+cyan    = '#689d6a'
+white   = '#7c6f64'
 
-# Bright colors
+# Bright colors.
 [colors.bright]
-black = '#6C6F85' # subtext0
-red = '#D20F39' # red
-green = '#40A02B' # green
-yellow = '#DF8E1D' # yellow
-blue = '#1E66F5' # blue
-magenta = '#EA76CB' # pink
-cyan = '#179299' # teal
-white = '#BCC0CC' # surface1
-
-# Dim colors
-[colors.dim]
-black = '#5C5F77' # subtext1
-red = '#D20F39' # red
-green = '#40A02B' # green
-yellow = '#DF8E1D' # yellow
-blue = '#1E66F5' # blue
-magenta = '#EA76CB' # pink
-cyan = '#179299' # teal
-white = '#ACB0BE' # surface2
-
+black   = '#928374'
+red     = '#9d0006'
+green   = '#79740e'
+yellow  = '#b57614'
+blue    = '#076678'
+magenta = '#8f3f71'
+cyan    = '#427b58'
+white   = '#3c3836'

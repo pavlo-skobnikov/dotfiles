@@ -39,15 +39,10 @@ y = 0
 
 # Start up and/or attach to the the `home` session when opening Alacritty.
 [terminal.shell]
-program = "/opt/homebrew/bin/nu"
+program = "/bin/zsh"
 args = [
   # Start as a login shell.
   "-l",
-  # Source the configuration files correctly.
-  "--config",
-  "~/.config/nushell/config.nu",
-  "--env-config",
-  "~/.config/nushell/env.nu",
   # Attach to tmux's 'home' session.
   # In fact, this is the only responsibility of this shell.
   "-c",
