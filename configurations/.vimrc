@@ -192,15 +192,15 @@ call SetCustomHighlights(&background)
 " Start a continuous asynchronous job to update the colorscheme if system
 " appeance is different from the current background setting.
 function! ResolveSystemAppearanceUpdatingColors(timer)
-    let s:system_appearance = GetSystemAppearanceAsBackgroundValue()
+    let l:system_appearance = GetSystemAppearanceAsBackgroundValue()
 
-    if s:system_appearance == &background
+    if l:system_appearance == &background
         return
     endif
 
     " Update Vim's colors.
-    execute 'set background=' . s:system_appearance
-    call SetCustomHighlights(s:system_appearance)
+    execute 'set background=' . l:system_appearance
+    call SetCustomHighlights(l:system_appearance)
     " Also, reload terminal colors.
     call system('set-terminal-colors.sh')
 endfunction
