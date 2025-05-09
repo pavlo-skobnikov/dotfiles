@@ -48,8 +48,41 @@ else
     compinit -C;
 fi;
 
+# Complete hidden paths.
+_comp_options+=(globdots)
 
-## Aliases
+# Case insensitive path-completion.
+zstyle ':completion:*' matcher-list \
+  'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
+  'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
+  'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
+  'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+# Partial completion suggestions.
+zstyle ':completion:*' list-suffixes zstyle ':completion:*' expand prefix suffix 
+
+# Define completers.
+zstyle ':completion:*' completer _extensions _complete _approximate
+
+# Cache completions for improved speed.
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcompcache"
+
+# Highlight the current selection from completion options.
+zstyle ':completion:*' menu select
+
+# Add description to completion list groups.
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %B%d%b --%f'
+
+# Display errors when using _approximate completer.
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %B%d%b (errors: %e) -!%f'
+
+# Extra information and warnings for no completion matches.
+zstyle ':completion:*:messages' format ' %F{purple} -- %B%d%b --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
+
+
+## Aliases.
 # Require confirmation for the following commands.
 alias cp='cp -i'
 alias mv='mv -i'
@@ -109,4 +142,12 @@ alias vd='vim $(fdhd | fzf)'
 # Lazytools aliases.
 alias lg='lazygit'
 alias ld='lazydocker'
+
+
+## Utility functions.
+# A utility function to quickly regenerate completions for Zsh.
+recompile_zsh_copmletions () {
+  rm -f ~/.zcompdump
+  compinit
+}
 
