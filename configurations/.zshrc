@@ -31,25 +31,84 @@ precmd() { printf -- '.%0.s' {1..79}; printf '%%\n'; print -rP "%B%F{green}%* | 
 export PROMPT=" %F{red}%%%f "
 
 
-## Update terminal colors.
+## A startup script to update terminal colors.
 set-terminal-colors.sh
 
 
-## Vim mode.
-bindkey -v # Enable vim mode for the shell prompt.
+## Vim mode configuration.
+bindkey -v          # Enable vim mode for the shell prompt.
+export KEYTIMEOUT=1 # Make the mode switch quicker.
+
+cursor_mode() {                         # Switch cursors shapes for NORMAL and INSERT modes.
+    cursor_block='\e[2 q'
+    cursor_beam='\e[6 q'
+
+    function zle-keymap-select {
+        if [[ ${KEYMAP} == vicmd ]] ||
+            [[ $1 = 'block' ]]; then
+            echo -ne $cursor_block
+        elif [[ ${KEYMAP} == main ]] ||
+            [[ ${KEYMAP} == viins ]] ||
+            [[ ${KEYMAP} = '' ]] ||
+            [[ $1 = 'beam' ]]; then
+            echo -ne $cursor_beam
+        fi
+    }
+
+    zle-line-init() {
+        echo -ne $cursor_beam
+    }
+
+    zle -N zle-keymap-select
+    zle -N zle-line-init
+}
+cursor_mode                             # Load the cursor.
+
+
+## Keymaps configuration.
+zmodload zsh/complist               # Load completion-related actions for configuration.
+bindkey -M viins '^n' menu-complete # Prompt menu or move down the completion list.
+bindkey -M viins '^p' up-history    # Move up the completion list.
+bindkey -M viins '^y' accept-line   # Accept completion.
+bindkey -M viins '^e' send-break    # Cancel completion and restore previous line state.
+
+autoload -Uz edit-command-line          # Edit the line in $EDITOR.
+zle -N edit-command-line
+bindkey -M viins '^o' edit-command-line # <C-o> => [O]pen in $EDITOR.
+bindkey -M vicmd '^o' edit-command-line
+
+autoload -Uz select-bracketed select-quoted     # Add text objects for quotes and brackets
+zle -N select-quoted                            # to Zsh's Vim emulation.
+zle -N select-bracketed                         # NOTE: Forward search is not emulated.
+for km in viopp visual; do
+  bindkey -M $km -- '-' vi-up-line-or-history
+  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+    bindkey -M $km $c select-quoted
+  done
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $km $c select-bracketed
+  done
+done
+
+autoload -Uz surround               # Mimic tpope's surround plugin.
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+bindkey -M vicmd cs change-surround
+bindkey -M vicmd ds delete-surround
+bindkey -M vicmd ys add-surround
+bindkey -M visual S add-surround
 
 
 ## Completions.
-# Process and enable completions.
-autoload -Uz compinit
+autoload -Uz compinit                               # Process and enable completions.
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
     compinit;
 else
     compinit -C;
 fi;
 
-# Complete hidden paths.
-_comp_options+=(globdots)
+_comp_options+=(globdots) # Complete hidden paths.
 
 # Case insensitive path-completion.
 zstyle ':completion:*' matcher-list \
@@ -83,25 +142,19 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
 
 
 ## Aliases.
-# Require confirmation for the following commands.
-alias cp='cp -i'
+alias cp='cp -i' # Require confirmation for the following commands.
 alias mv='mv -i'
 alias rm='rm -i'
 
-# List files/directories.
-alias ls='eza'
+alias ls='eza'   # List files/directories.
 alias la='ls -a'
 alias ll='ls -l'
 alias lt='ls --tree'
 
-# fd search including hidden files/directories but excluding git folder.
-# Using double quotes for the exclude pattern.
-alias fdhf='fd --unrestricted --exclude ".git/" --type=file'
-alias fdhd='fd --unrestricted --exclude ".git/" --type=directory'
+alias fdhf='fd --unrestricted --exclude ".git/" --type=file'      # fd search including hidden files/directories
+alias fdhd='fd --unrestricted --exclude ".git/" --type=directory' # but excluding git folder.
 
-# Change directories w/ fzf using fd.
-alias cf='cd $(fdhd | fzf)'
-
+alias cf='cd $(fdhd | fzf)'     # Change directories w/ Fzf and fd.
 cd_back_to_parent_directory() {
     local current_path=$(pwd)
 
@@ -121,32 +174,26 @@ cd_back_to_parent_directory() {
 }
 alias cb='cd_back_to_parent_directory'
 
-# Replace cat with bat.
-alias cat='bat'
+alias cat='bat' # Replace cat with bat.
 
-# Always colorize ripgrep output.
-alias rg='rg --color=auto'
+alias rg='rg --color=auto' # Always colorize ripgrep output.
 
 # Fzf configuration alias.
-# The preview command arguments need to be quoted correctly for Zsh.
 alias fzp='fzf \
     --style=minimal \
     --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down \
     --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 
-# Vim aliases.
-alias vi='vim .'
+alias vi='vim .' # Vim aliases.
 alias vf='vim $(fzp)'
 alias vd='vim $(fdhd | fzf)'
 
-# Lazytools aliases.
-alias lg='lazygit'
+alias lg='lazygit' # Lazytools aliases.
 alias ld='lazydocker'
 
 
 ## Utility functions.
-# A utility function to quickly regenerate completions for Zsh.
-recompile_zsh_copmletions () {
+recompile_zsh_copmletions () { # A utility function to quickly regenerate completions for Zsh.
   rm -f ~/.zcompdump
   compinit
 }
