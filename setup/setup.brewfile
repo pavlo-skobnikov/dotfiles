@@ -4,6 +4,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
+brew "eza"
 brew "bat"
 brew "fzf"
 brew "ripgrep"
@@ -13,6 +14,7 @@ brew "lazygit"
 brew "lazydocker"
 brew "stow"
 brew "tmux"
+brew "leader-key"
 
 cask "font-jetbrains-mono-nerd-font"
 cask "docker"
@@ -26,4 +28,6 @@ cask "discord"
 cask "slack"
 
 mas "Xcode", id: 497799835
+mas "Bear", id: 1091189122
+mas "Things", id: 904280696
 
