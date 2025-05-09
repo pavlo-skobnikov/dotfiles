@@ -387,4 +387,5 @@ function! GrepFiles(search_term)
 endfunction
 
 nnoremap <Leader>/ :call GrepFiles(input('grep: '))<Cr>
+vnoremap <Leader>/ "zygv:call GrepFiles('z')<Cr>
 
