@@ -53,10 +53,6 @@ source ~/dotfiles/secrets/secret_exports.sh
 ## Manually append to $PATH.
 # User-installed binaries.
 path+=("$HOME/.local/bin")
-# Add GNU coreutils to the PATH.
-path+=("/opt/homebrew/opt/coreutils/libexec/gnubin")
-# Add GNU sed to the PATH.
-path+=("/opt/homebrew/opt/gnu-sed/libexec/gnubin")
 # Add SDKMan!
 path+=("$SDKMAN_DIR/bin")
 # Rust-installed binaries.
