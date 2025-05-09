@@ -38,9 +38,6 @@ export M2_HOME=$SDKMAN_DIR/candidates/maven/current
 # Set karabiner configuration path for goku.
 export GOKU_EDN_CONFIG_FILE="($HOME/.config/karabiner/karabiner.edn"
 
-# Hide Starship warnings.
-export STARSHIP_LOG="error"
-
 # Set theme to use for bat based on system's appearance.
 if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
     export BAT_THEME="gruvbox-light"
