@@ -24,7 +24,6 @@ cask "raycast"
 cask "karabiner-elements"
 cask "brave-browser"
 cask "telegram"
-cask "discord"
 cask "slack"
 
 mas "Xcode", id: 497799835
