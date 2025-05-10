@@ -22,7 +22,7 @@ cask "alacritty"
 cask "intellij-idea"
 cask "raycast"
 cask "karabiner-elements"
-cask "brave-browser"
+cask "google-chrome"
 cask "telegram"
 cask "slack"
 
