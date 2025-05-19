@@ -22,47 +22,9 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
 
-## Custom simple prompt.
-# The configuration below translates to the following prompt:
-#   ...............................................................................%
-#   <HH:MM:SS> | <CWD>
-#    % <USER_PROMPT>
-precmd() { printf -- '.%0.s' {1..79}; printf '%%\n'; print -rP "%B%F{green}%* | %~" }
-export PROMPT=" %F{red}%%%f "
-
-
-## A startup script to update terminal colors.
-set-terminal-colors.sh
-
-
 ## Vim mode configuration.
 bindkey -v          # Enable vim mode for the shell prompt.
 export KEYTIMEOUT=1 # Make the mode switch quicker.
-
-cursor_mode() {                         # Switch cursors shapes for NORMAL and INSERT modes.
-    cursor_block='\e[2 q'
-    cursor_beam='\e[6 q'
-
-    function zle-keymap-select {
-        if [[ ${KEYMAP} == vicmd ]] ||
-            [[ $1 = 'block' ]]; then
-            echo -ne $cursor_block
-        elif [[ ${KEYMAP} == main ]] ||
-            [[ ${KEYMAP} == viins ]] ||
-            [[ ${KEYMAP} = '' ]] ||
-            [[ $1 = 'beam' ]]; then
-            echo -ne $cursor_beam
-        fi
-    }
-
-    zle-line-init() {
-        echo -ne $cursor_beam
-    }
-
-    zle -N zle-keymap-select
-    zle -N zle-line-init
-}
-cursor_mode                             # Load the cursor.
 
 
 ## Keymaps configuration.
@@ -139,6 +101,56 @@ zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %B%d%b (errors: %e
 # Extra information and warnings for no completion matches.
 zstyle ':completion:*:messages' format ' %F{purple} -- %B%d%b --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
+
+
+## Custom simple prompt.
+#VIMODE='[I]'                            # A variable to hold current Zsh's Vi mode.
+
+# The configuration below translates to the following prompt:
+# <BLANK_NEWLINE>
+#  <HH:MM:SS> | <CWD>
+#   [<VIM_MODE>] % <USER_PROMPT>
+precmd() { printf '\n'; print -rP "%B%F{green}%* | %~" }
+export PS1=" %B[I]%b %F{red}%%%f "
+
+set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
+    cursor_block='\e[2 q'               # update the `VIMODE` variable, and force prompt redraw.
+    cursor_beam='\e[6 q'
+
+    function zle-keymap-select {
+        if [[ ${KEYMAP} == vicmd ]] ||
+            [[ $1 = 'block' ]]; then
+            VIMODE='%B[N]%b'
+            echo -ne $cursor_block
+        elif [[ ${KEYMAP} == main ]] ||
+            [[ ${KEYMAP} == viins ]] ||
+            [[ ${KEYMAP} = '' ]] ||
+            [[ $1 = 'beam' ]]; then
+            VIMODE='%B[I]%b'
+            echo -ne $cursor_beam
+        fi
+
+        export PS1=" ${VIMODE} %F{red}%%%f "
+        zle reset-prompt
+    }
+
+    zle-line-init() {                   # Initialize the cursor for insert mode.
+        echo -ne $cursor_beam
+    }
+
+    zle-line-finish() {                 # Reset the prompt to the starting value.
+        export PS1=" %B[I]%b %F{red}%%%f "
+    }
+
+    zle -N zle-keymap-select
+    zle -N zle-line-init
+    zle -N zle-line-finish
+}
+set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
+
+
+## A startup script to update terminal colors.
+set-terminal-colors.sh
 
 
 ## Aliases.
