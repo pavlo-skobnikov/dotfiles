@@ -22,10 +22,6 @@ No plugin configuration of Tmux:
 - a few custom convenient mappings for fuzzy session management and pane/window
   management.
 
-## [Starship](./.config/starship.toml)
-
-Basically the default provided configuration file.
-
 ## Zsh
 
 I took heavy inspiration *cough-cough* (more like stole configuration) from:
