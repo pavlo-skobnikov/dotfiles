@@ -110,7 +110,7 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
 # <BLANK_NEWLINE>
 #  <HH:MM:SS> | <CWD>
 #   [<VIM_MODE>] % <USER_PROMPT>
-precmd() { printf '\n'; print -rP "%B%F{green}%* | %~" }
+precmd() { printf '\n'; print -rP "%B%F{green}%* | %~%f%b" }
 export PS1=" %B[I]%b %F{red}%%%f "
 
 set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
