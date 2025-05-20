@@ -104,8 +104,6 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
 
 
 ## Custom simple prompt.
-#VIMODE='[I]'                            # A variable to hold current Zsh's Vi mode.
-
 # The configuration below translates to the following prompt:
 # <BLANK_NEWLINE>
 #  <HH:MM:SS> | <CWD>
