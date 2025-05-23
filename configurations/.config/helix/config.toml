@@ -1,0 +1,44 @@
+theme = "gruvbox_light_hard"
+
+[editor]
+mouse = false                    # Disable mouse actions.
+line-number = "relative"         # Show relative line numbers.
+cursorline = true                # Highlight lines with cursors.
+completion-timeout = 50          # A bit faster than default completion triggerring.
+rulers = [80, 100, 120]          # Show column line rulers at specified widths.
+end-of-line-diagnostics = "hint" # Show virtual line dignostics at the end of lines.
+
+[editor.statusline]              # Override mode indicators.
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]            # Override mode cursor shapes.
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]             # Show hidden (dot) files in the file picker.
+hidden = false
+
+[editor.auto-pairs]              # Add more automatic pairs.
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'<' = '>'
+'"' = '"'
+"'" = "'"
+'`' = '`'
+
+[editor.whitespace.render]       # Enable virtual characters for tabs and leading multi-spaces.
+tab = "all"
+
+[editor.indent-guides]
+render = true
+
+[editor.smart-tab]               # Disable Tab-based node navigation.
+enable = false
+
+[editor.inline-diagnostics]      # Enable expanded virtual line diagnostics below cursor line.
+cursor-line = "warning"
+
