@@ -5,6 +5,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
 brew "fish"
+brew "fish-lsp"
 brew "starship"
 brew "eza"
 brew "bat"
