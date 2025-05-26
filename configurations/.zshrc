@@ -151,6 +151,9 @@ set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
 set-terminal-colors.sh
 
 
+## Tool setups.
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 ## Aliases.
 alias cp='cp -i' # Require confirmation for the following commands.
 alias mv='mv -i'
