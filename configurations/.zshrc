@@ -70,12 +70,12 @@ bindkey -M visual S add-surround
 
 
 ## Completions.
-autoload -Uz compinit                               # Process and enable completions.
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-    compinit;
+autoload -Uz compinit    # Process and enable completions.
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
 else
-    compinit -C;
-fi;
+    compinit -C
+fi
 
 _comp_options+=(globdots) # Complete hidden paths.
 
