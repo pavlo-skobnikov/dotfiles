@@ -36,7 +36,7 @@ export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
 export M2_HOME=$SDKMAN_DIR/candidates/maven/current
 
 # Set karabiner configuration path for goku.
-export GOKU_EDN_CONFIG_FILE="($HOME/.config/karabiner/karabiner.edn"
+export GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn"
 
 # Set theme to use for bat based on system's appearance.
 if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
@@ -53,8 +53,6 @@ source ~/dotfiles/secrets/secret_exports.sh
 ## Manually append to $PATH.
 # User-installed binaries.
 path+=("$HOME/.local/bin")
-# Add SDKMan!
-path+=("$SDKMAN_DIR/bin")
 # Rust-installed binaries.
 path+=("$HOME/.cargo/bin")
 # Rust environment.
