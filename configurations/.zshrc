@@ -159,7 +159,12 @@ set-terminal-colors.sh
 
 
 ## Tool setups.
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk() {         # Lazy-load SDKMan i.e. source everything on first `sdk` invocation.
+  unset -f sdk  # Taken from here: https://github.com/sdkman/sdkman-cli/issues/977#issuecomment-2127812178
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
+
 
 ## Aliases.
 alias cp='cp -i' # Require confirmation for the following commands.
