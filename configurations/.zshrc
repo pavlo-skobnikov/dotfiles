@@ -1,3 +1,10 @@
+# NOTE TO SELF: To profile slow shell startups, wrap the configuration script
+# with the following:
+# zmodload zsh/zprof        # At the top of the .zshrc.
+# ...
+# zprof                     # At the bottom of the .zshrc.
+
+
 ## Navigation options.
 setopt AUTO_CD              # Go to folder path without using cd.
 
