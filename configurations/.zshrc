@@ -111,12 +111,30 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
 
 
 ## Custom simple prompt.
-# The configuration below translates to the following prompt:
-# <BLANK_NEWLINE>
-#  <HH:MM:SS> | <CWD>
-#   [<VIM_MODE>] % <USER_PROMPT>
-precmd() { printf '\n'; print -rP "%B%F{green}%* | %~%f%b" }
-export PS1=" %B[I]%b %F{red}%%%f "
+
+# Utility function to format text with a given colored background.
+# $1 - Background color.
+# $2 - Inner text.
+local format_prompt_part() {
+    echo "%K{$1}%F{#232634}$2%f%k"
+}
+
+# Prompt top part definitions.
+local macos=$(format_prompt_part '#f08da5' ' 󰀵 ')
+local username=$(format_prompt_part '#f9b489' ' 👤 %n ')
+local time_with_seconds=$(format_prompt_part '#f8e1af' "   %* ")
+local separator_1=$(format_prompt_part '#a5e2a1' '  ')
+local separator_2=$(format_prompt_part '#74c7eb' '  ')
+local directory=$(format_prompt_part '#b4befd' " 📁 %d ")
+
+local prompt_top_line="$macos$username$time_with_seconds$separator_1$separator_2$directory"
+
+# Prompt bottom line definitions.
+local vi_insert_prompt_line=' %F{#a5e2a1}%B[I]%b%f %F{#f08da5}❯%f '
+local vi_normal_prompt_line=' %F{#f8e1af}%B[N]%b%f %F{#f08da5}❮%f '
+
+precmd() { printf '\n'; print -rP $prompt_top_line }
+export PS1="$vi_insert_prompt_line"
 
 set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
     cursor_block='\e[2 q'               # update the `VIMODE` variable, and force prompt redraw.
@@ -125,17 +143,16 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
     function zle-keymap-select {
         if [[ ${KEYMAP} == vicmd ]] ||
             [[ $1 = 'block' ]]; then
-            VIMODE='%B[N]%b'
+            export PS1="$vi_normal_prompt_line"
             echo -ne $cursor_block
         elif [[ ${KEYMAP} == main ]] ||
             [[ ${KEYMAP} == viins ]] ||
             [[ ${KEYMAP} = '' ]] ||
             [[ $1 = 'beam' ]]; then
-            VIMODE='%B[I]%b'
+            export PS1="$vi_insert_prompt_line"
             echo -ne $cursor_beam
         fi
 
-        export PS1=" ${VIMODE} %F{red}%%%f "
         zle reset-prompt
     }
 
@@ -144,7 +161,7 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
     }
 
     zle-line-finish() {                 # Reset the prompt to the starting value.
-        export PS1=" %B[I]%b %F{red}%%%f "
+        export PS1="$vi_insert_prompt_line"
     }
 
     zle -N zle-keymap-select
