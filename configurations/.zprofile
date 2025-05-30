@@ -40,9 +40,9 @@ export GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn"
 
 # Set theme to use for bat based on system's appearance.
 if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
-    export BAT_THEME="gruvbox-light"
+    export BAT_THEME="Catppuccin Latte"
 else
-    export BAT_THEME="gruvbox-dark"
+    export BAT_THEME="Catppuccin Frappe"
 fi
 
 

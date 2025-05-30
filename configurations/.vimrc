@@ -160,56 +160,51 @@ let &t_SI = "\<Esc>[6 q" " INSERT - |
 let &t_EI = "\<Esc>[2 q" " Other modes - █
 
 "" Colorscheme shenanigans.
-colorscheme retrobox
+colorscheme habamax
 
-" A helper function to resolve the current system appearance into the background
-" option value used by Vim.
-function! GetSystemAppearanceAsBackgroundValue()
-    if empty(system('defaults read -g AppleInterfaceStyle 2> /dev/null'))
-        return 'light'
+" A helper function to resolve Vim's current colorscheme.
+function! GetCurrentVimColorscheme()
+    if exists('g:colors_name')
+        return g:colors_name
     else
-        return 'dark'
+        return 'default'
     endif
 endfunction
 
-" Retrobox is good, but I prefer a few different highlight colors more akin to
-" gruvbox colors 🤫.
-function! SetCustomHighlights(background)
-    if a:background == 'light'
-        highlight Normal guibg='#f9f5d7'
-    elseif a:background == 'dark'
-        highlight ColorColumn guibg='#3c3836'
-        highlight Normal guibg='#32302f'
+" A helper function to resolve the current system appearance into the
+" appropriate option value used by Vim.
+function! GetSystemAppearanceAsColorscheme()
+    if empty(system('defaults read -g AppleInterfaceStyle 2> /dev/null'))
+        return 'quiet'
+    else
+        return 'habamax'
     endif
 endfunction
-
-" Autocommand to set highlights on every background change.
-augroup SetCustomHighlightsOnBackgroundChange
-  autocmd!
-  autocmd OptionSet background call SetCustomHighlights(v:option_new)
-augroup END
-
-" Dynamically set the correct variant of the theme on startup.
-execute 'set background=' . GetSystemAppearanceAsBackgroundValue()
-call SetCustomHighlights(&background)
 
 " Start a continuous asynchronous job to update the colorscheme if system
-" appeance is different from the current background setting.
-function! ResolveSystemAppearanceUpdatingColors(timer)
-    let l:system_appearance = GetSystemAppearanceAsBackgroundValue()
+" appeance differs from the desired Vim colorscheme.
+function! ResolveSystemAppearanceUpdatingColorscheme(timer)
+    let l:target_colorscheme = GetSystemAppearanceAsColorscheme()
+    let l:current_colorscheme = GetCurrentVimColorscheme()
 
-    if l:system_appearance == &background
+    " Exit early if everything matches.
+    if l:target_colorscheme == l:current_colorscheme
         return
     endif
 
-    " Update Vim's colors.
-    execute 'set background=' . l:system_appearance
-    call SetCustomHighlights(l:system_appearance)
+    " Update Vim's colorscheme.
+    execute 'colorscheme ' . l:target_colorscheme
+
+    " `quiet` required some special treatment.
+    if l:target_colorscheme == 'quiet'
+        execute 'set background=light'
+    endif
+
     " Also, reload terminal colors.
     call system('set-terminal-colors.sh')
 endfunction
 
-call timer_start(2000, 'ResolveSystemAppearanceUpdatingColors', { 'repeat': -1 })
+call timer_start(2000, 'ResolveSystemAppearanceUpdatingColorscheme', { 'repeat': -1 })
 
 " Fixes the incorrect cursor.
 normal <C-l>
