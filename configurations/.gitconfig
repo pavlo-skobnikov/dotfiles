@@ -1,0 +1,28 @@
+[include]
+    path = PATH/TO/delta/themes/catppuccin.gitconfig
+
+[user]
+    name = Pavlo Skobnikov
+    email = pavlo.skobnikov@gmail.com
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[core]
+    pager = delta $(defaults read -g AppleInterfaceStyle &>/dev/null || echo --light)
+    autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only $(defaults read -g AppleInterfaceStyle &>/dev/null || echo --light)
+
+[delta]
+    navigate = true  # Use n and N to move between diff sections.
+
+[merge]
+    conflictstyle = zdiff3
