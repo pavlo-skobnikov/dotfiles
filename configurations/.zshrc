@@ -171,7 +171,10 @@ alias cat='bat' # Replace cat with bat.
 
 alias rg='rg --color=auto' # Always colorize ripgrep output.
 
-alias vi='vim .' # Vim aliases.
+alias nvim_server="nvim --listen /tmp/nvim-server-$(date +%F_%H-%M-%S)" # Vim aliases.
+alias nvim='nvim_server'
+alias vim='nvim'
+alias vi='vim'
 
 alias lg='lazygit' # Lazytools aliases.
 alias ld='lazydocker'

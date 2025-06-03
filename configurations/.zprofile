@@ -16,8 +16,11 @@ export XDG_DATA_HOME=$XDG_CONFIG_HOME/local/share
 export XDG_CACHE_HOME=$XDG_CONFIG_HOME/cache
 
 # Editor.
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+export NVIM_LIGHT_COLORSCHEME='catppuccin-latte'
+export NVIM_DARK_COLORSCHEME='catppuccin-frappe'
 
 # Zsh-related exports.
 export ZDOTDIR=$HOME
