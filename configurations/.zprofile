@@ -33,36 +33,28 @@ export MANWIDTH=999
 # Fzf configuration.
 export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"' # Search all files except git-internal ones.
 
-local fzf_style_part='' # Define Fzf theming.
-# All credit for Fzf theming goes to the maintainers of the
-# `https://github.com/catppuccin/fzf` project.
-if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
-    # Catppuccin Latte.
-    fzf_style_part=" \
-        --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
-        --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
-        --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
-        --color=selected-bg:#BCC0CC \
-        --color=border:#CCD0DA,label:#4C4F69"
-else
-    # Catppuccin Frappe.
-    fzf_style_part=" \
-        --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
-        --color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
-        --color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
-        --color=selected-bg:#51576D \
-        --color=border:#414559,label:#C6D0F5"
-fi
-
-# Apply Fzf theming and preview defaults.
-export FZF_DEFAULT_OPTS="$fzf_style_part \
-    --style=minimal \
+export FZF_WITH_PREVIEW_OPTS="--style=minimal \
     --layout=default
     --height 100% \
     --ansi \
     --preview-window 'right:50%' \
     --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
     --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
+export FZF_LIGHT_THEME_STYLE_PART=" \
+    --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
+    --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
+    --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
+    --color=selected-bg:#BCC0CC \
+    --color=border:#CCD0DA,label:#4C4F69"
+export FZF_DARK_THEME_STYLE_PART=" \
+    --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
+    --color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
+    --color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
+    --color=selected-bg:#51576D \
+    --color=border:#414559,label:#C6D0F5"
+
+# Apply Fzf defaults.
+export FZF_DEFAULT_OPTS="$FZF_WITH_PREVIEW_OPTS"
 export FZF_CTRL_R_OPTS="--preview=''" # Disable preview for shell history and directory searches.
 export FZF_ALT_C_OPTS="--preview=''"
 

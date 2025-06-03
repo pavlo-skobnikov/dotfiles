@@ -137,15 +137,13 @@ set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
 
 
 ## A startup script to update terminal colors.
-set-terminal-colors.sh
+source set-terminal-colors.sh
 
 
 ## Tool setups.
 # Fzf.
 source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 source /opt/homebrew/opt/fzf/shell/completion.zsh
-
-
 
 # SDKMan!
 sdk() {         # Lazy-load SDKMan i.e. source everything on first `sdk` invocation.
