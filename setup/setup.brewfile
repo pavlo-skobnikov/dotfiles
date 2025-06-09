@@ -15,7 +15,6 @@ brew "git-delta"
 brew "lazydocker"
 brew "stow"
 brew "tmux"
-brew "leader-key"
 
 cask "font-jetbrains-mono-nerd-font"
 cask "docker"
