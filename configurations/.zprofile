@@ -40,18 +40,6 @@ export FZF_WITH_PREVIEW_OPTS="--style=minimal \
     --preview-window 'right:50%' \
     --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
     --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
-export FZF_LIGHT_THEME_STYLE_PART=" \
-    --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
-    --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
-    --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
-    --color=selected-bg:#BCC0CC \
-    --color=border:#CCD0DA,label:#4C4F69"
-export FZF_DARK_THEME_STYLE_PART=" \
-    --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
-    --color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
-    --color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
-    --color=selected-bg:#51576D \
-    --color=border:#414559,label:#C6D0F5"
 
 # Apply Fzf defaults.
 export FZF_DEFAULT_OPTS="$FZF_WITH_PREVIEW_OPTS"
@@ -65,14 +53,6 @@ export M2_HOME=$SDKMAN_DIR/candidates/maven/current
 
 # Set karabiner configuration path for goku.
 export GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn"
-
-# Set theme to use for bat based on system's appearance.
-if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
-    export BAT_THEME="gruvbox-light"
-else
-    export BAT_THEME="gruvbox-dark"
-fi
-
 
 ## Source secrets.
 source ~/dotfiles/secrets/secret_exports.sh
