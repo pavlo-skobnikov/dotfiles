@@ -26,12 +26,14 @@ fzf_theme_style_part=''
 
 if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
     ln -fs ~/.config/alacritty/light_theme.toml ~/.config/alacritty/_active_theme.toml
+    ln -fs ~/.config/starship/starship_light_theme.toml ~/.config/starship.toml
     bat_theme="$bat_light_theme"
     fzf_theme_style_part="$fzf_light_theme_style_part"
 else
     ln -fs ~/.config/alacritty/dark_theme.toml ~/.config/alacritty/_active_theme.toml
-    fzf_theme_style_part="$fzf_dark_theme_style_part"
+    ln -fs ~/.config/starship/starship_dark_theme.toml ~/.config/starship.toml
     bat_theme="$bat_dark_theme"
+    fzf_theme_style_part="$fzf_dark_theme_style_part"
 fi
 
 # Force Alacritty to refresh configuration (and, therefore, its colors).
