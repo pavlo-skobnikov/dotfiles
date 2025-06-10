@@ -77,35 +77,7 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
 
 ## Prompt configuration.
 source set-terminal-colors.sh # A startup script to update terminal colors.
-
-set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
-    cursor_block='\e[2 q'               # update the `VIMODE` variable, and force prompt redraw.
-    cursor_beam='\e[6 q'
-
-    function zle-keymap-select {
-        if [[ ${KEYMAP} == vicmd ]] ||
-            [[ $1 = 'block' ]]; then
-            echo -ne $cursor_block
-        elif [[ ${KEYMAP} == main ]] ||
-            [[ ${KEYMAP} == viins ]] ||
-            [[ ${KEYMAP} = '' ]] ||
-            [[ $1 = 'beam' ]]; then
-            echo -ne $cursor_beam
-        fi
-
-        zle reset-prompt
-    }
-
-    zle-line-init() {                   # Initialize the cursor for insert mode.
-        echo -ne $cursor_beam
-    }
-
-    zle -N zle-keymap-select
-    zle -N zle-line-init
-}
-set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
-
-eval "$(starship init zsh)" # Source Starhip.
+eval "$(starship init zsh)"   # Source Starship.
 
 
 ## Tool setups.
@@ -169,11 +141,11 @@ cd_back_to_parent_directory() { # A function to list all directories from the cu
 
 
 ## Keymaps configuration.
-zmodload zsh/complist               # Load completion-related actions for configuration.
-bindkey -M viins '^n' menu-complete # Prompt menu or move down the completion list.
+zmodload zsh/complist                          # Load completion-related actions for configuration.
+bindkey -M viins '^n' menu-complete            # Prompt menu or move down the completion list.
 bindkey -M viins '^p' reverse-menu-complete    # Move up the completion list.
-bindkey -M viins '^y' accept-line   # Accept completion.
-bindkey -M viins '^e' send-break    # Cancel completion and restore previous line state.
+bindkey -M viins '^y' accept-line              # Accept completion.
+bindkey -M viins '^e' send-break               # Cancel completion and restore previous line state.
 
 autoload -Uz edit-command-line          # Edit the line in $EDITOR.
 zle -N edit-command-line
