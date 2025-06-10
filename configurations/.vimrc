@@ -51,7 +51,6 @@ set wrapscan
 " Indent soft wrapped lines to match the first line's indent
 set breakindent
 
-
 """ Maps section.
 " Clear highlights.
 nnoremap <silent> <C-l> :nohlsearch<Cr>:redraw!<Cr>
@@ -84,10 +83,6 @@ vnoremap [<space> <esc>O<esc>gv
 
 nnoremap ]<space> mzo<esc>`z
 vnoremap ]<space> <esc>O<esc>gv
-
-" Change around/inside double quotes.
-nnoremap caq ca"
-nnoremap ciq ci"
 
 """ Exit early when evaluating this file w/ IdeaVim.
 if has('ide')
@@ -159,52 +154,12 @@ syntax on
 let &t_SI = "\<Esc>[6 q" " INSERT - |
 let &t_EI = "\<Esc>[2 q" " Other modes - █
 
-"" Colorscheme shenanigans.
-colorscheme habamax
-
-" A helper function to resolve Vim's current colorscheme.
-function! GetCurrentVimColorscheme()
-    if exists('g:colors_name')
-        return g:colors_name
-    else
-        return 'default'
-    endif
-endfunction
-
-" A helper function to resolve the current system appearance into the
-" appropriate option value used by Vim.
-function! GetSystemAppearanceAsColorscheme()
-    if empty(system('defaults read -g AppleInterfaceStyle 2> /dev/null'))
-        return 'quiet'
-    else
-        return 'habamax'
-    endif
-endfunction
-
-" Start a continuous asynchronous job to update the colorscheme if system
-" appeance differs from the desired Vim colorscheme.
-function! ResolveSystemAppearanceUpdatingColorscheme(timer)
-    let l:target_colorscheme = GetSystemAppearanceAsColorscheme()
-    let l:current_colorscheme = GetCurrentVimColorscheme()
-
-    " Exit early if everything matches.
-    if l:target_colorscheme == l:current_colorscheme
-        return
-    endif
-
-    " Update Vim's colorscheme.
-    execute 'colorscheme ' . l:target_colorscheme
-
-    " `quiet` required some special treatment.
-    if l:target_colorscheme == 'quiet'
-        execute 'set background=light'
-    endif
-
-    " Also, reload terminal colors.
-    call system('set-terminal-colors.sh')
-endfunction
-
-call timer_start(2000, 'ResolveSystemAppearanceUpdatingColorscheme', { 'repeat': -1 })
+"" Set colorscheme according to the system appearance.
+if empty(system('defaults read -g AppleInterfaceStyle 2> /dev/null'))
+    execute 'colorscheme quiet'
+else
+    execute 'colorscheme habamax'
+endif
 
 " Fixes the incorrect cursor.
 normal <C-l>
@@ -270,117 +225,3 @@ map <C-w>T :tabclose!<Cr>
 
 " Echo currently selected file's path.
 map <Leader>f :echo expand('%:p')<Cr>
-
-" Helper function to open TUI application and force redraw Vim.
-function! OpenTUIApplication(command)
-    execute "call system('" . a:command . "')"
-
-    execute 'redraw!'
-endfunction
-
-" Open LazyGit.
-map <Leader>g :call OpenTUIApplication('lazygit')<Cr>
-
-" Open LazyDocker.
-map <Leader>d :call OpenTUIApplication('lazydocker')<Cr>
-
-" Fuzzy find project files.
-function! FzfSelectFile()
-    let list_project_files_command = "fd --unrestricted --exclude '.git/' --type=file '' '" . getcwd(-1) . "'"
-    let fzf_with_preview_command = 'fzf --style=minimal' .
-        \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' .
-        \ ' --preview "bat --color=always --style=numbers --line-range=:500 {}"'
-
-    " Compose commands.
-    let select_file_command = list_project_files_command . ' | ' . fzf_with_preview_command
-
-    " Run the command.
-    let selected_file = system(select_file_command)
-
-    " Check if a file was selected (system() returns non-empty string on success).
-    if !empty(selected_file)
-        " fzf might return a trailing newline, remove it
-        let selected_file = substitute(selected_file, '\n', '', '')
-
-        " Use execute and fnameescape() to open the file safely
-        " fnameescape() handles special characters in filenames
-        execute 'edit ' . fnameescape(selected_file)
-    endif
-
-    " Force redraw the screen.
-    execute 'redraw!'
-endfunction
-
-nnoremap <Leader>. :call FzfSelectFile()<Cr>
-
-" Fuzzy find project directories.
-function! FzfSelectDirectory()
-    " Define commands for retrieving directories and fzf.
-    let list_project_directories_command = "fd --unrestricted --exclude '.git/' --type=directory '' '" . getcwd(-1) . "'"
-    let fzf_command = 'fzf --style=minimal' .
-        \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
-
-    " Compose commands.
-    let select_directory_command = list_project_directories_command . ' | ' . fzf_command
-
-    " Run the command.
-    let selected_directory = system(select_directory_command)
-
-    " Check if a directory was selected (system() returns non-empty string on success).
-    if !empty(selected_directory)
-        " fzf might return a trailing newline, remove it
-        let selected_directory = substitute(selected_directory, '\n', '', '')
-
-        " Use execute and fnameescape() to open the file safely
-        " fnameescape() handles special characters in filenames
-        execute 'Explore ' . fnameescape(selected_directory)
-    endif
-
-    " Force redraw the screen.
-    execute 'redraw!'
-endfunction
-
-nnoremap <Leader>- :call FzfSelectDirectory()<Cr>
-
-" Grep through project files.
-function! GrepFiles(search_term)
-    " Define commands for retrieving files and fzf.
-    let ripgrep_search_command = 'rg --hidden --iglob "!.git/" --color=always --line-number --no-heading --smart-case "' .
-        \ a:search_term . '" "' . getcwd(-1) . '"'
-    let fzf_with_preview_command = 'fzf --style=minimal' .
-        \ ' --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' .
-        \ ' --preview "bat --color=always {1} --highlight-line {2} --style=numbers"' .
-        \ ' --preview-window "+{2}+3/3,~3"' .
-        \ ' --ansi --color "hl:-1:underline,hl+:-1:underline:reverse" --delimiter ":"'
-    " Compose commands.
-    let select_file_command = ripgrep_search_command . ' | ' . fzf_with_preview_command
-
-    " Run the command.
-    let selected_file_and_cursor_pos = system(select_file_command)
-
-    " Check if a file was selected (system() returns non-empty string on success).
-    if !empty(selected_file_and_cursor_pos)
-        " Remove trailing newline from the result.
-        let selected_file_and_cursor_pos = substitute(selected_file_and_cursor_pos, '\n\+$', '', '')
-
-        " Parse the selection: expected format is "filename:line:column:text"
-        " We want filename and line number.
-        let parts = split(selected_file_and_cursor_pos, ':', 3)
-        if len(parts) >= 2
-            let filename = parts[0]
-            let lnum = str2nr(parts[1])
-            " Open the file and jump to the line.
-            execute 'edit +' . lnum . ' ' . fnameescape(filename)
-        else
-            " Fallback: just open the file if parsing fails.
-            execute 'edit ' . fnameescape(selected_file_and_cursor_pos)
-        endif
-    endif
-
-    " Force redraw the screen.
-    execute 'redraw!'
-endfunction
-
-nnoremap <Leader>/ :call GrepFiles(input('grep: '))<Cr>
-vnoremap <Leader>/ "zygv:call GrepFiles('z')<Cr>
-
