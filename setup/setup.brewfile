@@ -4,30 +4,44 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
-brew "starship"
-brew "eza"
-brew "bat"
-brew "fzf"
-brew "ripgrep"
-brew "fd"
-brew "pandoc"
-brew "lazygit"
-brew "git-delta"
-brew "lazydocker"
-brew "stow"
-brew "tmux"
+# Shell-related tools.
+brew "fish"     # A modern shell for the 90's.
+brew "starship" # A pretty prompt to match.
 
+brew "fish-lsp" # Wrangling that 🐠 
+
+# A "better ..." 
+brew "eza"     # `ls`
+brew "bat"     # `cat`
+brew "fd"      # `find`
+brew "ripgrep" # `grep`
+
+# Other terminal tools.
+brew "pandoc"     # .md -> .epub -> .pdf -> .md
+brew "fzf"        # Fuzzy-search my life away.
+brew "lazygit"    # `git` w/ a pretty (and highly functional) UI.
+brew "lazydocker" # `docker` w/ a pretty (and highly functional) UI.
+brew "git-delta"  # Gorgeous diffs.
+brew "stow"       # This is more than enough to manage .files 😤
+
+# Worksation musts.
+brew "helix" # I'm sick of managing Neovim plugins 🫥
+brew "tmux"  # Sessions, windows, and splits galore.
+
+# Casks 🙏
 cask "font-jetbrains-mono-nerd-font"
+
 cask "docker"
+
 cask "alacritty"
 cask "intellij-idea"
+
 cask "raycast"
 cask "karabiner-elements"
-cask "google-chrome"
-cask "telegram"
-cask "slack"
 
+# App Store stuff 🔮
 mas "Xcode", id: 497799835
+
 mas "Bear", id: 1091189122
 mas "Things", id: 904280696
 
