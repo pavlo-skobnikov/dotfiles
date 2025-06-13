@@ -36,7 +36,6 @@ hidden = false
 '`' = '`'
 '<' = '>'
 
-
 [editor.whitespace]
 tab = "all"
 nbsp = "all"
@@ -53,3 +52,67 @@ render = true
 
 [editor.smart-tab]
 enable = false
+
+[keys.normal]
+"A-w" = "move_next_sub_word_start"
+"A-e" = "move_next_sub_word_end"
+"A-b" = "move_prev_sub_word_start"
+
+x = "extend_line_below"
+"A-x" = "extend_line_above"
+X = "extend_to_line_bounds"
+"A-X" = "shrink_to_line_bounds"
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+[keys.normal."["]
+'"' = '@?"<ret>hmim'
+"'" = "@?'<ret>hmim"
+"<" = "@?<lt><ret>lmim"
+">" = "@?<gt><ret>hmim"
+"(" = "@?\\(<ret>lmim"
+")" = "@?\\)<ret>hmim"
+"[" = "@?\\[<ret>lmim"
+"]" = "@?\\]<ret>hmim"
+"{" = "@?\\{<ret>lmim"
+"}" = "@?\\}<ret>hmim"
+
+[keys.normal."]"]
+'"' = '@/"<ret>lmim'
+"'" = "@/'<ret>lmim"
+"<" = "@/<lt><ret>lmim"
+">" = "@/<gt><ret>hmim"
+"(" = "@/\\(<ret>lmim"
+")" = "@/\\)<ret>hmim"
+"[" = "@/\\[<ret>lmim"
+"]" = "@/\\]<ret>hmim"
+"{" = "@/\\{<ret>lmim"
+"}" = "@/\\}<ret>hmim"
+
+[keys.normal.g]
+G = "goto_file_end"
+
+e = "move_prev_word_end"
+E = "move_prev_long_word_end"
+"A-e" = "move_prev_sub_word_end"
+
+[keys.select]
+"A-w" = "extend_next_sub_word_start"
+"A-e" = "extend_next_sub_word_end"
+"A-b" = "extend_prev_sub_word_start"
+
+x = "extend_line_down"
+"A-x" = "extend_line_up"
+X = "extend_to_line_bounds"
+"A-X" = "shrink_to_line_bounds"
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+[keys.select.g]
+G = "extend_to_file_end"
+
+e = "extend_prev_word_end"
+E = "extend_prev_long_word_end"
+"A-e" = "extend_prev_sub_word_end"
