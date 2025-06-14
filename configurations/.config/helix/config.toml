@@ -8,7 +8,6 @@ cursorline = true
 completion-timeout = 50
 rulers = [80, 100, 120]
 color-modes = true
-popup-border = "menu"
 end-of-line-diagnostics = "hint"
 inline-diagnostics.cursor-line = "warning"
 clipboard-provider = "pasteboard"
