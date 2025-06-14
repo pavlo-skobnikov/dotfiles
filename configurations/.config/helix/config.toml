@@ -65,6 +65,8 @@ X = "extend_to_line_bounds"
 "{" = "goto_prev_paragraph"
 "}" = "goto_next_paragraph"
 
+G = "goto_file_end"
+
 [keys.normal."["]
 '"' = '@?"<ret>hmim'
 "'" = "@?'<ret>hmim"
@@ -90,8 +92,6 @@ X = "extend_to_line_bounds"
 "}" = "@/\\}<ret>hmim"
 
 [keys.normal.g]
-G = "goto_file_end"
-
 e = "move_prev_word_end"
 E = "move_prev_long_word_end"
 "A-e" = "move_prev_sub_word_end"
@@ -109,9 +109,9 @@ X = "extend_to_line_bounds"
 "{" = "goto_prev_paragraph"
 "}" = "goto_next_paragraph"
 
-[keys.select.g]
 G = "extend_to_file_end"
 
+[keys.select.g]
 e = "extend_prev_word_end"
 E = "extend_prev_long_word_end"
 "A-e" = "extend_prev_sub_word_end"
