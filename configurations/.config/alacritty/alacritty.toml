@@ -40,7 +40,7 @@ y = 0
 
 # Start up and/or attach to the the `home` session when opening Alacritty.
 [terminal.shell]
-program = "/bin/zsh"
+program = "/opt/homebrew/bin/fish"
 args = [
   # Start as a login shell.
   "-l",
