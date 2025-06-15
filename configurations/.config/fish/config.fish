@@ -62,4 +62,19 @@ if status is-interactive
     bind --mode=insert \cb fzf-cd-backward-widget # [B]ackward cd.
 
     # Aliases.
+    abbr --add cp 'cp -i' # Require confirmation for the following commands.
+    abbr --add mv 'mv -i'
+    abbr --add rm 'rm -i'
+
+    abbr --add ls eza # List files/directories.
+    abbr --add la 'eza -a'
+    abbr --add ll 'eza -l'
+    abbr --add lt 'eza --tree'
+
+    abbr --add cat bat # Replace cat with bat.
+
+    abbr --add rg 'rg --color=auto' # Always colorize ripgrep output.
+
+    abbr --add lg lazygit # Lazytools aliases.
+    abbr --add ld lazydocker
 end
