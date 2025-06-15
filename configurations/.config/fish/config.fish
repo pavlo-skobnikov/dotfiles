@@ -47,4 +47,9 @@ set PATH $PATH "/Applications/IntelliJ IDEA.app/Contents/MacOS" # 💡
 
 if status is-interactive
     starship init fish | source # Source starship.
+
+    source /opt/homebrew/opt/fzf/shell/key-bindings.fish # Fzf integration.
+    fzf_key_bindings
+    bind --mode=insert \cf fzf-cd-widget # [F]orward cd.
+    bind --mode=insert \cb fzf-cd-backward-widget # [B]ackward cd.
 end
