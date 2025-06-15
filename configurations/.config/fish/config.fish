@@ -8,13 +8,6 @@ set -gx XDG_CONFIG_HOME "$HOME/.config" # MacOS doesn't set XDG vars on its own 
 set -gx XDG_DATA_HOME "$XDG_CONFIG_HOME/local/share"
 set -gx XDG_CACHE_HOME "$XDG_CONFIG_HOME/cache"
 
-set -gx EDITOR hx # 🧬
-set -gx VISUAL hx
-
-set -gx PAGER less
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -gx MANWIDTH 999
-
 set -gx FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"' # Fzf.
 set -gx FZF_WITH_PREVIEW_OPTS "--style=minimal \
     --layout=default
