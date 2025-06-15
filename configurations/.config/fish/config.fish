@@ -48,6 +48,20 @@ set PATH $PATH "/Applications/IntelliJ IDEA.app/Contents/MacOS" # 💡
 if status is-interactive
     starship init fish | source # Source starship.
 
+    # Basic remaps.
+    bind --mode=insert \co edit_command_buffer # [O]pen in $EDITOR.
+    bind --mode=insert \cy accept-autosuggestion # Vim-like accept.
+    bind --mode=insert \cn complete # [N]ext completion.
+    bind --mode=insert \cp complete-and-search # [P]revious completion.
+    # [C]ancel completion or current command line.
+    bind --mode=insert \cc '
+    if commandline -P
+        commandline -f cancel
+    else
+        commandline -f cancel-commandline
+    end
+    '
+
     source /opt/homebrew/opt/fzf/shell/key-bindings.fish # Fzf integration.
     fzf_key_bindings
     bind --mode=insert \cf fzf-cd-widget # [F]orward cd.
