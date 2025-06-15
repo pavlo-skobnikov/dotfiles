@@ -42,7 +42,8 @@ if status is-interactive
     starship init fish | source # Source starship.
 
     # Basic remaps.
-    bind --mode=insert \co edit_command_buffer # [O]pen in $EDITOR.
+    bind --mode=default \co edit_command_buffer # [O]pen in $EDITOR.
+    bind --mode=insert \co edit_command_buffer
     bind --mode=insert \cy accept-autosuggestion # Vim-like accept.
     bind --mode=insert \cn complete # [N]ext completion.
     bind --mode=insert \cp complete-and-search # [P]revious completion.
@@ -59,4 +60,6 @@ if status is-interactive
     fzf_key_bindings
     bind --mode=insert \cf fzf-cd-widget # [F]orward cd.
     bind --mode=insert \cb fzf-cd-backward-widget # [B]ackward cd.
+
+    # Aliases.
 end
