@@ -165,40 +165,17 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lt='ls --tree'
 
-alias fdhd='fd --unrestricted --exclude ".git/" --type=directory' # but excluding git folder.
-
-alias cb='cd_back_to_parent_directory'
-
 alias cat='bat' # Replace cat with bat.
 
 alias rg='rg --color=auto' # Always colorize ripgrep output.
 
-alias vi='vim .' # Vim aliases.
+alias vi='vim' # Vim aliases.
 
-## Utility functions.
+## Functions.
 recompile_zsh_completions () { # A utility function to quickly regenerate completions for Zsh.
   rm -f ~/.zcompdump
   compinit
 }
-
-cd_back_to_parent_directory() { # A function to list all directories from the current one to
-    local current_path=$(pwd)   # the $HOME directory in order to go back the directory stack.
-
-    path_array=()
-    local parent_path=$current_path
-    while [[ "$parent_path" != $HOME ]]; do
-        parent_path=${parent_path%/*}
-
-        path_array+=($parent_path)
-    done
-
-    local selected_path=$(printf "%s\n" "${path_array[@]}" | fzf)
-
-    if [[ -n "$selected_path" ]]; then
-        cd $selected_path
-    fi
-}
-
 
 ## Keymaps configuration.
 zmodload zsh/complist               # Load completion-related actions for configuration.
@@ -243,11 +220,34 @@ zle -N fzf-cd-widget # Go [f]orward to one of the nested directories.
 bindkey -M viins '^F' fzf-cd-widget
 bindkey -M vicmd '^F' fzf-cd-widget
 
-cd_back_to_parent_directory_widget() { # Go [b]ackwards down the directory stack.
-    cd_back_to_parent_directory
-    zle reset-prompt
-}
-zle -N cd_back_to_parent_directory_widget
+fzf-cd-backward-widget() { # Go [b]ackwards down the directory stack.
+    path_array=()
+    local parent_path="$(dirname $(pwd))"
 
-bindkey -M viins '^B' cd_back_to_parent_directory_widget
-bindkey -M vicmd '^B' cd_back_to_parent_directory_widget
+    # Do not include $HOME or lower-level paths.
+    while [[ "$parent_path" != $HOME ]]; do
+        path_array+=($parent_path)
+
+        parent_path="$(dirname $parent_path)"
+    done
+
+    local selected_dir=$(printf "%s\n" "${path_array[@]}" | fzf)
+
+    # Exit if nothing in selected.
+    if [[ -z "$selected_dir" ]]; then
+        zle redisplay
+        return 0
+    fi
+
+    # cd and reset prompt similar to native fzf cd widget.
+    zle push-line
+    BUFFER="builtin cd -- ${(q)selected_dir:a}"
+    zle accept-line
+    local ret=$?
+    zle reset-prompt
+    return $ret
+}
+zle -N fzf-cd-backward-widget
+
+bindkey -M viins '^B' fzf-cd-backward-widget
+bindkey -M vicmd '^B' fzf-cd-backward-widget
