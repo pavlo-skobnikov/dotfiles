@@ -86,21 +86,15 @@ local format_prompt_part() {
 }
 
 # Prompt top part definitions.
-local o=$(format_prompt_part '#cc241d' ' 󰀵 ')
-local u=$(format_prompt_part '#d65d0e' ' 👤 %n ')
-local t=$(format_prompt_part '#d79921' " 🕑 %* ")
-local s_1=$(format_prompt_part '#689d6a' '  ')
-local s_2=$(format_prompt_part '#458588' '  ')
-local d=$(format_prompt_part '#665c54' " 📁 %d ")
+local os=$(format_prompt_part '#cc241d' ' 󰀵 ')
+local usr=$(format_prompt_part '#d65d0e' ' 👤 %n ')
+local clock=$(format_prompt_part '#d79921' " 🕑 %* ")
+local sep_1=$(format_prompt_part '#689d6a' '  ')
+local sep_2=$(format_prompt_part '#458588' '  ')
+local dir=$(format_prompt_part '#665c54' " 📁 %d ")
 
-local prompt_top_line="$o$u$t$s_1$s_2$d"
-
-# Prompt bottom line definitions.
-local vi_insert_prompt_line=' %F{#98971a}%B %b%f %F{#cc241d}%%%f '
-local vi_normal_prompt_line=' %F{#d79921}%B %b%f %F{#cc241d}%%%f '
-
-precmd() { printf '\n'; print -rP $prompt_top_line }
-export PS1="$vi_insert_prompt_line"
+precmd() { printf '\n'; print -rP "$os$usr$clock$sep_1$sep_2$dir" }
+export PS1=" %F{#cc241d}%%%f "
 
 set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
     cursor_block='\e[2 q'               # update the `VIMODE` variable, and force prompt redraw.
@@ -109,13 +103,11 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
     function zle-keymap-select {
         if [[ ${KEYMAP} == vicmd ]] ||
                 [[ $1 = 'block' ]]; then
-            export PS1="$vi_normal_prompt_line"
             echo -ne $cursor_block
         elif [[ ${KEYMAP} == main ]] ||
                 [[ ${KEYMAP} == viins ]] ||
                 [[ ${KEYMAP} = '' ]] ||
                 [[ $1 = 'beam' ]]; then
-            export PS1="$vi_insert_prompt_line"
             echo -ne $cursor_beam
         fi
 
@@ -124,15 +116,9 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
 
     zle-line-init() {                   # Initialize the cursor for insert mode.
         echo -ne $cursor_beam
-        export PS1="$vi_insert_prompt_line"
-    }
-
-    zle-line-finish() {                 # Reset the prompt to the starting value.
-        export PS1="$vi_insert_prompt_line"
     }
 
     zle -N zle-keymap-select
-    zle -N zle-line-finish
     zle -N zle-line-init
 }
 set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
