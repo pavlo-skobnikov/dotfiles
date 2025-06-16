@@ -175,10 +175,6 @@ alias rg='rg --color=auto' # Always colorize ripgrep output.
 
 alias vi='vim .' # Vim aliases.
 
-alias lg='lazygit' # Lazytools aliases.
-alias ld='lazydocker'
-
-
 ## Utility functions.
 recompile_zsh_completions () { # A utility function to quickly regenerate completions for Zsh.
   rm -f ~/.zcompdump
