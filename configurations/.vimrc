@@ -154,12 +154,38 @@ syntax on
 let &t_SI = "\<Esc>[6 q" " INSERT - |
 let &t_EI = "\<Esc>[2 q" " Other modes - █
 
-"" Set colorscheme according to the system appearance.
+"" Colorscheme shenanigans.
+" Looks close enough to gruvbox.
+colorscheme retrobox
+
+" Updates highlights to be more similar to real gruvbox colors.
+function! UpdateColorschemeHighlights()
+    " Get the current background setting.
+    let current_background = &background
+
+    " Change colorscheme highlights.
+    if current_background == 'dark'
+        highlight ColorColumn guibg='#3c3836'
+        highlight Normal guibg='#32302f'
+    elseif current_background == 'light'
+        highlight Normal guibg='#f9f5d7'
+    endif
+endfunction
+
+" Add an autocommand that calls the hook function
+" This autocommand is triggered whenever a new color scheme is loaded.
+" The '*' pattern matches any color scheme name.
+autocmd OptionSet background call UpdateColorschemeHighlights()
+
+" Set background based on the system appearance.
 if empty(system('defaults read -g AppleInterfaceStyle 2> /dev/null'))
-    execute 'colorscheme quiet'
+    execute 'set background=light'
 else
-    execute 'colorscheme habamax'
+    execute 'set background=dark'
 endif
+
+" On startup, the autocommand doesn't get triggered.
+call UpdateColorschemeHighlights()
 
 " Fixes the incorrect cursor.
 normal <C-l>

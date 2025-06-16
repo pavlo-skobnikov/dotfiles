@@ -66,13 +66,14 @@ zstyle ':completion:*' menu select
 
 # Add description to completion list groups.
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %B%d%b --%f'
+zstyle ':completion:*' group-name ''
 
 # Display errors when using _approximate completer.
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %B%d%b (errors: %e) -!%f'
 
 # Extra information and warnings for no completion matches.
-zstyle ':completion:*:messages' format ' %F{purple} -- %B%d%b --%f'
-zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %Binfo: %d%b --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- %Berror: no matches found%b --%f'
 
 
 ## Custom simple prompt.
@@ -81,22 +82,22 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Bno matches found%b --%f'
 # $1 - Background color.
 # $2 - Inner text.
 local format_prompt_part() {
-    echo "%K{$1}%F{#232634}$2%f%k"
+    echo "%K{$1}%F{#fbf1c7}$2%f%k"
 }
 
 # Prompt top part definitions.
-local macos=$(format_prompt_part '#f08da5' ' 󰀵 ')
-local username=$(format_prompt_part '#f9b489' ' 👤 %n ')
-local time_with_seconds=$(format_prompt_part '#f8e1af' "   %* ")
-local separator_1=$(format_prompt_part '#a5e2a1' '  ')
-local separator_2=$(format_prompt_part '#74c7eb' '  ')
-local directory=$(format_prompt_part '#b4befd' " 📁 %d ")
+local o=$(format_prompt_part '#cc241d' ' 󰀵 ')
+local u=$(format_prompt_part '#d65d0e' ' 👤 %n ')
+local t=$(format_prompt_part '#d79921' " 🕑 %* ")
+local s_1=$(format_prompt_part '#689d6a' '  ')
+local s_2=$(format_prompt_part '#458588' '  ')
+local d=$(format_prompt_part '#665c54' " 📁 %d ")
 
-local prompt_top_line="$macos$username$time_with_seconds$separator_1$separator_2$directory"
+local prompt_top_line="$o$u$t$s_1$s_2$d"
 
 # Prompt bottom line definitions.
-local vi_insert_prompt_line=' %F{#a5e2a1}%B[I]%b%f %F{#f08da5}❯%f '
-local vi_normal_prompt_line=' %F{#f8e1af}%B[N]%b%f %F{#f08da5}❮%f '
+local vi_insert_prompt_line=' %F{#98971a}%B %b%f %F{#cc241d}%%%f '
+local vi_normal_prompt_line=' %F{#d79921}%B %b%f %F{#cc241d}%%%f '
 
 precmd() { printf '\n'; print -rP $prompt_top_line }
 export PS1="$vi_insert_prompt_line"
@@ -107,13 +108,13 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
 
     function zle-keymap-select {
         if [[ ${KEYMAP} == vicmd ]] ||
-            [[ $1 = 'block' ]]; then
+                [[ $1 = 'block' ]]; then
             export PS1="$vi_normal_prompt_line"
             echo -ne $cursor_block
         elif [[ ${KEYMAP} == main ]] ||
-            [[ ${KEYMAP} == viins ]] ||
-            [[ ${KEYMAP} = '' ]] ||
-            [[ $1 = 'beam' ]]; then
+                [[ ${KEYMAP} == viins ]] ||
+                [[ ${KEYMAP} = '' ]] ||
+                [[ $1 = 'beam' ]]; then
             export PS1="$vi_insert_prompt_line"
             echo -ne $cursor_beam
         fi
@@ -123,6 +124,7 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
 
     zle-line-init() {                   # Initialize the cursor for insert mode.
         echo -ne $cursor_beam
+        export PS1="$vi_insert_prompt_line"
     }
 
     zle-line-finish() {                 # Reset the prompt to the starting value.
@@ -130,8 +132,8 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
     }
 
     zle -N zle-keymap-select
-    zle -N zle-line-init
     zle -N zle-line-finish
+    zle -N zle-line-init
 }
 set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
 
@@ -253,5 +255,3 @@ zle -N cd_back_to_parent_directory_widget
 
 bindkey -M viins '^B' cd_back_to_parent_directory_widget
 bindkey -M vicmd '^B' cd_back_to_parent_directory_widget
-
-
