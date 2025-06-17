@@ -217,7 +217,7 @@ fzf-cd-backward-widget() { # Go [b]ackwards down the directory stack.
         parent_path="$(dirname $parent_path)"
     done
 
-    local selected_dir=$(printf "%s\n" "${path_array[@]}" | fzf)
+    local selected_dir=$(printf "%s\n" "${path_array[@]}" | fzf --preview '')
 
     # Exit if nothing in selected.
     if [[ -z "$selected_dir" ]]; then

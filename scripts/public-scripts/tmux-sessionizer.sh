@@ -30,7 +30,7 @@ is_session_with_name_present() {
 select_common_path_for_session() {
     fd . ~ ~/dev/projects ~/dev/projects/work ~/dev/projects/personal \
             --min-depth 1 --max-depth 1 --type directory \
-        | fzf --prompt='Select project directory > ' \
+        | fzf --preview '' --prompt='Select project directory > ' \
         | xargs realpath
 }
 

@@ -34,7 +34,7 @@ export MANWIDTH=999
 export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"' # Search all files except git-internal ones.
 
 export FZF_WITH_PREVIEW_OPTS="--style=minimal \
-    --layout=default
+    --layout=default \
     --height 100% \
     --ansi \
     --preview-window 'right:50%' \
@@ -43,8 +43,8 @@ export FZF_WITH_PREVIEW_OPTS="--style=minimal \
 
 # Apply Fzf defaults.
 export FZF_DEFAULT_OPTS="$FZF_WITH_PREVIEW_OPTS"
-export FZF_CTRL_R_OPTS="--preview=''" # Disable preview for shell history and directory searches.
-export FZF_ALT_C_OPTS="--preview=''"
+export FZF_CTRL_R_OPTS="--preview ''" # Disable preview for shell history and directory searches.
+export FZF_ALT_C_OPTS="--preview ''"
 
 # SDKMan! path and managed SDKs.
 export SDKMAN_DIR=$HOME/.sdkman
