@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # This script provides functionality to create and/or switch to `tmux`
-# sessions quickly. 3 entry points exist for the script with the following
+# sessions quickly. 2 entry points exist for the script with the following
 # differing functionalities:
 #   - tmux-sessionizer.sh [ABSOLUTE_PATH]: Providing an absolute path as the
 #       argument to the script, the script either creates a session with
