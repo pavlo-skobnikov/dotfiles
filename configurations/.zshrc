@@ -164,11 +164,11 @@ recompile_zsh_completions () { # A utility function to quickly regenerate comple
 }
 
 ## Keymaps configuration.
-zmodload zsh/complist               # Load completion-related actions for configuration.
-bindkey -M viins '^n' menu-complete # Prompt menu or move down the completion list.
-bindkey -M viins '^p' reverse-menu-complete    # Move up the completion list.
-bindkey -M viins '^y' accept-line   # Accept completion.
-bindkey -M viins '^e' send-break    # Cancel completion and restore previous line state.
+zmodload zsh/complist                       # Load completion-related actions for configuration.
+bindkey -M viins '^n' menu-complete         # Move down the completion list.
+bindkey -M viins '^p' reverse-menu-complete # Move up the completion list.
+bindkey -M viins '^y' accept-line           # Accept completion.
+bindkey -M viins '^e' send-break            # Cancel completion and restore previous line state.
 
 autoload -Uz edit-command-line          # Edit the line in $EDITOR.
 zle -N edit-command-line
