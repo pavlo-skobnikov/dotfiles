@@ -4,26 +4,34 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
-brew "eza"
-brew "bat"
-brew "fzf"
-brew "ripgrep"
-brew "fd"
-brew "pandoc"
-brew "stow"
-brew "tmux"
+# "Better" ...
+brew "eza"     # ... ls.
+brew "bat"     # ... cat.
+brew "ripgrep" # ... grep.
+brew "fd"      # ... find.
 
-cask "font-jetbrains-mono-nerd-font"
-cask "docker"
-cask "alacritty"
-cask "intellij-idea"
-cask "raycast"
-cask "karabiner-elements"
-cask "google-chrome"
-cask "telegram"
-cask "slack"
+# Extra terminal tools.
+brew "stow"     # .files manager.
+brew "pandoc"   # Document filetype converter.
 
-mas "Xcode", id: 497799835
-mas "Bear", id: 1091189122
-mas "Things", id: 904280696
+# Essential terminal work tools.
+brew "fzf"    # Fuzzy life.
+brew "tmux"   # Session, windows, panes...
 
+# Casks.
+cask "font-jetbrains-mono-nerd-font" # 📝
+cask "karabiner-elements"            # 🎹
+cask "raycast"                       # 🔍
+cask "nikitabobko/tap/aerospace"     # i3 in my MacOS? Impossible... 🤯
+
+cask "google-chrome" # 🔗
+
+cask "docker" # 🐳
+
+cask "alacritty"     # 💻
+cask "intellij-idea" # 💡
+
+# Apple Store stuff 🍏
+mas "Xcode", id: 497799835  # 📱
+mas "Bear", id: 1091189122  # 🐻
+mas "Things", id: 904280696 # 📑
