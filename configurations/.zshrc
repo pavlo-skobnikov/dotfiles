@@ -207,15 +207,24 @@ bindkey -M viins '^F' fzf-cd-widget
 bindkey -M vicmd '^F' fzf-cd-widget
 
 fzf-cd-backward-widget() { # Go [b]ackwards down the directory stack.
-    path_array=()
+    path_array=()          # Either 'till Tmux current session root or 'till '/'
     local parent_path="$(dirname $(pwd))"
 
-    # Do not include $HOME or lower-level paths.
-    while [[ "$parent_path" != $HOME ]]; do
+    local tmux_session_path="$(tmux display-message -p '#{session_path}')"
+    local stop_path
+    if [[ "$parent_path" == *$tmux_session_path* ]]; then
+        stop_path="$tmux_session_path"
+    else
+        stop_path="/"
+    fi
+
+    while [[ "$parent_path" != "$stop_path" ]]; do
         path_array+=($parent_path)
 
         parent_path="$(dirname $parent_path)"
     done
+
+    path_array+=($stop_path)
 
     local selected_dir=$(printf "%s\n" "${path_array[@]}" | fzf --preview '')
 
@@ -225,7 +234,7 @@ fzf-cd-backward-widget() { # Go [b]ackwards down the directory stack.
         return 0
     fi
 
-    # cd and reset prompt similar to native fzf cd widget.
+    # `cd` and reset prompt similar to native fzf cd widget.
     zle push-line
     BUFFER="builtin cd -- ${(q)selected_dir:a}"
     zle accept-line
