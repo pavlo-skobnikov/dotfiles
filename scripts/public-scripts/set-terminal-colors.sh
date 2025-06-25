@@ -3,30 +3,36 @@
 ## A script to dynamically update "themes" for terminal tools when the script is run.
 
 # Bat theme definitions.
-bat_light_theme="gruvbox-light"
-bat_dark_theme="gruvbox-dark"
+bat_light_theme="Catppuccin Latte"
+bat_dark_theme="Catppuccin Frappe"
 
 # Fzf color definitions.
 fzf_light_theme_style_part=" \
-    --color=bg+:#ebdbb2,bg:#f9f5d7,spinner:#427b58,hl:#076678 \
-    --color=fg:#665c54,header:#076678,info:#b57614,pointer:#427b58 \
-    --color=marker:#427b58,fg+:#3c3836,prompt:#b57614,hl+:#076678"
+    --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
+    --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
+    --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
+    --color=selected-bg:#BCC0CC \
+    --color=border:#CCD0DA,label:#4C4F69"
 fzf_dark_theme_style_part=" \
-    --color=bg+:#3c3836,bg:#32302f,spinner:#8ec07c,hl:#83a598 \
-    --color=fg:#bdae93,header:#83a598,info:#fabd2f,pointer:#8ec07c \
-    --color=marker:#8ec07c,fg+:#ebdbb2,prompt:#fabd2f,hl+:#83a598"
+    --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
+    --color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
+    --color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
+    --color=selected-bg:#51576D \
+    --color=border:#414559,label:#C6D0F5"
 
 if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
-    ln -fs ~/.config/alacritty/light_theme.toml ~/.config/alacritty/_active_theme.toml
+    ln -fs $XDG_CONFIG_HOME/alacritty/light_theme.toml $XDG_CONFIG_HOME/alacritty/_active_theme.toml
+    ln -fs $XDG_CONFIG_HOME/starship/starship_light_theme_config.toml $XDG_CONFIG_HOME/starship.toml
     export BAT_THEME="$bat_light_theme"
     export FZF_DEFAULT_OPTS="$fzf_light_theme_style_part \
         $FZF_WITH_PREVIEW_OPTS"
 else
-    ln -fs ~/.config/alacritty/dark_theme.toml ~/.config/alacritty/_active_theme.toml
+    ln -fs $XDG_CONFIG_HOME/alacritty/dark_theme.toml $XDG_CONFIG_HOME/alacritty/_active_theme.toml
+    ln -fs $XDG_CONFIG_HOME/starship/starship_dark_theme_config.toml $XDG_CONFIG_HOME/starship.toml
     export BAT_THEME="$bat_dark_theme"
     export FZF_DEFAULT_OPTS="$fzf_dark_theme_style_part \
         $FZF_WITH_PREVIEW_OPTS"
 fi
 
 # Force Alacritty to refresh configuration (and, therefore, its colors).
-touch ~/.config/alacritty/alacritty.toml
+touch $XDG_CONFIG_HOME/alacritty/alacritty.toml

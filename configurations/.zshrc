@@ -76,26 +76,15 @@ zstyle ':completion:*:messages' format ' %F{purple} -- %Binfo: %d%b --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- %Berror: no matches found%b --%f'
 
 
-## Custom simple prompt.
+## A startup script to update terminal colors.
+source set-terminal-colors.sh
 
-# Utility function to format text with a given colored background.
-# $1 - Background color.
-# $2 - Inner text.
-local format_prompt_part() {
-    echo "%K{$1}%F{#fbf1c7}$2%f%k"
-}
 
-# Prompt top part definitions.
-local os=$(format_prompt_part '#cc241d' ' 󰀵 ')
-local usr=$(format_prompt_part '#d65d0e' ' 👤 %n ')
-local clock=$(format_prompt_part '#d79921' " 🕑 %* ")
-local sep_1=$(format_prompt_part '#689d6a' '  ')
-local sep_2=$(format_prompt_part '#458588' '  ')
-local dir=$(format_prompt_part '#665c54' " 📁 %d ")
+## Prompt.
+# Use Starship's prompt.
+eval "$(starship init zsh)"
 
-precmd() { printf '\n'; print -rP "$os$usr$clock$sep_1$sep_2$dir" }
-export PS1=" %F{#cc241d}%%%f "
-
+# Use different shapes for INSERT and NORMAL modes.
 set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
     cursor_block='\e[2 q'               # update the `VIMODE` variable, and force prompt redraw.
     cursor_beam='\e[6 q'
@@ -121,11 +110,7 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
     zle -N zle-keymap-select
     zle -N zle-line-init
 }
-set_cursor_and_vi_mode_prompt           # Load the dynamic prompt.
-
-
-## A startup script to update terminal colors.
-source set-terminal-colors.sh
+set_cursor_and_vi_mode_prompt           # Load the cursors.
 
 
 ## Tool setups.
@@ -158,7 +143,7 @@ alias rg='rg --color=auto' # Always colorize ripgrep output.
 alias vi='vim' # Vim aliases.
 
 ## Functions.
-recompile_zsh_completions () { # A utility function to quickly regenerate completions for Zsh.
+recompile_zsh_completions() { # A utility function to quickly regenerate completions for Zsh.
   rm -f ~/.zcompdump
   compinit
 }
@@ -167,8 +152,6 @@ recompile_zsh_completions () { # A utility function to quickly regenerate comple
 zmodload zsh/complist                       # Load completion-related actions for configuration.
 bindkey -M viins '^n' menu-complete         # Move down the completion list.
 bindkey -M viins '^p' reverse-menu-complete # Move up the completion list.
-bindkey -M viins '^y' accept-line           # Accept completion.
-bindkey -M viins '^e' send-break            # Cancel completion and restore previous line state.
 
 autoload -Uz edit-command-line          # Edit the line in $EDITOR.
 zle -N edit-command-line
