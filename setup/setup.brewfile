@@ -16,6 +16,9 @@ brew "pandoc"   # Document filetype converter.
 
 brew "starship" # A prompt for the stars 🚀🌌
 
+brew "lazygit"    # I'm so-o-o-o lazy 😴🛏️
+brew "lazydocker"
+
 # Essential terminal work tools.
 brew "fzf"    # Fuzzy life.
 brew "helix"  # Neovim but even smugger.
