@@ -18,6 +18,7 @@ brew "starship" # A prompt for the stars 🚀🌌
 
 # Essential terminal work tools.
 brew "fzf"    # Fuzzy life.
+brew "helix"  # Neovim but even smugger.
 brew "tmux"   # Session, windows, panes...
 
 # Casks.
