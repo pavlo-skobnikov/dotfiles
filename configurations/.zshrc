@@ -158,7 +158,7 @@ alias rg='rg --color=auto' # Always colorize ripgrep output.
 alias vi='vim' # Vim aliases.
 
 ## Functions.
-recompile_zsh_completions () { # A utility function to quickly regenerate completions for Zsh.
+recompile-zsh-completions() { # A utility function to quickly regenerate completions for Zsh.
   rm -f ~/.zcompdump
   compinit
 }
