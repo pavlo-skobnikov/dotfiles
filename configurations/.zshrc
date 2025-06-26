@@ -232,3 +232,15 @@ zle -N fzf-cd-backward-widget
 
 bindkey -M viins '^B' fzf-cd-backward-widget
 bindkey -M vicmd '^B' fzf-cd-backward-widget
+
+cd-with-lf-widget() {
+  BUFFER="builtin cd -- $(lf -print-last-dir)"
+  zle accept-line
+  local ret=$?
+  zle reset-prompt
+  return $ret
+}
+zle -N cd-with-lf-widget
+
+bindkey -M viins '^E' cd-with-lf-widget
+bindkey -M vicmd '^E' cd-with-lf-widget

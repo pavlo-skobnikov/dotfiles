@@ -14,6 +14,8 @@ brew "fd"      # ... find.
 brew "stow"     # .files manager.
 brew "pandoc"   # Document filetype converter.
 
+brew "lf" # Super-duper easy file manager 📁
+
 brew "starship" # A prompt for the stars 🚀🌌
 
 brew "lazygit"    # I'm so-o-o-o lazy 😴🛏️
