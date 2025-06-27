@@ -50,10 +50,146 @@ skip-levels = 1
 enable = false
 
 
-# Space-mode mappings.
-[keys.select]
-space = "@<esc><space>" # Switch to NORMAL and enter Space mode.
+[keys.normal]
+"esc" = "collapse_selection"
 
+"@" = "shell_append_output"
+"#" = ["search_selection", "search_prev"]
+"$" = "goto_line_end"
+"%" = "match_brackets"
+"^" = "goto_first_nonwhitespace"
+"&" = "merge_selections"
+"*" = ["search_selection", "search_next"]
+"0" = "goto_line_start"
+"-" = "rotate_selection_contents_backward"
+"+" = "rotate_selection_contents_forward"
+"=" = "align_selections"
+
+q = "replay_macro"
+Q = "record_macro"
+
+i = ["collapse_selection", "insert_mode"]
+
+"C-r" = ["redo", "collapse_selection"]
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+a = ["collapse_selection", "append_mode"]
+
+S = ["extend_to_line_bounds", "change_selection"]
+
+D = ["extend_to_line_end", "delete_selection"]
+
+G = "goto_file_end"
+
+";" = ["repeat_last_motion"]
+
+"\\" = "shell_pipe_to"
+
+x = "delete_char_forward"
+X = "delete_char_backward"
+
+C = ["extend_to_line_end", "change_selection"]
+
+V = "extend_to_line_bounds"
+
+M = "select_all"
+
+[keys.normal.g]
+q = "format_selections"
+e = "move_prev_word_end"
+
+x = '@"_'
+
+h = "no_op"
+l = "no_op"
+
+[keys.normal.m]
+b = "copy_selection_on_next_line"
+a = "copy_selection_on_prev_line"
+x = "split_selection"
+"/" = "select_regex"
+k = "keep_selections"
+u = "remove_selections"
+p = "remove_primary_selection"
+
+[keys.select]
+"esc" = ["normal_mode", "collapse_selection"]
+
+"@" = "append_mode"
+"#" = ["search_selection", "search_prev"]
+"$" = "goto_line_end"
+"%" = "match_brackets"
+"^" = "goto_first_nonwhitespace"
+"&" = "merge_selections"
+"*" = ["search_selection", "search_next"]
+"0" = "goto_line_start"
+"-" = "rotate_selection_contents_backward"
+"+" = "rotate_selection_contents_forward"
+"=" = "align_selections"
+
+q = "replay_macro"
+Q = "record_macro"
+
+"C-r" = "redo"
+
+y = ["yank", "collapse_selection"]
+Y = ["extend_to_line_bounds", "yank", "collapse_selection"]
+
+u = "switch_to_lowercase"
+U = "switch_to_uppercase"
+
+i = "select_textobject_inner"
+
+o = "flip_selections"
+O = "ensure_selections_forward"
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+a = "select_textobject_around"
+
+s = "change_selection"
+S = ["extend_to_line_bounds", "change_selection"]
+
+D = ["extend_to_line_bounds", "delete_selection"]
+
+G = "extend_to_file_end"
+
+";" = "repeat_last_motion"
+
+"\\" = "shell_pipe_to"
+
+x = "delete_selection"
+X = ["extend_to_line_bounds", "delete_selection"]
+
+C = ["extend_to_line_bounds", "change_selection"]
+
+v = ["normal_mode", "collapse_selection"]
+V = "extend_to_line_bounds"
+
+M = "select_all"
+
+[keys.select.g]
+q = "format_selections"
+e = "move_prev_word_end"
+
+x = '@"_'
+
+h = "no_op"
+l = "no_op"
+
+[keys.select.m]
+b = "copy_selection_on_next_line"
+a = "copy_selection_on_prev_line"
+x = "split_selection"
+"/" = "select_regex"
+k = "keep_selections"
+u = "remove_selections"
+p = "remove_primary_selection"
+
+# Space-mode mappings.
 [keys.normal.space.c]       # [C]omment.
 c = "toggle_comments"       # (Un-)[c]omment.
 b = "toggle_block_comments" # [B]lock (un-)comment.
