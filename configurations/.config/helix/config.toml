@@ -1,3 +1,4 @@
+# Basic options.
 theme = "catppuccin_frappe"
 
 [editor]
@@ -47,3 +48,88 @@ skip-levels = 1
 
 [editor.smart-tab]
 enable = false
+
+
+# Space-mode mappings.
+[keys.select]
+space = "@<esc><space>" # Switch to NORMAL and enter Space mode.
+
+[keys.normal.space.c]       # [C]omment.
+c = "toggle_comments"       # (Un-)[c]omment.
+b = "toggle_block_comments" # [B]lock (un-)comment.
+l = "toggle_line_comments"  # [L]ine (un-)comment.
+
+[keys.normal.space.C]        # [C]onfig and application-level commands.
+r = ":config-reload"         # [R]eload config.
+c = ":config-open"           # Open global [c]onfig.
+w = ":config-open-workspace" # Open workspace-local [c]onfig.
+
+[keys.normal.space.d]        # [D]ebug.
+l = "dap_launch"             # [L]aunch debug target.
+r = "dap_restart"            # [R]estart debugging session.
+c = "dap_continue"           # [C]ontinue program execution.
+h = "dap_pause"              # [P]ause program execution.
+t = "dap_terminate"          # End/[t]erminate debug session.
+b = "dap_toggle_breakpoint"  # Toggle [b]reakpoint.
+C = "dap_edit_condition"     # Edit breakpoint [c]ondition on current line.
+L = "dap_edit_log"           # Edit breakpoint [l]og message on current line.
+e = "dap_enable_exceptions"  # Enable [e]xception breakpoints.
+E = "dap_disable_exceptions" # Disable [e]xception breakpoints.
+i = "dap_step_in"            # Step [i]n.
+o = "dap_step_out"           # Step [o]ut.
+n = "dap_next"               # Step to [n]ext.
+v = "dap_variables"          # List [v]ariables.
+
+[keys.normal.space.d.s]      # [D]ebug [s]witch.
+t = "dap_switch_thread"      # Switch current [t]hread.
+f = "dap_switch_stack_frame" # Switch stack [f]rame.
+
+[keys.normal.space.D] # [D]ebug commands.
+s = "@:debug-start "  # Start a debug session.
+r = "@:debug-remote " # Connect to a [r]emote debug adapter session by TCP.
+e = "@:debug-eval "   # [E]valuate expression in current debug context.
+
+[keys.normal.space.e] # [E]xplore file tree w/ lf.
+e = [                 # [E]xplore current directory.
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%{buffer_name}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+p = [                 # Explore [p]roject root.
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%sh{pwd}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+c = [                 # [C]hange working directory.
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -last-dir-path=/tmp/hx-lf "%sh{pwd}"',
+  ':cd %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+
+[keys.normal.space.f]                                         # [F]iles.
+f = "file_picker_in_current_directory"                        # Search [f]iles for current working directory.
+d = "file_picker_in_current_buffer_directory"                 # Search [f]iles in the file's directory of the current buffer.
+b = "buffer_picker"                                           # Search recently opened [b]uffers.
+c = "changed_file_picker"                                     # Search recently [c]hanged files.
+r = ":reload-all"                                             # [R]eload files from the system and update buffers.
+y = [":sh echo %{buffer_name} | pbcopy; echo %{buffer_name}"] # [Y]ank current file path to the system clipboard and echo it.
+
+[keys.normal.space.g]                                                              # [g]it.
+g = [':insert-output lazygit', ':redraw', ':reload-all']                           # lazy[g]it.
+c = [':insert-output lazygit branch', ':redraw', ':reload-all']                    # [C]heckou branches.
+s = [':insert-output lazygit stash', ':redraw', ':reload-all']                     # Open [s]tash.
+S = [':insert-output lazygit status', ':redraw', ':reload-all']                    # View current [s]tatus.
+l = [':insert-output lazygit log', ':redraw', ':reload-all']                       # Open commit [l]og.
+f = [':insert-output lazygit --filter="%{buffer_name}"', ':redraw', ':reload-all'] # Open current file commit history.
+
+[keys.normal.space.s]                          # Add log view, branch view, etc.# [S]ymbols.
+s = "workspace_symbol_picker"                  # Search [w]orkspace symbols.
+d = "symbol_picker"                            # Search [d]ocument symbols.
+h = "select_references_to_symbol_under_cursor" # [H]ighlight all references to symbol under cursor.
+
+[keys.normal.space.u]                                       # Extra [u]tils.
+d = [':insert-output lazydocker', ':redraw', ':reload-all'] # Open lazy[d]ocker.
+s = [':insert-output lazysql', ':redraw', ':reload-all']    # Open lazy[s]ql.
