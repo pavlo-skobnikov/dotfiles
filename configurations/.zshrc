@@ -147,8 +147,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 alias ls='eza'   # List files/directories.
-alias la='ls -a'
-alias ll='ls -l'
+alias la='ls -lha'
 alias lt='ls --tree'
 
 alias cat='bat' # Replace cat with bat.
