@@ -11,6 +11,7 @@ brew "ripgrep" # ... grep.
 brew "fd"      # ... find.
 
 # Extra terminal tools.
+brew "gh"       # git in the clouds ☁️
 brew "stow"     # .files manager.
 brew "pandoc"   # Document filetype converter.
 
@@ -24,7 +25,7 @@ cask "karabiner-elements"            # 🎹
 cask "raycast"                       # 🔍
 cask "nikitabobko/tap/aerospace"     # i3 in my MacOS? Impossible... 🤯
 
-cask "google-chrome" # 🔗
+cask "brave-browser" # 🔗
 
 cask "docker" # 🐳
 
