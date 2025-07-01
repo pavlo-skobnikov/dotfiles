@@ -78,23 +78,30 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Berror: no matches found%b -
 
 ## Custom simple prompt.
 
+local prompt_top_line="$macos$username$time_with_seconds$separator_1$separator_2$directory"
+
+# Prompt bottom line definitions.
+local vi_insert_prompt_line=' %F{#a5e2a1}%B[I]%b%f %F{#f08da5}❯%f '
+local vi_normal_prompt_line=' %F{#f8e1af}%B[N]%b%f %F{#f08da5}❮%f '
+
+
 # Utility function to format text with a given colored background.
 # $1 - Background color.
 # $2 - Inner text.
 local format_prompt_part() {
-    echo "%K{$1}%F{#fbf1c7}$2%f%k"
+    echo "%K{$1}%F{#232634}$2%f%k"
 }
 
 # Prompt top part definitions.
-local os=$(format_prompt_part '#cc241d' ' 󰀵 ')
-local usr=$(format_prompt_part '#d65d0e' ' 👤 %n ')
-local clock=$(format_prompt_part '#d79921' " 🕑 %* ")
-local sep_1=$(format_prompt_part '#689d6a' '  ')
-local sep_2=$(format_prompt_part '#458588' '  ')
-local dir=$(format_prompt_part '#665c54' " 📁 %d ")
+local os=$(format_prompt_part '#f08da5' ' 󰀵 ')
+local usr=$(format_prompt_part '#f9b489' ' 👤 %n ')
+local clock=$(format_prompt_part '#f8e1af' " 🕑 %* ")
+local sep_1=$(format_prompt_part '#a5e2a1' '  ')
+local sep_2=$(format_prompt_part '#74c7eb' '  ')
+local dir=$(format_prompt_part '#b4befd' " 📁 %d ")
 
 precmd() { printf '\n'; print -rP "$os$usr$clock$sep_1$sep_2$dir" }
-export PS1=" %F{#cc241d}%%%f "
+export PS1=" %F{#f08da5}%%%f "
 
 set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and INSERT modes,
     cursor_block='\e[2 q'               # update the `VIMODE` variable, and force prompt redraw.
