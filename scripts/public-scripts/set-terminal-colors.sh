@@ -2,10 +2,6 @@
 
 ## A script to dynamically update "themes" for terminal tools when the script is run.
 
-# Bat theme definitions.
-bat_light_theme="Catppuccin Latte"
-bat_dark_theme="Catppuccin Frappe"
-
 # Fzf color definitions.
 fzf_light_theme_style_part=" \
     --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
@@ -22,12 +18,10 @@ fzf_dark_theme_style_part=" \
 
 if [[ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]]; then
     ln -fs ~/.config/alacritty/light_theme.toml ~/.config/alacritty/_active_theme.toml
-    export BAT_THEME="$bat_light_theme"
     export FZF_DEFAULT_OPTS="$fzf_light_theme_style_part \
         $FZF_WITH_PREVIEW_OPTS"
 else
     ln -fs ~/.config/alacritty/dark_theme.toml ~/.config/alacritty/_active_theme.toml
-    export BAT_THEME="$bat_dark_theme"
     export FZF_DEFAULT_OPTS="$fzf_dark_theme_style_part \
         $FZF_WITH_PREVIEW_OPTS"
 fi

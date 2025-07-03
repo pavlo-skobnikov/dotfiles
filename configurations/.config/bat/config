@@ -1,0 +1,4 @@
+# Automatically select theme according to MacOS' system appearance.
+--theme=auto:system
+--theme-light='Catppuccin Latte'
+--theme-dark='Catppuccin Frappe'
