@@ -32,18 +32,8 @@ export MANWIDTH=999
 
 # Fzf configuration.
 export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"' # Search all files except git-internal ones.
-
-export FZF_WITH_PREVIEW_OPTS="--style=minimal \
-    --layout=default \
-    --height 100% \
-    --ansi \
-    --preview-window 'right:50%' \
-    --preview 'bat --color=always --style=numbers --line-range=:500 {}' \
-    --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
-
-# Apply Fzf defaults.
-export FZF_DEFAULT_OPTS="$FZF_WITH_PREVIEW_OPTS"
-export FZF_CTRL_R_OPTS="--preview ''" # Disable preview for shell history and directory searches.
+export FZF_DEFAULT_OPTS_FILE="$HOME/.fzfrc"
+export FZF_CTRL_R_OPTS="--preview ''"                       # Disable preview for shell history and directory searches.
 export FZF_ALT_C_OPTS="--preview ''"
 
 # SDKMan! path and managed SDKs.
