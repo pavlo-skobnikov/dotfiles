@@ -117,8 +117,6 @@ set_cursor_and_vi_mode_prompt() {       # Switch cursors shapes for NORMAL and I
                 [[ $1 = 'beam' ]]; then
             echo -ne $cursor_beam
         fi
-
-        zle reset-prompt
     }
 
     zle-line-init() {                   # Initialize the cursor for insert mode.
