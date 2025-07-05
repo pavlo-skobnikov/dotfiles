@@ -5,8 +5,17 @@
 --preview-window 'right:50%'
 --preview 'bat --color=always --style=numbers --line-range=:500 {}'
 --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down
---color=bg+:#C6D0F5,spinner:#DC8A78,hl:#EF8DA5
---color=header:#EF8DA5,info:#B4BEFD,pointer:#DC8A78
---color=marker:#7287FD,fg+:#4C4F69,prompt:#B4BEFD,hl+:#EF8DA5
---color=selected-bg:#BCC0CC
---color=border:#C6D0F5,label:#4C4F69
+--color=fg:-1
+--color=fg+:0
+--color=bg:-1
+--color=bg+:189
+--color=pointer:12
+--color=header:12
+--color=border:4
+--color=hl:1
+--color=hl+:1
+--color=info:12
+--color=prompt:12
+--color=marker:12
+--color=spinner:9
+--color=scrollbar:dim
