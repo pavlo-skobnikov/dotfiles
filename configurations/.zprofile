@@ -41,6 +41,9 @@ export SDKMAN_DIR=$HOME/.sdkman
 export JAVA_HOME=$SDKMAN_DIR/candidates/java/current
 export M2_HOME=$SDKMAN_DIR/candidates/maven/current
 
+# NVM.
+export NVM_DIR="$HOME/.nvm"
+
 # Set karabiner configuration path for goku.
 export GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn"
 

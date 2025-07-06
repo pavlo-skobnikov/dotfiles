@@ -145,6 +145,15 @@ sdk() {         # Lazy-load SDKMan i.e. source everything on first `sdk` invocat
   sdk "$@"
 }
 
+# nvm
+nvm() {         # Lazy-load nvm.
+  unset -f nvm
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                        # Load nvm.
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # Load completion.
+
+  nvm "$@"
+}
+
 
 ## Aliases.
 alias cp='cp -i' # Require confirmation for the following commands.
