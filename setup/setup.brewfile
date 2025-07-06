@@ -11,9 +11,10 @@ brew "ripgrep" # ... grep.
 brew "fd"      # ... find.
 
 # Extra terminal tools.
-brew "stow"     # .files manager.
-brew "pandoc"   # Document filetype converter.
-brew "nvm"      # Because what do you mean you don't have JS on the back-end?
+brew "gh"     # git in the clouds ☁️
+brew "stow"   # .files manager.
+brew "pandoc" # Document filetype converter.
+brew "nvm"    # Because what do you mean you don't have JS on the back-end?
 
 # Essential terminal work tools.
 brew "fzf"    # Fuzzy life.
