@@ -16,8 +16,8 @@ export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
 # Editor.
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Zsh-related exports.
 export ZDOTDIR="$HOME"
@@ -27,7 +27,7 @@ export SAVEHIST=10000
 
 # Basic shell configuration.
 export PAGER='less'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
 # Fzf configuration.

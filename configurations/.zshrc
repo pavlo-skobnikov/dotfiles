@@ -168,7 +168,8 @@ alias cat='bat' # Replace cat with bat.
 
 alias rg='rg --color=auto' # Always colorize ripgrep output.
 
-alias vi='vim' # Vim aliases.
+alias vi='nvim' # Vim aliases.
+alias vi='vim'
 
 ## Functions.
 recompile-zsh-completions() { # A utility function to quickly regenerate completions for Zsh.
