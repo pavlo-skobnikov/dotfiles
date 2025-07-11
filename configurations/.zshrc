@@ -140,18 +140,18 @@ source /opt/homebrew/opt/fzf/shell/completion.zsh
 
 # SDKMan!
 sdk() {         # Lazy-load SDKMan i.e. source everything on first `sdk` invocation.
-  unset -f sdk  # Taken from here: https://github.com/sdkman/sdkman-cli/issues/977#issuecomment-2127812178
-  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-  sdk "$@"
+    unset -f sdk  # Taken from here: https://github.com/sdkman/sdkman-cli/issues/977#issuecomment-2127812178
+    [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+    sdk "$@"
 }
 
 # nvm
-nvm() {         # Lazy-load nvm.
-  unset -f nvm
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                        # Load nvm.
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # Load completion.
+nvm() { # Lazy-load nvm.
+    unset -f nvm
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                        # Load nvm.
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # Load completion.
 
-  nvm "$@"
+    nvm "$@"
 }
 
 
