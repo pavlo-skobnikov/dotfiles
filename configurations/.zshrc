@@ -148,7 +148,7 @@ alias cat='bat' # Replace cat with bat.
 
 alias rg='rg --color=auto' # Always colorize ripgrep output.
 
-alias vi='nvim' # Vim aliases.
+alias vim='nvim' # Vim aliases.
 alias vi='vim'
 
 ## Functions.
