@@ -61,6 +61,7 @@ return {
             map(
                 'n',
                 '<Leader>gQ',
+                ---@diagnostic disable-next-line: param-type-mismatch
                 function() gitsigns.setqflist 'all' end,
                 'Add project changes to qflist'
             )

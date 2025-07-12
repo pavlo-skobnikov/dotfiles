@@ -13,6 +13,7 @@ return {
             mason = true,
             native_lsp = { enabled = true },
             telescope = { enabled = true },
+            treesitter = true,
             which_key = true,
         },
     },
