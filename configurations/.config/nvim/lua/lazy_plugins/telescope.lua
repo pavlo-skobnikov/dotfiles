@@ -51,6 +51,7 @@ return {
             defaults = {
                 layout_strategy = 'horizontal',
                 layout_config = { width = 0.85, height = 0.85 },
+                path_display = { truncate = 3 },
                 mappings = {
                     n = {
                         ['<C-f>'] = actions.preview_scrolling_right,
@@ -73,6 +74,8 @@ return {
                     '--hidden',
                     '--glob',
                     '!**/.git/*',
+                    '--glob',
+                    '!**/.idea/*',
                 },
             },
             pickers = {
@@ -84,6 +87,8 @@ return {
                         '--ignore-vcs',
                         '--glob',
                         '!**/.git/*',
+                        '--glob',
+                        '!**/.idea/*',
                     },
                 },
                 -- I have to admit, Emacs' Ivy does look kinda cool.
