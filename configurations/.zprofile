@@ -66,4 +66,6 @@ path+=("$HOME/.cargo/bin")
 path+=('/Applications/Docker.app/Contents/Resources/bin')
 # IntelliJ IDEA.
 path+=('/Applications/IntelliJ IDEA.app/Contents/MacOS')
+# nvm's node binaries manually symlinked.
+path+=("$HOME/.nvm/current")
 
