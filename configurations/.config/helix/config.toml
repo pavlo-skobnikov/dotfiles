@@ -1,0 +1,51 @@
+# Basic options.
+theme = "catppuccin_frappe"
+
+[editor]
+mouse = false
+shell = ["/bin/zsh", "-c"]
+line-number = "relative"
+cursorline = true
+completion-timeout = 50
+rulers = [80,100,120]
+color-modes = true
+clipboard-provider = "pasteboard"
+end-of-line-diagnostics = "hint"
+inline-diagnostics.cursor-line = "warning"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.whitespace.render]
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+newline = "·"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
+
+[editor.smart-tab]
+enable = false
+
