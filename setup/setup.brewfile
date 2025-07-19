@@ -20,6 +20,9 @@ brew "nvm"    # Because what do you mean you don't have JS on the back-end?
 brew "fzf"    # Fuzzy life.
 brew "tmux"   # Session, windows, panes...
 
+brew "lazygit" # I'm so-o-o lazy-y 😴🛏️
+brew "lazydocker"
+
 # Casks.
 cask "font-jetbrains-mono-nerd-font" # 📝
 cask "karabiner-elements"            # 🎹
