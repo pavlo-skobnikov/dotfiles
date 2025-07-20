@@ -17,6 +17,7 @@ brew "pandoc" # Document filetype converter.
 brew "nvm"    # Because what do you mean you don't have JS on the back-end?
 
 # Essential terminal work tools.
+brew "neovim" # Vim but even more smug 😏😤
 brew "fzf"    # Fuzzy life.
 brew "tmux"   # Session, windows, panes...
 

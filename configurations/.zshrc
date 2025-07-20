@@ -77,8 +77,8 @@ zstyle ':completion:*:warnings' format ' %F{red}-- %Berror: no matches found%b -
 
 
 ## Custom simple prompt.
-local b_dg='%K{239} %k' # [B]lock [d]ark grey.
-local b_lg='%K{248} %k' # [B]lock [l]ight grey.
+local b_dg='%K{239} %k' # [B]lock [d]ark [g]rey.
+local b_lg='%K{248} %k' # [B]lock [l]ight [g]rey.
 
 precmd() { printf '\n'; print -rP "$b_lg$b_dg 👤 %n | 🕑 %* | 📁 %d $b_dg$b_lg" }
 export PS1=" %F{4}%%%f "
@@ -148,12 +148,29 @@ alias cat='bat' # Replace cat with bat.
 
 alias rg='rg --color=auto' # Always colorize ripgrep output.
 
-alias vi='vim' # Vim aliases.
+alias nvim='nvim-server' # Vim aliases.
+alias vim='nvim'
+alias vi='vim'
 
 ## Functions.
 recompile-zsh-completions() { # A utility function to quickly regenerate completions for Zsh.
-  rm -f ~/.zcompdump
-  compinit
+    rm -f ~/.zcompdump
+    compinit
+}
+
+# A utility function to generate a random alphanumeric string.
+# $1 is the length of the random string.
+gen-rand-str() {
+    head -c "$1" /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | cut -c1-"$1"
+}
+
+nvim-server() { # A utility function to start a Neovim server for remote commands.
+    local servers_dir="/tmp/nvim"
+    mkdir -p "$servers_dir" # Ensure the directory exists.
+
+    local server_name="nvim-server-$(gen-rand-str 16).sock" # Generate a random server name.
+
+    command nvim --listen "$servers_dir/$server_name" "$@" # Start Neovim server name and pass arguments.
 }
 
 ## Keymaps configuration.
@@ -172,13 +189,13 @@ autoload -Uz select-bracketed select-quoted     # Add text objects for quotes an
 zle -N select-quoted                            # to Zsh's Vim emulation.
 zle -N select-bracketed                         # NOTE: Forward search is not emulated.
 for km in viopp visual; do
-  bindkey -M $km -- '-' vi-up-line-or-history
-  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
-    bindkey -M $km $c select-quoted
-  done
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $km $c select-bracketed
-  done
+    bindkey -M $km -- '-' vi-up-line-or-history
+    for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+        bindkey -M $km $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $km $c select-bracketed
+    done
 done
 
 autoload -Uz surround               # Mimic tpope's surround plugin.
