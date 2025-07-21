@@ -19,19 +19,34 @@
          {:des "Left Control + Space -> Caps Lock"
           :rules [[:!T#Pspacebar :caps_lock]]}
 
-        {:des "Hyper keys, Function keys, and Vim arrow keys mode"
+        {:des "Function Keys on Number Key Row"
          ; Left Command + left-hand side number keys -> F1 - F5
-         ; Left Command + left-hand side letter keys -> Hyper + [PRESSED_KEY]
          ; Right Command + right-hand side number (+ symbol) keys -> F6 - F12
-         ; Right Command + right-hand side letter keys -> Hyper + [PRESSED_KEY]
-         ; Right Command + h/j/k/l -> Left/Down/Up/Right arrow keys
-         ; NOTE: Hyper == Command + Control + Option + Shift modifiers.
          :rules [[:!C##1 :f1]
                  [:!C##2 :f2]
                  [:!C##3 :f3]
                  [:!C##4 :f4]
                  [:!C##5 :f5]
-                 [:!Cq :!CTOSq]
+                 [:!Q##6 :f6]
+                 [:!Q##7 :f7]
+                 [:!Q##8 :f8]
+                 [:!Q##9 :f9]
+                 [:!Q##0 :f10]
+                 [:!Q##hyphen :f11]
+                 [:!Q##equal_sign :f12]]}
+
+        {:des "Vim Arrow Keys Mode"
+         ; Right Command + h/j/k/l -> Left/Down/Up/Right arrow keys
+         :rules [[:!Q##h :left_arrow]
+                 [:!Q##j :down_arrow]
+                 [:!Q##k :up_arrow]
+                 [:!Q##l :right_arrow]]}
+
+        {:des "Hyper Keys Layer"
+         ; Left Command + left-hand side letter keys -> Hyper + [PRESSED_KEY]
+         ; Right Command + right-hand side letter keys -> Hyper + [PRESSED_KEY]
+         ; NOTE: Except for h/j/k/l keys, which are used for Vim arrow keys mode.
+         :rules [[:!Cq :!CTOSq]
                  [:!Cw :!CTOSw]
                  [:!Ce :!CTOSe]
                  [:!Cr :!CTOSr]
@@ -46,53 +61,42 @@
                  [:!Cc :!CTOSc]
                  [:!Cv :!CTOSv]
                  [:!Cb :!CTOSb]
-                 [:!Q##6 :f6]
-                 [:!Q##7 :f7]
-                 [:!Q##8 :f8]
-                 [:!Q##9 :f9]
-                 [:!Q##0 :f10]
-                 [:!Q##hyphen :f11]
-                 [:!Q##equal_sign :f12]
                  [:!Qy :!QWERy]
                  [:!Qu :!QWERu]
                  [:!Qi :!QWERi]
                  [:!Qo :!QWERo]
                  [:!Qp :!QWERp]
-                 [:!Q##h :left_arrow]
-                 [:!Q##j :down_arrow]
-                 [:!Q##k :up_arrow]
-                 [:!Q##l :right_arrow]
                  [:!Qn :!QWERn]
                  [:!Qm :!QWERm]]}
 
-        {:des "Super keys"
-         ; Left Command + left-hand side letter keys -> Super + [PRESSED_KEY]
-         ; Right Command + right-hand side letter keys -> Super + [PRESSED_KEY]
-         ; NOTE: Super == Command + Control + Option modifiers.
-         :rules [[:!Oq :!CTOq]
-                 [:!Ow :!CTOw]
-                 [:!Oe :!CTOe]
-                 [:!Or :!CTOr]
-                 [:!Ot :!CTOt]
-                 [:!Oa :!CTOa]
-                 [:!Os :!CTOs]
-                 [:!Od :!CTOd]
-                 [:!Of :!CTOf]
-                 [:!Og :!CTOg]
-                 [:!Oz :!CTOz]
-                 [:!Ox :!CTOx]
-                 [:!Oc :!CTOc]
-                 [:!Ov :!CTOv]
-                 [:!Ob :!CTOb]
-                 [:!Ey :!QWEy]
-                 [:!Eu :!QWEu]
-                 [:!Ei :!QWEi]
-                 [:!Eo :!QWEo]
-                 [:!Ep :!QWEp]
-                 [:!Eh :!QWEh]
-                 [:!Ej :!QWEj]
-                 [:!Ek :!QWEk]
-                 [:!El :!QWEl]
-                 [:!En :!QWEn]
-                 [:!Em :!QWEm]]}]}
+        {:des "No Option + Same Hand Keys Combinations"
+         ; This rule is to prevent accidental pressing of Option modifier +
+         ; key combinations. I only want to allow myself to use same hand
+         ; modifier + key combination for Command modifiers for the Hyper layer.
+         :rules [[:!Oq :vk_none]
+                 [:!Ow :vk_none]
+                 [:!Oe :vk_none]
+                 [:!Or :vk_none]
+                 [:!Ot :vk_none]
+                 [:!Oa :vk_none]
+                 [:!Os :vk_none]
+                 [:!Od :vk_none]
+                 [:!Of :vk_none]
+                 [:!Og :vk_none]
+                 [:!Oz :vk_none]
+                 [:!Ox :vk_none]
+                 [:!Oc :vk_none]
+                 [:!Ov :vk_none]
+                 [:!Ob :vk_none]
+                 [:!Ey :vk_none]
+                 [:!Eu :vk_none]
+                 [:!Ei :vk_none]
+                 [:!Eo :vk_none]
+                 [:!Ep :vk_none]
+                 [:!Eh :vk_none]
+                 [:!Ej :vk_none]
+                 [:!Ek :vk_none]
+                 [:!El :vk_none]
+                 [:!En :vk_none]
+                 [:!Em :vk_none]]}]}
 
