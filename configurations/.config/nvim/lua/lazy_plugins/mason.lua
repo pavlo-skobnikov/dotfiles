@@ -13,6 +13,8 @@ return {
             -- Bash.
             'bash-language-server',
             'shfmt',
+            -- Toml.
+            'taplo',
         }
 
         local registry = require 'mason-registry'
