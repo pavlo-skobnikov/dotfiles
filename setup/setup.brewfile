@@ -26,6 +26,7 @@ cask "font-jetbrains-mono-nerd-font" # 📝
 cask "karabiner-elements"            # 🎹
 cask "raycast"                       # 🔍
 cask "nikitabobko/tap/aerospace"     # i3 in my MacOS? Impossible... 🤯
+cask "felixkratz/formulae/borders"   # Borders for active windows 🪟
 
 cask "google-chrome" # 🔗
 

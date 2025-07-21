@@ -11,7 +11,7 @@ size = 14
 # window.
 [font.offset]
 x = 0
-y = 1
+y = -1
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -30,13 +30,13 @@ family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [window]
-decorations = "None"
+decorations = "Buttonless"
 option_as_alt = "Both"
 
 # Use as much screen real estate as possible.
 [window.padding]
 x = 0
-y = 0
+y = 1
 
 # Start up and/or attach to the the `home` session when opening Alacritty.
 [terminal.shell]
