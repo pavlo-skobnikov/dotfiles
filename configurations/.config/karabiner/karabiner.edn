@@ -19,6 +19,11 @@
          {:des "Left Control + Space -> Caps Lock"
           :rules [[:!T#Pspacebar :caps_lock]]}
 
+         {:des "Left Command + Tab -> Left Option + Tab"
+          ; "Swallow" the MacOS' default Command + Tab behavior to replace it
+          ; with Left Option + Tab, which can be mapped to a custom action.
+          :rules [[:!Ctab :!Otab]]}
+
         {:des "Function Keys on Number Key Row"
          ; Left Command + left-hand side number keys -> F1 - F5
          ; Right Command + right-hand side number (+ symbol) keys -> F6 - F12

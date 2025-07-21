@@ -99,25 +99,10 @@ run = 'move-node-to-workspace p'
 # Ref: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-cmd-alt-ctrl-shift-f = 'move-workspace-to-monitor --wrap-around next' # -> [F]orward.
-
-# Switch layouts and toggle orientations.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-alt-ctrl-shift-t = 'layout tiles horizontal vertical'
-cmd-alt-ctrl-shift-a = 'layout accordion horizontal vertical'
-
-# Resize window nodes.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#resize
-cmd-alt-ctrl-shift-e = 'resize smart +50' # -> [E]xpand.
-cmd-alt-ctrl-shift-d = 'resize smart -50' # -> [D]ecrease.
-
-# Reload configuration.
-cmd-alt-ctrl-shift-r = 'reload-config'
-
 # Submodes.
 cmd-alt-ctrl-shift-w = 'mode window-actions'
 cmd-alt-ctrl-shift-s = 'mode space-actions'
+cmd-alt-ctrl-shift-x = 'mode extra-aerospace-actions'
 
 
 [mode.window-actions.binding]
@@ -144,12 +129,16 @@ ctrl-j = ['join-with down', 'mode main']
 ctrl-k = ['join-with up', 'mode main']
 ctrl-l = ['join-with right', 'mode main']
 
-# Flatten layout.
+# Flatten layout and reset sizes.
 f = ['flatten-workspace-tree', 'mode main']
 
 # Close all windows but the current one.
 backspace = ['close-all-windows-but-current', 'mode main']
 
+# Resize window nodes.
+# Ref: https://nikitabobko.github.io/AeroSpace/commands#resize
+"minus" = 'resize smart -50'
+"shift-equal" = 'resize smart +50'
 
 [mode.space-actions.binding]
 esc = 'mode main'
@@ -181,3 +170,17 @@ shift-k = ['move-node-to-workspace k', 'workspace k', 'mode main']
 shift-l = ['move-node-to-workspace l', 'workspace l', 'mode main']
 shift-n = ['move-node-to-workspace n', 'workspace n', 'mode main']
 shift-m = ['move-node-to-workspace m', 'workspace m', 'mode main']
+
+# Ref: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+f = 'move-workspace-to-monitor --wrap-around next' # -> Move workspace [f]orward.
+
+[mode.extra-aerospace-actions.binding]
+esc = 'mode main'
+
+# Switch layouts and toggle orientations.
+# Ref: https://nikitabobko.github.io/AeroSpace/commands#layout
+t = 'layout tiles horizontal vertical'
+a = 'layout accordion horizontal vertical'
+
+# Reload configuration.
+r = 'reload-config'

@@ -57,6 +57,21 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "Left Command + Tab -> Left Option + Tab",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "tab",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "tab",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "Function Keys on Number Key Row",
         "manipulators" : [ {
           "from" : {
