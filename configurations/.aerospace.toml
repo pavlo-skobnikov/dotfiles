@@ -100,12 +100,12 @@ run = 'move-node-to-workspace p'
 alt-tab = 'workspace-back-and-forth'
 
 # Submodes.
-cmd-alt-ctrl-shift-w = 'mode window-actions'
-cmd-alt-ctrl-shift-s = 'mode space-actions'
-cmd-alt-ctrl-shift-x = 'mode extra-aerospace-actions'
+cmd-alt-ctrl-shift-w = 'mode windows'
+cmd-alt-ctrl-shift-s = 'mode spaces'
+cmd-alt-ctrl-shift-q = 'mode quick-aerospace-actions'
+cmd-alt-ctrl-shift-a = 'mode applications'
 
-
-[mode.window-actions.binding]
+[mode.windows.binding]
 esc = 'mode main'
 
 # Focus window nodes.
@@ -140,7 +140,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 "minus" = 'resize smart -50'
 "shift-equal" = 'resize smart +50'
 
-[mode.space-actions.binding]
+[mode.spaces.binding]
 esc = 'mode main'
 
 # Focus workspaces.
@@ -174,13 +174,25 @@ shift-m = ['move-node-to-workspace m', 'workspace m', 'mode main']
 # Ref: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 f = 'move-workspace-to-monitor --wrap-around next' # -> Move workspace [f]orward.
 
-[mode.extra-aerospace-actions.binding]
+[mode.quick-aerospace-actions.binding]
 esc = 'mode main'
 
 # Switch layouts and toggle orientations.
 # Ref: https://nikitabobko.github.io/AeroSpace/commands#layout
-t = 'layout tiles horizontal vertical'
-a = 'layout accordion horizontal vertical'
+t = ['layout tiles horizontal vertical', 'mode main']
+a = ['layout accordion horizontal vertical', 'mode main']
 
 # Reload configuration.
-r = 'reload-config'
+r = ['reload-config', 'mode main']
+
+[mode.applications.binding]
+esc = 'mode main'
+
+a = ['exec-and-forget open -a Alacritty', 'mode main']
+b = ['exec-and-forget open -a Bear', 'mode main']
+c = ['exec-and-forget open -a Calendar', 'mode main']
+g = ['exec-and-forget open -a "Google Chrome"', 'mode main']
+i = ['exec-and-forget open -a "Intellij IDEA"', 'mode main']
+m = ['exec-and-forget open -a Mail', 'mode main']
+s = ['exec-and-forget open -a Slack', 'mode main']
+t = ['exec-and-forget open -a Things3', 'mode main']
