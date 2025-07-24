@@ -16,8 +16,8 @@ export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
 # Editor.
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='hx'
+export VISUAL='hx'
 
 # Zsh-related exports.
 export ZDOTDIR="$HOME"
@@ -27,7 +27,7 @@ export SAVEHIST=10000
 
 # Basic shell configuration.
 export PAGER='less'
-export MANPAGER='nvim +Man!'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANWIDTH=999
 
 # Fzf configuration.
@@ -68,4 +68,3 @@ path+=('/Applications/Docker.app/Contents/Resources/bin')
 path+=('/Applications/IntelliJ IDEA.app/Contents/MacOS')
 # nvm's node binaries manually symlinked.
 path+=("$HOME/.nvm/current")
-

@@ -17,10 +17,10 @@ brew "pandoc" # Document filetype converter.
 brew "nvm"    # Because what do you mean you don't have JS on the back-end?
 
 # Essential terminal work tools.
-brew "lf"     # Netrw can only dream of being so straighforward 📁
-brew "neovim" # Vim but even more smug 😏😤
-brew "fzf"    # Fuzzy life.
-brew "tmux"   # Session, windows, panes...
+brew "lf"   # Netrw can only dream of being so straighforward 📁
+brew "hx"   # Neovim but even more smug than that 😲😵
+brew "fzf"  # Fuzzy life.
+brew "tmux" # Session, windows, panes...
 
 brwe "lazygit" # I'm so-o-o lazy-y 😴🛏️
 brwe "lazydocker"
