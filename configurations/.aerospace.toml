@@ -62,7 +62,11 @@ run = 'move-node-to-workspace u'
 if.app-id = 'com.jetbrains.intellij'
 run = 'move-node-to-workspace i'
 
-# O - Slack.
+# O - Apple Mail & Slack.
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace o'
+
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace o'
