@@ -12,12 +12,7 @@ return {
                 window = { border = 'rounded' },
             },
         },
-        sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
-            per_filetype = {
-                codecompanion = { 'codecompanion' },
-            },
-        },
+        sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
         fuzzy = { implementation = 'prefer_rust_with_warning' },
         signature = {
             enabled = true,
