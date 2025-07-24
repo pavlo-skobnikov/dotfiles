@@ -158,8 +158,6 @@ h = ['workspace h', 'mode main']
 j = ['workspace j', 'mode main']
 k = ['workspace k', 'mode main']
 l = ['workspace l', 'mode main']
-n = ['workspace n', 'mode main']
-m = ['workspace m', 'mode main']
 
 # Move nodes to workspaces and subsequently focus them.
 # Ref: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -172,8 +170,6 @@ shift-h = ['move-node-to-workspace h', 'workspace h', 'mode main']
 shift-j = ['move-node-to-workspace j', 'workspace j', 'mode main']
 shift-k = ['move-node-to-workspace k', 'workspace k', 'mode main']
 shift-l = ['move-node-to-workspace l', 'workspace l', 'mode main']
-shift-n = ['move-node-to-workspace n', 'workspace n', 'mode main']
-shift-m = ['move-node-to-workspace m', 'workspace m', 'mode main']
 
 # Ref: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 f = 'move-workspace-to-monitor --wrap-around next' # -> Move workspace [f]orward.
