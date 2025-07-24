@@ -191,6 +191,7 @@ esc = 'mode main'
 a = ['exec-and-forget open -a Alacritty', 'mode main']
 b = ['exec-and-forget open -a Bear', 'mode main']
 c = ['exec-and-forget open -a Calendar', 'mode main']
+f = ['exec-and-forget open -a Finder', 'mode main']
 g = ['exec-and-forget open -a "Google Chrome"', 'mode main']
 i = ['exec-and-forget open -a "Intellij IDEA"', 'mode main']
 m = ['exec-and-forget open -a Mail', 'mode main']
