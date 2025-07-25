@@ -119,8 +119,8 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 source /opt/homebrew/opt/fzf/shell/completion.zsh
 
 # SDKMan!
-sdk() {         # Lazy-load SDKMan i.e. source everything on first `sdk` invocation.
-    unset -f sdk  # Taken from here: https://github.com/sdkman/sdkman-cli/issues/977#issuecomment-2127812178
+sdk() {          # Lazy-load SDKMan i.e. source everything on first `sdk` invocation.
+    unset -f sdk # Taken from here: https://github.com/sdkman/sdkman-cli/issues/97#issuecomment-2127812178
     [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
     sdk "$@"
 }
@@ -148,9 +148,7 @@ alias cat='bat' # Replace cat with bat.
 
 alias rg='rg --color=auto' # Always colorize ripgrep output.
 
-alias nvim='nvim-server' # Vim aliases.
-alias vim='nvim'
-alias vi='vim'
+alias vi='vim' # Vim aliases.
 
 alias lg='lazygit' # Lazy tools.
 alias ld='lazydocker'
@@ -165,15 +163,6 @@ recompile-zsh-completions() { # A utility function to quickly regenerate complet
 # $1 is the length of the random string.
 gen-rand-str() {
     head -c "$1" /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | cut -c1-"$1"
-}
-
-nvim-server() { # A utility function to start a Neovim server for remote commands.
-    local servers_dir="/tmp/nvim"
-    mkdir -p "$servers_dir" # Ensure the directory exists.
-
-    local server_name="nvim-server-$(gen-rand-str 16).sock" # Generate a random server name.
-
-    command nvim --listen "$servers_dir/$server_name" "$@" # Start Neovim server name and pass arguments.
 }
 
 ## Keymaps configuration.
