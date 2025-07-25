@@ -49,3 +49,445 @@ skip-levels = 1
 [editor.smart-tab]
 enable = false
 
+# NOTE: Non-space-based `normal` and `select` mode remaps are my best attempt at
+#       merging Vim's and Helix's keymaps together with bigger focus on not
+#       adjusting Vim bindings. The result is... definitely something, a
+#       horrific compromise between the two keymaps, which would make both Vim
+#       and Helix users gasp in horror. Still, it works for me and doesn't mess
+#       with my head when switching between the two editor models, so, I don't
+#       really care.
+#       WARN: Proceed at your own caution!
+[keys.insert]
+"C-h" = "goto_prev_tabstop"
+
+"C-k" = "signature_help"
+
+"C-l" = "goto_next_tabstop"
+
+[keys.normal]
+"esc" = ["save_selection", "collapse_selection", "keep_primary_selection"]
+
+"@" = "shell_append_output"
+"#" = ["search_selection", "search_prev"]
+"$" = "goto_line_end"
+"%" = "match_brackets"
+"^" = "goto_first_nonwhitespace"
+"&" = "merge_selections"
+"*" = ["search_selection", "search_next"]
+"(" = "rotate_selection_contents_backward"
+"0" = "goto_line_start"
+")" = "rotate_selection_contents_forward"
+"-" = "shrink_selection"
+"=" = "select_all"
+"+" = "expand_selection"
+
+q = "replay_macro"
+Q = "record_macro"
+
+Y = ["collapse_selection", "extend_to_line_end", "yank"]
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+i = ["collapse_selection", "insert_mode"]
+
+a = ["collapse_selection", "append_mode", "collapse_selection"]
+
+s = ["collapse_selection", "change_selection"]
+S = ["extend_line", "change_selection"]
+
+D = ["collapse_selection", "extend_to_line_end", "delete_selection"]
+
+G = "goto_file_end"
+
+H = "rotate_selections_backward"
+
+"C-h" = "goto_prev_tabstop"
+
+J = "join_selections"
+K = "join_selections_space"
+
+L = "rotate_selections_forward"
+
+"C-l" = "goto_next_tabstop"
+
+";" = "repeat_last_motion"
+
+"\\" = "ensure_selections_forward"
+
+x = "delete_char_forward"
+X = "delete_char_backward"
+
+C = ["collapse_selection", "extend_to_line_end", "change_selection"]
+
+V = ["select_mode", "extend_to_line_bounds"]
+
+M = "remove_primary_selection" # Re[m]ove primary cursor.
+
+"," = "flip_selections"
+
+"left" = ["search_selection", "extend_search_prev"] # Add cursors to selection matches.
+"right" = ["search_selection", "extend_search_next"]
+
+"C-left" = ["search_selection", "search_prev"] # Move to selection matches without adding cursors.
+"C-right" = ["search_selection", "search_next"]
+
+"up" = "copy_selection_on_prev_line" # Add cursors above/below.
+"down" = "copy_selection_on_next_line"
+
+[keys.normal.g]
+q = "format_selections"
+e = "move_prev_word_end"
+
+s = '@_+' # Use [s]ystem clipboard register.
+x = '@"_' # Use blackhole register.
+
+h = "earlier" # Jump backward/forward in edit history.
+l = "later"
+
+[keys.normal.m] # Have only 1 way to select around/inside TS objects -> via select mode.
+a = "no_op"
+i = "no_op"
+
+[keys.normal.C-w]
+"C-c" = "wclose"
+c = "wclose"
+
+q = "no_op"
+"C-q" = "no_op"
+
+# Space-mode mappings.
+[keys.normal.space]
+a = "align_selections"
+A = "@<A-*>=<space>s<C-r>/<ret>" # Select [a]ll matches in buffer for current selection.
+
+c = "toggle_comments"
+C = "toggle_block_comments"
+
+e = [ # [E]xplore current directory/project root w/ lf.
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%{buffer_name}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+E = [
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%sh{pwd}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+
+M = "split_selection_on_newline"
+m = "keep_selections"
+
+p = ["collapse_selection", "paste_clipboard_after"]
+P = ["collapse_selection", "paste_clipboard_before"]
+
+r = "remove_selections"
+
+s = "select_regex"
+S = "split_selection"
+
+"/" = "command_palette"
+
+"?" = "no_op" # Clean up unused mappings.
+"A-c" = "no_op"
+F = "no_op"
+G = "no_op"
+b = "no_op"
+h = "no_op"
+w = "no_op"
+
+# [O]ptions and configurations.
+[keys.normal.space.o]
+r = ":config-reload"
+c = ":config-open"
+w = ":config-open-workspace"
+s = "@:set-option "
+g = "@:get-option "
+t = "@:toggle-option "
+l = "@:set-language "
+
+# [D]ebug.
+[keys.normal.space.d]
+l = "dap_launch"
+r = "dap_restart"
+c = "dap_continue"
+h = "dap_pause" # [H]alt program execution.
+t = "dap_terminate"
+b = "dap_toggle_breakpoint"
+C = "dap_edit_condition"
+L = "dap_edit_log"
+e = "dap_enable_exceptions"
+E = "dap_disable_exceptions"
+i = "dap_step_in"
+o = "dap_step_out"
+n = "dap_next"
+v = "dap_variables"
+
+# [D]ebug [s]witch.
+[keys.normal.space.d.s]
+t = "dap_switch_thread"
+f = "dap_switch_stack_frame"
+
+# [D]ebug commands.
+[keys.normal.space.D]
+s = "@:debug-start "
+r = "@:debug-remote "
+e = "@:debug-eval "
+
+# [F]iles.
+[keys.normal.space.f]
+f = "file_picker_in_current_directory"
+g = "global_search"
+d = "file_picker_in_current_buffer_directory"
+b = "buffer_picker"
+c = "changed_file_picker"
+r = ":reload-all"
+y = [":sh echo %{buffer_name} | pbcopy; echo %{buffer_name}"] # [Y]ank current file path to the system clipboard and echo it.
+p = ":show-directory"                                         # Echo [p]wd.
+
+# [g]it.
+[keys.normal.space.g]
+g = [':insert-output lazygit', ':redraw', ':reload-all']
+r = ":reset-diff-change"
+c = [':insert-output lazygit branch', ':redraw', ':reload-all']                    # [C]heckout branches.
+s = [':insert-output lazygit stash', ':redraw', ':reload-all']
+S = [':insert-output lazygit status', ':redraw', ':reload-all']
+l = [':insert-output lazygit log', ':redraw', ':reload-all']
+f = [':insert-output lazygit --filter="%{buffer_name}"', ':redraw', ':reload-all'] # Open current [f]ile commit history.
+b = ":sh git blame -L %{cursor_line},+1 %{buffer_name}"                            # [B]lame line.
+o = ":sh gh pr view %{git branch --show-current} --web"                            # [O]pen current branch PR via browser.
+
+# References 'keywordprg' from Vim i.e. 'K' for hover => language-server-related actions.
+[keys.normal.space.k]
+a = "code_action"
+l = ":lsp-workspace-command"
+r = "rename_symbol"
+k = "hover" # [K]eyword information.
+d = "diagnostics_picker"
+D = "workspace_diagnostics_picker"
+s = "symbol_picker"
+S = "workspace_symbol_picker"
+h = "select_references_to_symbol_under_cursor"
+
+# External [t]ools.
+[keys.normal.space.t]
+d = [':insert-output lazydocker', ':redraw', ':reload-all'] # Open lazy[d]ocker.
+
+[keys.select]
+"@" = "shell_append_output"
+"#" = ["search_selection", "search_prev"]
+"$" = "extend_to_line_end"
+"%" = "match_brackets"
+"^" = "extend_to_first_nonwhitespace"
+"&" = "merge_selections"
+"*" = ["search_selection", "search_next"]
+"(" = "rotate_selection_contents_backward"
+"0" = "extend_to_line_start"
+")" = "rotate_selection_contents_forward"
+"-" = "shrink_selection"
+"=" = "select_all"
+"+" = "expand_selection"
+
+q = "replay_macro"
+Q = "record_macro"
+
+Y = ["extend_to_line_bounds", "yank"]
+
+u = "switch_to_lowercase"
+U = "switch_to_uppercase"
+
+i = "select_textobject_inner"
+I = ["split_selection_on_newline", "insert_at_line_start"]
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+a = "select_textobject_around"
+A = ["split_selection_on_newline", "insert_at_line_end"]
+
+s = "change_selection"
+S = ["extend_to_line_bounds", "change_selection"]
+
+D = ["extend_to_line_bounds", "delete_selection"]
+
+G = "extend_to_file_end"
+
+H = "rotate_selections_backward"
+
+"C-h" = "goto_prev_tabstop"
+
+J = "join_selections"
+K = "join_selections_space"
+
+L = "rotate_selections_forward"
+
+"C-l" = "goto_next_tabstop"
+
+";" = "repeat_last_motion"
+
+"\\" = "ensure_selections_forward"
+
+x = "delete_selection"
+X = ["extend_to_line_bounds", "delete_selection"]
+
+C = ["extend_to_line_bounds", "change_selection"]
+
+V = "extend_to_line_bounds"
+
+n = "search_next"
+N = "search_prev"
+
+M = "remove_primary_selection" # Re[m]ove primary cursor.
+
+"," = "flip_selections"
+
+"left" = ["search_selection", "extend_search_prev"] # Add cursors to selection matches.
+"right" = ["search_selection", "extend_search_next"]
+
+"C-left" = ["search_selection", "search_prev"] # Move to selection matches without adding cursors.
+"C-right" = ["search_selection", "search_next"]
+
+"up" = "copy_selection_on_prev_line" # Add cursors above/below.
+"down" = "copy_selection_on_next_line"
+
+[keys.select.g]
+q = "format_selections"
+e = "move_prev_word_end"
+
+s = '@_+' # Use [s]ystem clipboard register.
+x = '@"_' # Use blackhole register.
+
+h = "earlier" # Jump backward/forward in edit history.
+l = "later"
+
+[keys.select.m] # Have only 1 way to select around/inside TS objects -> via select mode.
+a = "no_op"
+i = "no_op"
+
+[keys.select.C-w]
+"C-c" = "wclose"
+c = "wclose"
+
+q = "no_op"
+"C-q" = "no_op"
+
+# Space-mode mappings.
+[keys.select.space]
+a = "align_selections"
+A = "@<A-*>=<space>s<C-r>/<ret>" # Select [a]ll matches in buffer for current selection.
+
+c = "toggle_comments" # [C]omment
+C = "toggle_block_comments"
+
+e = [ # [E]xplore current directory/project root w/ lf.
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%{buffer_name}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+E = [
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%sh{pwd}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+
+M = "split_selection_on_newline"
+m = "keep_selections"
+
+p = ["collapse_selection", "paste_clipboard_after"]
+P = ["collapse_selection", "paste_clipboard_before"]
+
+r = "remove_selections"
+
+s = "select_regex"
+S = "split_selection"
+
+"/" = "command_palette"
+
+"?" = "no_op" # Clean up unused mappings.
+"A-c" = "no_op"
+F = "no_op"
+G = "no_op"
+b = "no_op"
+h = "no_op"
+w = "no_op"
+
+# [O]ptions and configurations.
+[keys.select.space.o]
+r = ":config-reload"
+c = ":config-open"
+w = ":config-open-workspace"
+s = "@:set-option "
+g = "@:get-option "
+t = "@:toggle-option "
+l = "@:set-language "
+
+# [D]ebug.
+[keys.select.space.d]
+l = "dap_launch"
+r = "dap_restart"
+c = "dap_continue"
+h = "dap_pause" # [H]alt program execution.
+t = "dap_terminate"
+b = "dap_toggle_breakpoint"
+C = "dap_edit_condition"
+L = "dap_edit_log"
+e = "dap_enable_exceptions"
+E = "dap_disable_exceptions"
+i = "dap_step_in"
+o = "dap_step_out"
+n = "dap_next"
+v = "dap_variables"
+
+# [D]ebug [s]witch.
+[keys.select.space.d.s]
+t = "dap_switch_thread"
+f = "dap_switch_stack_frame"
+
+# [D]ebug commands.
+[keys.select.space.D]
+s = "@:debug-start "
+r = "@:debug-remote "
+e = "@:debug-eval "
+
+# [F]iles.
+[keys.select.space.f]
+f = "file_picker_in_current_directory"
+g = "global_search"
+d = "file_picker_in_current_buffer_directory"
+b = "buffer_picker"
+c = "changed_file_picker"
+r = ":reload-all"
+y = [":sh echo %{buffer_name} | pbcopy; echo %{buffer_name}"] # [Y]ank current file path to the system clipboard and echo it.
+p = ":show-directory"                                         # Echo [p]wd.
+
+# [g]it.
+[keys.select.space.g]
+g = [':insert-output lazygit', ':redraw', ':reload-all']
+r = ":reset-diff-change"
+c = [':insert-output lazygit branch', ':redraw', ':reload-all']                    # [C]heckout branches.
+s = [':insert-output lazygit stash', ':redraw', ':reload-all']
+S = [':insert-output lazygit status', ':redraw', ':reload-all']
+l = [':insert-output lazygit log', ':redraw', ':reload-all']
+f = [':insert-output lazygit --filter="%{buffer_name}"', ':redraw', ':reload-all'] # Open current [f]ile commit history.
+b = ":sh git blame -L %{cursor_line},+1 %{buffer_name}"                            # [B]lame line.
+o = ":sh gh pr view %{git branch --show-current} --web"                            # [O]pen current branch PR via browser.
+
+# References 'keywordprg' from Vim i.e. 'K' for hover => language-server-related actions.
+[keys.select.space.k]
+a = "code_action"
+l = ":lsp-workspace-command"
+r = "rename_symbol"
+k = "hover" # [K]eyword information.
+d = "diagnostics_picker"
+D = "workspace_diagnostics_picker"
+s = "symbol_picker"
+S = "workspace_symbol_picker"
+h = "select_references_to_symbol_under_cursor"
+
+# External [t]ools.
+[keys.select.space.t]
+d = [':insert-output lazydocker', ':redraw', ':reload-all'] # Open lazy[d]ocker.
