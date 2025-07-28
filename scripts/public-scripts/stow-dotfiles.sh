@@ -10,14 +10,14 @@ log() {
 
 # Remove existing stow links, then stow the source into the target.
 stow_with_target() {
-  local source_dir="$1"
-  local target_dir="$2"
+    local source_dir="$1"
+    local target_dir="$2"
 
-  log "Removing stow links for '${source_dir}' at '${target_dir}'..."
-  stow --dir "${source_dir}" --target "${target_dir}" --delete .
+    log "Removing stow links for '${source_dir}' at '${target_dir}'..."
+    stow --dir "${source_dir}" --target "${target_dir}" --delete .
 
-  log "Stowing '${source_dir}' at '${target_dir}'..."
-  stow --dir "${source_dir}" --target "${target_dir}" .
+    log "Stowing '${source_dir}' at '${target_dir}'..."
+    stow --dir "${source_dir}" --target "${target_dir}" .
 }
 
 # 1. Configuration files.

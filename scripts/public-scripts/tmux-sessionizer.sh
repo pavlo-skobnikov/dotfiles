@@ -29,9 +29,9 @@ is_session_with_name_present() {
 # Prompt the user to pick a common project path via fzf.
 select_common_path_for_session() {
     fd . ~ ~/dev/projects ~/dev/projects/work ~/dev/projects/personal \
-            --min-depth 1 --max-depth 1 --type directory \
-        | fzf --preview '' --prompt='Select project directory > ' \
-        | xargs realpath
+        --min-depth 1 --max-depth 1 --type directory |
+        fzf --preview '' --prompt='Select project directory > ' |
+        xargs realpath
 }
 
 # Create a new session (detached) if it doesn't exist, then switch-client.
@@ -47,21 +47,21 @@ attach_or_create_session() {
 }
 
 main() {
-  if [[ $# -gt 0 && "$1" == "common-paths" ]]; then
-    local path="$(select_common_path_for_session)"
+    if [[ $# -gt 0 && "$1" == "common-paths" ]]; then
+        local path="$(select_common_path_for_session)"
 
-    if [[ -z "$path" ]]; then
-        exit 1
+        if [[ -z "$path" ]]; then
+            exit 1
+        fi
+
+        attach_or_create_session "$path"
+    elif [[ $# -gt 0 ]]; then
+        attach_or_create_session "$1"
+    else
+        echo "Usage: $0 <PATH>        # create/switch by path"
+        echo "       $0 common-paths  # pick path via fzf"
+        exit 2
     fi
-
-    attach_or_create_session "$path"
-  elif [[ $# -gt 0 ]]; then
-    attach_or_create_session "$1"
-  else
-    echo "Usage: $0 <PATH>        # create/switch by path"
-    echo "       $0 common-paths  # pick path via fzf"
-    exit 2
-  fi
 }
 
 main "$@"
