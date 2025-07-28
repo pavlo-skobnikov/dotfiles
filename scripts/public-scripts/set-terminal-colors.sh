@@ -16,4 +16,6 @@ fi
 touch $XDG_CONFIG_HOME/alacritty/alacritty.toml
 
 # Update the terminal colors in all Neovim server instances.
-fd . /tmp/nvim --exec nvim --server {} --remote-send "<Cmd>set background=$nvim_background<Cr>"
+if [ -d /tmp/nvim ]; then
+    fd . /tmp/nvim --exec nvim --server {} --remote-send "<Cmd>set background=$nvim_background<Cr>"
+fi
