@@ -28,6 +28,8 @@ return {
         map({ 'n', 'x' }, '<Left>', dir_fn(mc.matchAddCursor, -1), 'Add cursor to prev match')
         map({ 'n', 'x' }, '<C-Left>', dir_fn(mc.matchSkipCursor, -1), 'Skip cursor to prev match')
 
+        map({ 'n', 'x' }, '<Leader>a', mc.alignCursors, 'Align cursors')
+
         map({ 'n', 'x' }, '<Leader>A', mc.matchAllAddCursors, 'Add cursors for all matches')
 
         map({ 'n', 'x' }, '<C-q>', mc.toggleCursor, 'Toggle cursor enabled')
@@ -45,16 +47,13 @@ return {
         map('n', '<Leader>S', apply_to_buf_fn(mc.splitCursors), 'Split by regex in buffer')
         map('x', '<Leader>S', mc.splitCursors, 'Split by regex in selection')
 
-        map({ 'n', 'x' }, '<Leader>m', mc.operator, 'Add cursor per text object in text object')
-        map('x', '<Leader>M', mc.addCursorOperator, 'Add cursor per line in text object')
-
         map('x', '<Leader>;', dir_fn(mc.transposeCursors, 1), 'Rotate selections right')
         map('x', '<Leader>,', dir_fn(mc.transposeCursors, -1), 'Rotate selections left')
 
         map('x', 'I', mc.insertVisual, 'Insert before each line')
         map('x', 'A', mc.appendVisual, 'Append after each line')
 
-        map({ 'n', 'x' }, 'gA', mc.alignCursors, 'Align cursors')
+        map('x', 'gA', mc.addCursorOperator, 'Add cursor per line in text object')
 
         map({ 'n', 'x' }, '<Leader><C-a>', mc.sequenceIncrement, 'Increment multicursor sequence')
         map({ 'n', 'x' }, '<Leader><C-x>', mc.sequenceDecrement, 'Decrement multicursor sequence')
