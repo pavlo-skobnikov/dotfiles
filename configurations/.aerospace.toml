@@ -46,31 +46,31 @@ outer.right = 12
 
 
 # Automatically assign applications to workspaces.
-# W.
+# web-browser
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace web'
+run = 'move-node-to-workspace web-browser'
 
-# T.
+# terminal
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
 run = 'move-node-to-workspace terminal'
 
-# I.
+# IDE
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
 run = 'move-node-to-workspace IDE'
 
-# C.
+# correspondence
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = 'move-node-to-workspace comms'
+run = 'move-node-to-workspace correspondence'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace comms'
+run = 'move-node-to-workspace correspondence'
 
-# A.
+# agenda
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
 run = 'move-node-to-workspace agenda'
@@ -79,7 +79,7 @@ run = 'move-node-to-workspace agenda'
 if.app-id = 'com.culturedcode.ThingsMac'
 run = 'move-node-to-workspace agenda'
 
-# N.
+# notes
 [[on-window-detected]]
 if.app-id = 'net.shinyfrog.bear'
 if.window-title-regex-substring = '^Bear$' # Only the main Bear window.
@@ -117,31 +117,39 @@ esc = 'mode main'
 
 # Focus workspaces.
 # Mnemonic workspaces.
-w = ['workspace web', 'mode main']
-c = ['workspace comms', 'mode main']
+w = ['workspace web-browser', 'mode main']
+c = ['workspace correspondence', 'mode main']
 a = ['workspace agenda', 'mode main']
 i = ['workspace IDE', 'mode main']
 t = ['workspace terminal', 'mode main']
 n = ['workspace notes', 'mode main']
-# Extra miscellaneous workspaces.
-h = ['workspace 1', 'mode main']
-j = ['workspace 2', 'mode main']
-k = ['workspace 3', 'mode main']
-l = ['workspace 4', 'mode main']
+# E[x]tra miscellaneous work[s]paces.
+h = ['workspace xs-h', 'mode main']
+j = ['workspace xs-j', 'mode main']
+k = ['workspace xs-k', 'mode main']
+l = ['workspace xs-l', 'mode main']
 
 # Move nodes to workspaces and subsequently focus them.
 # Mnemonic workspaces.
-shift-w = ['move-node-to-workspace W', 'workspace W', 'mode main']
-shift-c = ['move-node-to-workspace C', 'workspace C', 'mode main']
-shift-p = ['move-node-to-workspace P', 'workspace P', 'mode main']
-shift-i = ['move-node-to-workspace I', 'workspace I', 'mode main']
-shift-t = ['move-node-to-workspace T', 'workspace T', 'mode main']
-shift-n = ['move-node-to-workspace N', 'workspace N', 'mode main']
-# Extra miscellaneous workspaces.
-shift-h = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
-shift-j = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
-shift-k = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
-shift-l = ['move-node-to-workspace 4', 'workspace 4', 'mode main']
+shift-w = [
+  'move-node-to-workspace web-browser',
+  'workspace web-browser',
+  'mode main',
+]
+shift-c = [
+  'move-node-to-workspace correspondence',
+  'workspace correspondence',
+  'mode main',
+]
+shift-a = ['move-node-to-workspace agenda', 'workspace agenda', 'mode main']
+shift-i = ['move-node-to-workspace IDE', 'workspace IDE', 'mode main']
+shift-t = ['move-node-to-workspace terminal', 'workspace terminal', 'mode main']
+shift-n = ['move-node-to-workspace notes', 'workspace notes', 'mode main']
+# E[x]tra miscellaneous work[s]paces.
+shift-h = ['move-node-to-workspace xs-h', 'workspace xs-h', 'mode main']
+shift-j = ['move-node-to-workspace xs-j', 'workspace xs-j', 'mode main']
+shift-k = ['move-node-to-workspace xs-k', 'workspace xs-k', 'mode main']
+shift-l = ['move-node-to-workspace xs-l', 'workspace xs-l', 'mode main']
 
 [mode.window-nodes.binding]
 esc = 'mode main'
