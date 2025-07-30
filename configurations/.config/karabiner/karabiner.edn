@@ -19,10 +19,19 @@
          {:des "Left Control + Space -> Caps Lock"
           :rules [[:!T#Pspacebar :caps_lock]]}
 
-         {:des "Left Command + Tab -> Left Option + Tab"
+         {:des "Forward Delete"
+          ; Left Shift + Delete -> Delete forward a character
+          ; Left Shift + Left Option + Delete -> Delete forward a word
+          ; Left Shift + Left Command + Delete -> Delete forward a line
+          :rules [[:!Sdelete_or_backspace :delete_forward]
+                  [:!OSdelete_or_backspace :!Odelete_forward]
+                  [:!CSdelete_or_backspace :!Tk]]}
+
+         {:des "Disable Native Command + Tab"
           ; "Swallow" the MacOS' default Command + Tab behavior to replace it
-          ; with Left Option + Tab, which can be mapped to a custom action.
-          :rules [[:!Ctab :!Otab]]}
+          ; with Left Command + Left Option + Tab, which unlike the default,
+          ; can be mapped to a custom action.
+          :rules [[:!Ctab :!COtab]]}
 
         {:des "Function Keys on Number Key Row"
          ; Left Command + left-hand side number keys -> F1 - F5
