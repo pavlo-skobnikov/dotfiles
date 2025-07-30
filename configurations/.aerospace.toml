@@ -46,39 +46,44 @@ outer.right = 12
 
 
 # Automatically assign applications to workspaces.
-
-# Y - Google Chrome.
+# W.
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace y'
+run = 'move-node-to-workspace web'
 
-# U - Alacritty.
+# T.
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = 'move-node-to-workspace u'
+run = 'move-node-to-workspace terminal'
 
-# I - Intellij.
+# I.
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
-run = 'move-node-to-workspace i'
+run = 'move-node-to-workspace IDE'
 
-# O - Apple Mail & Slack.
+# C.
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = 'move-node-to-workspace o'
+run = 'move-node-to-workspace comms'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace o'
+run = 'move-node-to-workspace comms'
 
-# P - Apple Calendar & Things.
+# A.
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
-run = 'move-node-to-workspace p'
+run = 'move-node-to-workspace agenda'
 
 [[on-window-detected]]
 if.app-id = 'com.culturedcode.ThingsMac'
-run = 'move-node-to-workspace p'
+run = 'move-node-to-workspace agenda'
+
+# N.
+[[on-window-detected]]
+if.app-id = 'net.shinyfrog.bear'
+if.window-title-regex-substring = '^Bear$' # Only the main Bear window.
+run = 'move-node-to-workspace notes'
 
 
 # Ref: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -100,100 +105,82 @@ run = 'move-node-to-workspace p'
 # Commands ref: https://nikitabobko.github.io/AeroSpace/commands
 # Exec ref: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+cmd-alt-tab = 'focus-back-and-forth'
 alt-tab = 'workspace-back-and-forth'
 
 # Submodes.
-cmd-alt-ctrl-shift-w = 'mode windows'
-cmd-alt-ctrl-shift-s = 'mode spaces'
-cmd-alt-ctrl-shift-q = 'mode quick-aerospace-actions'
-cmd-alt-ctrl-shift-a = 'mode applications'
+cmd-alt-ctrl-shift-q = 'mode quick-switch-spaces'
+cmd-alt-ctrl-shift-w = 'mode window-nodes'
 
-[mode.windows.binding]
+[mode.quick-switch-spaces.binding]
+esc = 'mode main'
+
+# Focus workspaces.
+# Mnemonic workspaces.
+w = ['workspace web', 'mode main']
+c = ['workspace comms', 'mode main']
+a = ['workspace agenda', 'mode main']
+i = ['workspace IDE', 'mode main']
+t = ['workspace terminal', 'mode main']
+n = ['workspace notes', 'mode main']
+# Extra miscellaneous workspaces.
+h = ['workspace 1', 'mode main']
+j = ['workspace 2', 'mode main']
+k = ['workspace 3', 'mode main']
+l = ['workspace 4', 'mode main']
+
+# Move nodes to workspaces and subsequently focus them.
+# Mnemonic workspaces.
+shift-w = ['move-node-to-workspace W', 'workspace W', 'mode main']
+shift-c = ['move-node-to-workspace C', 'workspace C', 'mode main']
+shift-p = ['move-node-to-workspace P', 'workspace P', 'mode main']
+shift-i = ['move-node-to-workspace I', 'workspace I', 'mode main']
+shift-t = ['move-node-to-workspace T', 'workspace T', 'mode main']
+shift-n = ['move-node-to-workspace N', 'workspace N', 'mode main']
+# Extra miscellaneous workspaces.
+shift-h = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
+shift-j = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
+shift-k = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
+shift-l = ['move-node-to-workspace 4', 'workspace 4', 'mode main']
+
+[mode.window-nodes.binding]
 esc = 'mode main'
 
 # Focus window nodes.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#focus
 h = ['focus left', 'mode main']
 j = ['focus down', 'mode main']
 k = ['focus up', 'mode main']
 l = ['focus right', 'mode main']
 
 # Move window nodes around.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#move
 shift-h = ['move left', 'mode main']
 shift-j = ['move down', 'mode main']
 shift-k = ['move up', 'mode main']
 shift-l = ['move right', 'mode main']
 
 # Join window nodes.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#join-with
 ctrl-h = ['join-with left', 'mode main']
 ctrl-j = ['join-with down', 'mode main']
 ctrl-k = ['join-with up', 'mode main']
 ctrl-l = ['join-with right', 'mode main']
 
-# Flatten layout and reset sizes.
+# Flatten layout.
 f = ['flatten-workspace-tree', 'mode main']
+
+# Move workspace forward.
+m = 'move-workspace-to-monitor --wrap-around next'
+
+# Switch layouts and toggle orientations.
+t = ['layout tiles horizontal vertical', 'mode main']
+a = ['layout accordion horizontal vertical', 'mode main']
 
 # Close all windows but the current one.
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # Resize window nodes.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#resize
-"minus" = 'resize smart -50'
-"shift-equal" = 'resize smart +50'
-
-[mode.spaces.binding]
-esc = 'mode main'
-
-# Focus workspaces.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#workspace
-y = ['workspace y', 'mode main']
-u = ['workspace u', 'mode main']
-i = ['workspace i', 'mode main']
-o = ['workspace o', 'mode main']
-p = ['workspace p', 'mode main']
-h = ['workspace h', 'mode main']
-j = ['workspace j', 'mode main']
-k = ['workspace k', 'mode main']
-l = ['workspace l', 'mode main']
-
-# Move nodes to workspaces and subsequently focus them.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-shift-y = ['move-node-to-workspace y', 'workspace y', 'mode main']
-shift-u = ['move-node-to-workspace u', 'workspace u', 'mode main']
-shift-i = ['move-node-to-workspace i', 'workspace i', 'mode main']
-shift-o = ['move-node-to-workspace o', 'workspace o', 'mode main']
-shift-p = ['move-node-to-workspace p', 'workspace p', 'mode main']
-shift-h = ['move-node-to-workspace h', 'workspace h', 'mode main']
-shift-j = ['move-node-to-workspace j', 'workspace j', 'mode main']
-shift-k = ['move-node-to-workspace k', 'workspace k', 'mode main']
-shift-l = ['move-node-to-workspace l', 'workspace l', 'mode main']
-
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-f = 'move-workspace-to-monitor --wrap-around next' # -> Move workspace [f]orward.
-
-[mode.quick-aerospace-actions.binding]
-esc = 'mode main'
-
-# Switch layouts and toggle orientations.
-# Ref: https://nikitabobko.github.io/AeroSpace/commands#layout
-t = ['layout tiles horizontal vertical', 'mode main']
-a = ['layout accordion horizontal vertical', 'mode main']
+minus = 'resize smart -50'
+equal = ['balance-sizes', 'mode main']
+shift-equal = 'resize smart +50'
 
 # Reload configuration.
 r = ['reload-config', 'mode main']
-
-[mode.applications.binding]
-esc = 'mode main'
-
-a = ['exec-and-forget open -a Alacritty', 'mode main']
-b = ['exec-and-forget open -a Bear', 'mode main']
-c = ['exec-and-forget open -a Calendar', 'mode main']
-f = ['exec-and-forget open -a Finder', 'mode main']
-g = ['exec-and-forget open -a "Google Chrome"', 'mode main']
-i = ['exec-and-forget open -a "Intellij IDEA"', 'mode main']
-m = ['exec-and-forget open -a Mail', 'mode main']
-s = ['exec-and-forget open -a Slack', 'mode main']
-t = ['exec-and-forget open -a Things3', 'mode main']
