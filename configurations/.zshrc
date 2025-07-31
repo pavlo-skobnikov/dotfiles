@@ -150,7 +150,7 @@ alias rg='rg --color=auto' # Always colorize ripgrep output.
 
 alias nvim='nvim-server' # Vim aliases.
 alias vim='nvim'
-alias vi='vim'
+alias vi='nvim'
 
 ## Functions.
 recompile-zsh-completions() { # A utility function to quickly regenerate completions for Zsh.
