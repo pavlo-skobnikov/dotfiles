@@ -6,7 +6,15 @@ local function get_tab_last_focused_file_name(tab_nr)
     local tab_buffers = vim.fn.tabpagebuflist(tab_nr)
     local focused_win_nr = vim.fn.tabpagewinnr(tab_nr)
 
-    return vim.fn.expand('#' .. tab_buffers[focused_win_nr] .. ':t')
+    local fname = vim.fn.expand('#' .. tab_buffers[focused_win_nr] .. ':t')
+
+    if not fname or fname == '' then
+        -- If the file name is empty, return a placeholder.
+        return '[No name]'
+    else
+        -- Otherwise, return the file name.
+        return fname
+    end
 end
 
 function _G.MyGlobals.Tabline()

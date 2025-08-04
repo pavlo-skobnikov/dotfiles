@@ -1,15 +1,14 @@
 return {
     'echasnovski/mini.diff',
-    lazy = false,
+    event = 'VeryLazy',
+    keys = {
+        ---@diagnostic disable-next-line: missing-parameter
+        { '<Leader>gt', function() MiniDiff.toggle_overlay() end, desc = 'Toggle diff overlay' },
+    },
     ---@class Gitsigns.config
     opts = {
         mappings = {
-            apply = 'gh', -- Apply hunks inside a visual/operator region.
-            reset = 'gH', -- Reset hunks inside a visual/operator region.
-
-            textobject = '', -- Disabe textobject hunk apply.
-
-            goto_first = '[C', -- Go to hunk range in corresponding direction.
+            goto_first = '[C',
             goto_prev = '[c',
             goto_next = ']c',
             goto_last = ']C',

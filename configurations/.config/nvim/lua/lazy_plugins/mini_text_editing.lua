@@ -1,23 +1,22 @@
--- NOTE: `''` disables a mapping.
 return {
     {
-        'echasnovski/mini.operators',
-        version = '*',
+        'echasnovski/mini.ai',
         event = 'VeryLazy',
-        opts = {
-            multiply = { prefix = 'gM' },
-            sort = { prefix = 'gR' }, -- "[R]eorder".
-        },
+        opts = {},
+    },
+    {
+        'echasnovski/mini.operators',
+        event = 'VeryLazy',
+        opts = { sort = { prefix = 'gS' } },
     },
     {
         'echasnovski/mini.surround',
-        version = '*',
         event = 'VeryLazy',
         opts = {
             mappings = {
-                add = 'gSa',
-                delete = 'gSd',
-                replace = 'gSr',
+                add = 'gsa',
+                delete = 'gsd',
+                replace = 'gsr',
                 find = '',
                 find_left = '',
                 highlight = '',
@@ -29,7 +28,6 @@ return {
     },
     {
         'echasnovski/mini.pairs',
-        version = '*',
         event = 'VeryLazy',
         opts = {},
     },

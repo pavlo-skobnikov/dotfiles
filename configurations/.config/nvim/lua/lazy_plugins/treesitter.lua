@@ -2,7 +2,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
     branch = 'master',
-    lazy = false,
+    event = 'VeryLazy',
     build = ':TSUpdate',
     opts = {
         ensure_installed = {
@@ -41,103 +41,46 @@ return {
             select = {
                 enable = true,
                 keymaps = {
-                    ['aa'] = {
-                        query = '@parameter.outer',
-                        desc = 'argument/parameter',
-                    },
-                    ['ia'] = {
-                        query = '@parameter.inner',
-                        desc = 'inner argument/parameter region',
-                    },
-                    ['am'] = {
-                        query = '@function.outer',
-                        desc = 'function',
-                    },
-                    ['im'] = {
-                        query = '@function.inner',
-                        desc = 'inner function region',
-                    },
-                    ['aT'] = {
-                        query = '@class.outer',
-                        desc = 'type',
-                    },
-                    ['iT'] = {
-                        query = '@class.inner',
-                        desc = 'inner type region',
-                    },
+                    ['aa'] = { query = '@parameter.outer', desc = 'argument/parameter' },
+                    ['ia'] = { query = '@parameter.inner', desc = 'inner argument/parameter region' },
+                    ['af'] = { query = '@function.outer', desc = 'function' },
+                    ['if'] = { query = '@function.inner', desc = 'inner function region' },
+                    ['aT'] = { query = '@class.outer', desc = 'type' },
+                    ['iT'] = { query = '@class.inner', desc = 'inner type region' },
                 },
             },
             swap = {
                 enable = true,
-                swap_next = {
-                    [']xa'] = {
-                        query = '@parameter.inner',
-                        desc = 'Next argument/parameter',
-                    },
-                },
-                swap_previous = {
-                    ['[xa'] = {
-                        query = '@parameter.inner',
-                        desc = 'Previous argument/parameter',
-                    },
-                },
+                swap_next = { [']x'] = { query = '@parameter.inner', desc = 'Exchange arg w/ next' } },
+                swap_previous = { ['[x'] = { query = '@parameter.inner', desc = 'Exchange arg w/ prev' } },
             },
             move = {
                 enable = true,
                 set_jumps = true,
                 goto_next_start = {
-                    [']m'] = {
-                        query = '@function.outer',
-                        desc = 'Next function start',
-                    },
-                    [']]'] = {
-                        query = '@class.outer',
-                        desc = 'Next type start',
-                    },
+                    [']f'] = { query = '@function.outer', desc = 'Next function start' },
+                    [']a'] = { query = '@parameter.inner', desc = 'Next argument' },
+                    [']]'] = { query = '@class.outer', desc = 'Next type start' },
                 },
                 goto_next_end = {
-                    [']M'] = {
-                        query = '@function.outer',
-                        desc = 'Next function end',
-                    },
-                    [']['] = {
-                        query = '@class.outer',
-                        desc = 'Next type end',
-                    },
+                    [']M'] = { query = '@function.outer', desc = 'Next function end' },
+                    [']['] = { query = '@class.outer', desc = 'Next type end' },
                 },
                 goto_previous_start = {
-                    ['[m'] = {
-                        query = '@function.outer',
-                        desc = 'Previous function start',
-                    },
-                    ['[['] = {
-                        query = '@class.outer',
-                        desc = 'Previous type start',
-                    },
+                    ['[f'] = { query = '@function.outer', desc = 'Previous function start' },
+                    ['[a'] = { query = '@parameter.inner', desc = 'Next argument' },
+                    ['[['] = { query = '@class.outer', desc = 'Previous type start' },
                 },
                 goto_previous_end = {
-                    ['[M'] = {
-                        query = '@function.outer',
-                        desc = 'Previous function end',
-                    },
-                    ['[]'] = {
-                        query = '@class.outer',
-                        desc = 'Previous type end',
-                    },
+                    ['[F'] = { query = '@function.outer', desc = 'Previous function end' },
+                    ['[]'] = { query = '@class.outer', desc = 'Previous type end' },
                 },
             },
             lsp_interop = {
                 enable = true,
-                border = 'rounded',
                 peek_definition_code = {
-                    ['<leader>kk'] = {
-                        query = '@function.outer',
-                        desc = 'Peek function definition',
-                    },
-                    ['<leader>kK'] = {
-                        query = '@class.outer',
-                        desc = 'Peek type definition',
-                    },
+                    ['<Leader>k'] = { query = '@function.outer', desc = 'Peek function definition' },
+                    ['<Leader>K'] = { query = '@class.outer', desc = 'Peek type definition' },
                 },
             },
         },

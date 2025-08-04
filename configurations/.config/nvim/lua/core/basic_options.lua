@@ -11,6 +11,9 @@ vim.opt.ttimeoutlen = 0
 -- Use visual bell instead of beeping.
 vim.opt.visualbell = true
 
+-- Use square borders for pop-up windows.
+vim.opt.winborder = 'single'
+
 -- 24-bit RGB colors.
 vim.opt.termguicolors = true
 
@@ -22,7 +25,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Modern native completion.
-vim.opt.completeopt = { 'menu', 'menuone', 'preview', 'noinsert', 'fuzzy', 'nosort' }
+vim.opt.completeopt = { 'fuzzy', 'menuone', 'noinsert', 'popup' }
 
 -- Complete longest common string.
 vim.opt.wildmode = 'longest:full'
