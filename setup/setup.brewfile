@@ -16,6 +16,9 @@ brew "stow"   # .files manager.
 brew "pandoc" # Document filetype converter.
 brew "nvm"    # Because what do you mean you don't have JS on the back-end?
 
+brew "whisper-cpp" # How you doin' lil' mama? Lemme whisper in your ear 🎶👂
+brew "sox"
+
 # Essential terminal work tools.
 brew "neovim" # Vim but even more smug 😏😤
 brew "fzf"    # Fuzzy life.
