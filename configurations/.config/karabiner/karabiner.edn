@@ -27,12 +27,6 @@
                   [:!OSdelete_or_backspace :!Odelete_forward]
                   [:!CSdelete_or_backspace :!Tk]]}
 
-         {:des "Disable Native Command + Tab"
-          ; "Swallow" the MacOS' default Command + Tab behavior to replace it
-          ; with Left Command + Left Option + Tab, which unlike the default,
-          ; can be mapped to a custom action.
-          :rules [[:!Ctab :!COtab]]}
-
         {:des "Function Keys on Number Key Row"
          ; Left Command + left-hand side number keys -> F1 - F5
          ; Right Command + right-hand side number (+ symbol) keys -> F6 - F12
@@ -83,34 +77,34 @@
                  [:!Qn :!QWERn]
                  [:!Qm :!QWERm]]}
 
-        {:des "No Option + Same Hand Keys Combinations"
-         ; This rule is to prevent accidental pressing of Option modifier +
-         ; key combinations. I only want to allow myself to use same hand
-         ; modifier + key combination for Command modifiers for the Hyper layer.
-         :rules [[:!Oq :vk_none]
-                 [:!Ow :vk_none]
-                 [:!Oe :vk_none]
-                 [:!Or :vk_none]
-                 [:!Ot :vk_none]
-                 [:!Oa :vk_none]
-                 [:!Os :vk_none]
-                 [:!Od :vk_none]
-                 [:!Of :vk_none]
-                 [:!Og :vk_none]
-                 [:!Oz :vk_none]
-                 [:!Ox :vk_none]
-                 [:!Oc :vk_none]
-                 [:!Ov :vk_none]
-                 [:!Ob :vk_none]
-                 [:!Ey :vk_none]
-                 [:!Eu :vk_none]
-                 [:!Ei :vk_none]
-                 [:!Eo :vk_none]
-                 [:!Ep :vk_none]
-                 [:!Eh :vk_none]
-                 [:!Ej :vk_none]
-                 [:!Ek :vk_none]
-                 [:!El :vk_none]
-                 [:!En :vk_none]
-                 [:!Em :vk_none]]}]}
+        {:des "Super keys"
+         ; Left Option + left-hand side letter keys -> Super + [PRESSED_KEY]
+         ; Right Option + right-hand side letter keys -> Super + [PRESSED_KEY]
+         ; NOTE: Super == Command + Control + Option modifiers.
+         :rules [[:!Oq :!CTOq]
+                 [:!Ow :!CTOw]
+                 [:!Oe :!CTOe]
+                 [:!Or :!CTOr]
+                 [:!Ot :!CTOt]
+                 [:!Oa :!CTOa]
+                 [:!Os :!CTOs]
+                 [:!Od :!CTOd]
+                 [:!Of :!CTOf]
+                 [:!Og :!CTOg]
+                 [:!Oz :!CTOz]
+                 [:!Ox :!CTOx]
+                 [:!Oc :!CTOc]
+                 [:!Ov :!CTOv]
+                 [:!Ob :!CTOb]
+                 [:!Ey :!QWEy]
+                 [:!Eu :!QWEu]
+                 [:!Ei :!QWEi]
+                 [:!Eo :!QWEo]
+                 [:!Ep :!QWEp]
+                 [:!Eh :!QWEh]
+                 [:!Ej :!QWEj]
+                 [:!Ek :!QWEk]
+                 [:!El :!QWEl]
+                 [:!En :!QWEn]
+                 [:!Em :!QWEm]]}]}
 
