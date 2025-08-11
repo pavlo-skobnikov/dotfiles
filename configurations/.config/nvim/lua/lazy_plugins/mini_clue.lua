@@ -52,7 +52,7 @@ return {
                 clue.gen_clues.windows(),
                 clue.gen_clues.z(),
             },
-            window = { delay = 200 },
+            window = { delay = 50 },
         }
     end,
 }

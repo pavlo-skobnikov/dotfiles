@@ -2,7 +2,7 @@ return {
     'Exafunction/windsurf.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
     event = 'VeryLazy',
-    keys = { { '<Leader>c', '<Cmd>Codeium Chat<Cr>', desc = 'Open Windsurf chat' } },
+    keys = { { '<Leader>c', '<Cmd>Codeium Chat<Cr>', mode = { 'n', 'v' }, desc = 'Open Windsurf chat' } },
     opts = {
         enable_cmp_source = false,
         virtual_text = {

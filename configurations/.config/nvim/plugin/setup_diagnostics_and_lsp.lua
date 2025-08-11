@@ -21,19 +21,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function()
         local function map(m, lhs, rhs, desc) vim.keymap.set(m, lhs, rhs, { buffer = true, desc = desc }) end
 
-        map('n', '<Leader>a', vim.lsp.buf.code_action, 'Code action')
+        map({ 'n', 'v' }, '<Leader>a', vim.lsp.buf.code_action, 'Code action')
 
-        map('n', '<Leader>r', vim.lsp.buf.rename, 'Rename symbol')
-        map('n', '<Leader>h', vim.lsp.buf.document_highlight, 'Highlight symbol')
-        map('n', '<Leader>H', vim.lsp.buf.clear_references, 'Clear symbol highlights')
+        map({ 'n', 'v' }, '<Leader>r', vim.lsp.buf.rename, 'Rename symbol')
+        map({ 'n', 'v' }, '<Leader>h', vim.lsp.buf.document_highlight, 'Highlight symbol')
+        map({ 'n', 'v' }, '<Leader>H', vim.lsp.buf.clear_references, 'Clear symbol highlights')
 
         --- @param item 'sub' | 'super'
         local function typehierarchy(item)
             return function() vim.lsp.buf.typehierarchy(item .. 'types') end
         end
 
-        map('n', '<Leader>T', typehierarchy 'super', 'Go to parent type')
-        map('n', '<Leader>t', typehierarchy 'sub', 'Go to child type')
+        map({ 'n', 'v' }, '<Leader>T', typehierarchy 'super', 'Go to parent type')
+        map({ 'n', 'v' }, '<Leader>t', typehierarchy 'sub', 'Go to child type')
 
         map({ 'n', 'x' }, 'K', vim.lsp.buf.hover, 'Hover')
         map('i', '<C-s>', vim.lsp.buf.signature_help, 'Signature help')

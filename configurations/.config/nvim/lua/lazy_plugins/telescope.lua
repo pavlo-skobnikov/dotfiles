@@ -47,7 +47,7 @@ return {
             { '<Leader>m', bi.marks, mode = { 'n', 'v' }, desc = 'Search marks' },
             -- Miscellaneous.
             { '<C-x>s', bi.spell_suggest, mode = 'i', desc = 'Select and apply a spellsuggest' },
-            { '<Leader>x', bi.pickers, mode = { 'n', 'v' }, desc = 'Execute Telescope pickers' },
+            { '<Leader>P', bi.pickers, mode = { 'n', 'v' }, desc = 'Run previous searches' },
             { '<Leader>?', bi.commands, mode = { 'n', 'v' }, desc = 'Search commands' },
             {
                 '<Leader>\\',

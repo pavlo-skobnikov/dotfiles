@@ -80,7 +80,7 @@ local function focus(target)
     end
 end
 
-vim.keymap.set('n', '<Leader>ff', function() focus 'first' end, { desc = 'Jump to the first dir file' })
-vim.keymap.set('n', '<Leader>fp', function() focus 'prev' end, { desc = 'Jump to the previous dir file' })
-vim.keymap.set('n', '<Leader>fl', function() focus 'last' end, { desc = 'Jump to the last dir file' })
-vim.keymap.set('n', '<Leader>fn', function() focus 'next' end, { desc = 'Jump to the next dir file' })
+vim.keymap.set({ 'n', 'v' }, '<Leader>ff', function() focus 'first' end, { desc = 'Jump to the first dir file' })
+vim.keymap.set({ 'n', 'v' }, '<Leader>fp', function() focus 'prev' end, { desc = 'Jump to the previous dir file' })
+vim.keymap.set({ 'n', 'v' }, '<Leader>fl', function() focus 'last' end, { desc = 'Jump to the last dir file' })
+vim.keymap.set({ 'n', 'v' }, '<Leader>fn', function() focus 'next' end, { desc = 'Jump to the next dir file' })
