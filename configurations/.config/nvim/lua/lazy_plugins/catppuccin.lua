@@ -30,6 +30,7 @@ return {
                     background = true,
                 },
             },
+            telescope = true,
             treesitter = true,
         },
     },

@@ -23,15 +23,6 @@ vim.keymap.set('x', 'ga', ':normal ', { desc = ':normal on selection' })
 vim.keymap.set({ 'n', 'x' }, 'gy', '"+', { desc = 'Use system register' })
 vim.keymap.set({ 'n', 'x' }, 'gY', '"_', { desc = 'Use blackhole register' })
 
--- [[ Neovim built-in lists ]]
-vim.keymap.set({ 'n', 'x' }, '<Leader>qh', '<Cmd>chistory<Cr>', { desc = 'qflist history' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qp', '<Cmd>colder<Cr>', { desc = 'Go to previous qflist' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qn', '<Cmd>cnewer<Cr>', { desc = 'Go to next qflist' })
-
-vim.keymap.set({ 'n', 'x' }, '<Leader>lh', '<Cmd>lhistory<Cr>', { desc = 'loclist history' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>lp', '<Cmd>lolder<Cr>', { desc = 'Go to previous loclist' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>ln', '<Cmd>lnewer<Cr>', { desc = 'Go to next loclist' })
-
 -- [[ Files ]]
 vim.keymap.set('n', '<Leader>fy', function()
     local file_path = vim.fn.expand '%:p'

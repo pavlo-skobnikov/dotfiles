@@ -1,9 +1,6 @@
 return {
     'echasnovski/mini.extra',
     event = 'VeryLazy',
-    dependencies = {
-        'echasnovski/mini.pick',
-        'echasnovski/mini.ai',
-    },
+    dependencies = 'echasnovski/mini.ai',
     opts = {},
 }
