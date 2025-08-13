@@ -50,8 +50,11 @@ export GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn"
 ## Source secrets.
 source ~/dotfiles/secrets/secret_exports.sh
 
+## $PATH shenanigans:
+# -> prepend to $PATH.
+path=('/opt/homebrew/opt/coreutils/libexec/gnubin' $path)
 
-## Manually append to $PATH.
+# -> append to $PATH.
 # User-installed binaries.
 path+=("$HOME/.local/bin")
 # Rust-installed binaries.

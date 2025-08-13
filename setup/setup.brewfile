@@ -11,10 +11,12 @@ brew "ripgrep" # ... grep.
 brew "fd"      # ... find.
 
 # Extra terminal tools.
-brew "gh"     # git in the clouds ☁️
-brew "stow"   # .files manager.
-brew "pandoc" # Document filetype converter.
-brew "nvm"    # Because what do you mean you don't have JS on the back-end?
+brew "coreutils" # The religiously correct set ot utils 🙏
+brew "moreutils" # The devilishly enticing extensions to the coreutils 😈
+brew "gh"        # git in the clouds ☁️
+brew "stow"      # .files manager.
+brew "pandoc"    # Document filetype converter.
+brew "nvm"       # Because what do you mean you don't have JS on the back-end?
 
 brew "whisper-cpp" # How you doin' lil' mama? Lemme whisper in your ear 🎶👂
 brew "sox"
