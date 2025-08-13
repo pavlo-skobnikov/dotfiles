@@ -25,6 +25,7 @@ brew "sox"
 brew "neovim" # Vim but even more smug 😏😤
 brew "fzf"    # Fuzzy life.
 brew "tmux"   # Session, windows, panes...
+brew "lf"    # Netrw wishes it were this straightforward 📁
 
 brew "lazygit"    # I'm so-o-o lazy 😴🛏️ 
 brew "lazydocker"

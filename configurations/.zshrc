@@ -180,8 +180,6 @@ nvim-server() { # A utility function to start a Neovim server for remote command
 zmodload zsh/complist                       # Load completion-related actions for configuration.
 bindkey -M viins '^n' menu-complete         # Move down the completion list.
 bindkey -M viins '^p' reverse-menu-complete # Move up the completion list.
-bindkey -M viins '^y' accept-line           # Accept completion.
-bindkey -M viins '^e' send-break            # Cancel completion and restore previous line state.
 
 autoload -Uz edit-command-line          # Edit the line in $EDITOR.
 zle -N edit-command-line
@@ -259,3 +257,25 @@ zle -N fzf-cd-backward-widget
 
 bindkey -M viins '^B' fzf-cd-backward-widget
 bindkey -M vicmd '^B' fzf-cd-backward-widget
+
+lf-cd-widget() { # [E]xplore directories and files.
+    local selected_dir=$(lf -print-last-dir)
+
+    # Exit if current directory matches the lf's one.
+    if [[ "$selected_dir" = "$(pwd)" ]]; then
+        zle redisplay
+        return 0
+    fi
+
+    # `cd` and reset prompt similar to native fzf cd widget.
+    zle push-line
+    BUFFER="builtin cd -- ${(q)selected_dir:a}"
+    zle accept-line
+    local ret=$?
+    zle reset-prompt
+    return $ret
+}
+zle -N lf-cd-widget
+
+bindkey -M viins '^E' lf-cd-widget
+bindkey -M vicmd '^E' lf-cd-widget

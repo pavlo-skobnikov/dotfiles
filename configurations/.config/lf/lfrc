@@ -1,0 +1,39 @@
+# Use zsh as the interpreter for shell commands.
+set shell /bin/zsh
+
+# These options are used to have safer shell commands:
+#     - '-e' => exits on error;
+#     - '-u' => gives error for unset variables.
+set shellopts '-eu'
+
+# Set internal field separator (IFS) to "\n" for shell commands.
+set ifs "\n"
+
+# Leave some space at the top and the bottom of the screen.
+set scrolloff 10
+
+# Show hidden files.
+set hidden
+
+# Enable icons.
+set icons
+
+# Use the `dim` attribute instead of underline for the cursor in the preview pane.
+set cursorpreviewfmt "\033[7;2m"
+
+# Use enter for shell commands.
+map <enter> shell
+
+# Execute current file.
+map x $$f
+map X !$f
+
+# [A]dd directory.
+map a :push %mkdir<space>
+
+# [C]reate file.
+map c :push %mkdir<space>
+
+# Move current file or selected files to trash folder.
+cmd trash %set -f; mv -t ~/.Trash $fx
+
