@@ -1,8 +1,11 @@
+# Taps 🚰
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
+
+# Formalae 🏎️
 
 # "Better" ...
 brew "eza"     # ... ls.
@@ -10,7 +13,6 @@ brew "bat"     # ... cat.
 brew "ripgrep" # ... grep.
 brew "fd"      # ... find.
 
-# Extra terminal tools.
 brew "coreutils" # The religiously correct set ot utils 🙏
 brew "moreutils" # The devilishly enticing extensions to the coreutils 😈
 brew "gh"        # git in the clouds ☁️
@@ -21,7 +23,6 @@ brew "nvm"       # Because what do you mean you don't have JS on the back-end?
 brew "whisper-cpp" # How you doin' lil' mama? Lemme whisper in your ear 🎶👂
 brew "sox"
 
-# Essential terminal work tools.
 brew "neovim" # Vim but even more smug 😏😤
 brew "fzf"    # Fuzzy life.
 brew "tmux"   # Session, windows, panes...
@@ -30,7 +31,7 @@ brew "lf"    # Netrw wishes it were this straightforward 📁
 brew "lazygit"    # I'm so-o-o lazy 😴🛏️ 
 brew "lazydocker"
 
-# Casks.
+# Casks 🍺
 cask "font-jetbrains-mono-nerd-font" # 📝
 cask "karabiner-elements"            # 🎹
 cask "raycast"                       # 🔍
