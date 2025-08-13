@@ -152,6 +152,9 @@ alias nvim='nvim-server' # Vim aliases.
 alias vim='nvim'
 alias vi='nvim'
 
+alias lg='lazygit'
+alias ld='lazydocker'
+
 ## Functions.
 recompile-zsh-completions() { # A utility function to quickly regenerate completions for Zsh.
     rm -f ~/.zcompdump

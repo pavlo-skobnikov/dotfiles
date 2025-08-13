@@ -26,6 +26,9 @@ brew "neovim" # Vim but even more smug 😏😤
 brew "fzf"    # Fuzzy life.
 brew "tmux"   # Session, windows, panes...
 
+brew "lazygit"    # I'm so-o-o lazy 😴🛏️ 
+brew "lazydocker"
+
 # Casks.
 cask "font-jetbrains-mono-nerd-font" # 📝
 cask "karabiner-elements"            # 🎹
