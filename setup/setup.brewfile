@@ -23,10 +23,10 @@ brew "nvm"       # Because what do you mean you don't have JS on the back-end?
 brew "whisper-cpp" # How you doin' lil' mama? Lemme whisper in your ear 🎶👂
 brew "sox"
 
-brew "neovim" # Vim but even more smug 😏😤
-brew "fzf"    # Fuzzy life.
-brew "tmux"   # Session, windows, panes...
+brew "helix" # Post-modernity? In my terminal? Impossible 🤯
 brew "lf"    # Netrw wishes it were this straightforward 📁
+brew "fzf"   # Fuzzy search, fuzzy life.
+brew "tmux"  # Session, windows, panes, and the other goodness.
 
 brew "lazygit"    # I'm so-o-o lazy 😴🛏️ 
 brew "lazydocker"

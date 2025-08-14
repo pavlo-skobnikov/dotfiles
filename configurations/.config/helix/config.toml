@@ -1,0 +1,179 @@
+# Basic options.
+theme = "catppuccin_frappe"
+
+[editor]
+mouse = false
+shell = ["/bin/zsh", "-c"]
+line-number = "relative"
+cursorline = true
+completion-timeout = 50
+rulers = [80,100,120]
+color-modes = true
+clipboard-provider = "pasteboard"
+end-of-line-diagnostics = "hint"
+inline-diagnostics.cursor-line = "warning"
+
+[editor.statusline]
+mode.normal = "normal"
+mode.insert = "insert"
+mode.select = "oh no, how did we get here?"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.whitespace.render]
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+newline = "·"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
+
+[editor.smart-tab]
+enable = false
+
+[keys.insert]
+"C-h" = "goto_prev_tabstop"
+"C-l" = "goto_next_tabstop"
+
+"C-k" = "signature_help"
+
+[keys.normal]
+# Movement 👟
+H = "extend_char_left"
+J = "extend_visual_line_down"
+K = "extend_visual_line_up"
+L = "extend_char_right"
+
+W = "extend_next_word_start"
+B = "extend_prev_word_start"
+E = "extend_next_word_end"
+
+"A-w" = "move_next_long_word_start"
+"A-b" = "move_prev_long_word_end"
+"A-e" = "move_next_long_word_end"
+
+"A-W" = "extend_next_long_word_start"
+"A-B" = "extend_prev_long_word_end"
+"A-E" = "extend_next_long_word_end"
+
+F = "extend_next_char"
+T = "extend_till_char"
+
+"A-f" = "find_prev_char"
+"A-t" = "till_prev_char"
+
+"A-F" = "extend_prev_char"
+"A-T" = "extend_till_prev_char"
+
+"A-gt" = ["select_mode", "repeat_last_motion", "normal_mode"]
+
+x = "extend_to_line_bounds"
+X = "extend_line_below"
+
+"A-x" = "shrink_to_line_bounds"
+"A-X" = "extend_line_above"
+
+"A-h" = "goto_line_start"
+"A-l" = "goto_line_end"
+
+"A-H" = ["select_mode", "goto_line_start", "normal_mode"]
+"A-L" = ["select_mode", "goto_line_end", "normal_mode"]
+
+v = "goto_next_paragraph"
+V = ["select_mode", "goto_next_paragraph", "normal_mode"]
+
+"A-v" = "goto_prev_paragraph"
+"A-V" = ["select_mode", "goto_prev_paragraph", "normal_mode"]
+
+# Changes 🔨
+"A-j" = "join_selections"
+
+# Searching 🔍
+"?" = ["select_mode", "search", "normal_mode"]
+
+"A-/" = "rsearch"
+"A-?" = ["select_mode", "rsearch", "normal_mode"]
+
+N = "extend_search_next"
+
+"A-n" = "search_prev"
+"A-N" = "extend_search_prev"
+
+# Goto commands 🚎
+[keys.normal.G]
+"g" = "extend_to_file_start"
+"|" = "extend_to_column"
+"e" = "extend_to_last_line"
+"f" = "goto_file"
+"h" = "extend_to_line_start"
+"l" = "extend_to_line_end"
+"s" = "extend_to_first_nonwhitespace"
+"d" = "goto_definition"
+"D" = "goto_declaration"
+"y" = "goto_type_definition"
+"r" = "goto_reference"
+"i" = "goto_implementation"
+"t" = ["select_mode", "goto_window_top", "normal_mode"]
+"c" = ["select_mode", "goto_window_center", "normal_mode"]
+"b" = ["select_mode", "goto_window_bottom", "normal_mode"]
+"a" = "goto_last_accessed_file"
+"m" = "goto_last_modified_file"
+"n" = "goto_next_buffer"
+"p" = "goto_previous_buffer"
+"k" = "extend_line_up"
+"j" = "extend_line_down"
+"." = "goto_last_modification"
+"w" = "extend_to_word"
+
+# Object movement 🔮
+[keys.normal."{"]
+d = ["select_mode", "goto_prev_diag", "normal_mode"]
+D = ["select_mode", "goto_first_diag", "normal_mode"]
+g = ["select_mode", "goto_prev_change", "normal_mode"]
+G = ["select_mode", "goto_first_change", "normal_mode"]
+f = ["select_mode", "goto_prev_function", "normal_mode"]
+t = ["select_mode", "goto_prev_class", "normal_mode"]
+a = ["select_mode", "goto_prev_parameter", "normal_mode"]
+c = ["select_mode", "goto_prev_comment", "normal_mode"]
+e = ["select_mode", "goto_prev_entry", "normal_mode"]
+T = ["select_mode", "goto_prev_test", "normal_mode"]
+p = ["select_mode", "goto_prev_paragraph", "normal_mode"]
+"space" = ["select_mode", "add_newline_above", "normal_mode"]
+
+[keys.normal."}"]
+d = ["select_mode", "goto_next_diag", "normal_mode"]
+D = ["select_mode", "goto_last_diag", "normal_mode"]
+g = ["select_mode", "goto_next_change", "normal_mode"]
+G = ["select_mode", "goto_last_change", "normal_mode"]
+f = ["select_mode", "goto_next_function", "normal_mode"]
+t = ["select_mode", "goto_next_class", "normal_mode"]
+a = ["select_mode", "goto_next_parameter", "normal_mode"]
+c = ["select_mode", "goto_next_comment", "normal_mode"]
+e = ["select_mode", "goto_next_entry", "normal_mode"]
+T = ["select_mode", "goto_next_test", "normal_mode"]
+p = ["select_mode", "goto_next_paragraph", "normal_mode"]
+"space" = ["select_mode", "add_newline_below", "normal_mode"]
+
