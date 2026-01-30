@@ -4,6 +4,7 @@ require('conform').setup {
   formatters_by_ft = {
     lua = { 'stylua' },
     sh = { 'shfmt' },
+    zsh = { 'beautysh' },
     bash = { 'shfmt' },
     toml = { 'taplo' },
   },

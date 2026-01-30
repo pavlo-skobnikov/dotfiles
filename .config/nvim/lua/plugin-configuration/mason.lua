@@ -11,6 +11,7 @@ vim
     -- Bash.
     'bash-language-server',
     'shfmt',
+    'beautysh',
     -- Toml.
     'taplo',
   })
