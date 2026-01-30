@@ -17,8 +17,13 @@ treesitter.install {
   'xml',
   'yaml',
   'toml',
+  'tmux',
   'markdown',
   'markdown_inline',
+  'git_config',
+  'git_rebase',
+  'gitattributes',
+  'gitcommit',
 }
 
 -- Automatically update Treesitter parsers when updating vim.pack plugins.
