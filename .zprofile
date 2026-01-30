@@ -2,7 +2,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 
-## Set environment variables.
+## [ Set environment variables 🏞️ ]
 # Personal variables.
 export DOTFILES="$HOME/dotfiles"
 export DEVSPACE="$HOME/dev"
@@ -56,11 +56,11 @@ export NVM_DIR="$HOME/.nvm"
 export GOKU_EDN_CONFIG_FILE="$HOME/.config/karabiner/karabiner.edn"
 
 
-## Source secrets.
+## [ Source secrets 🤫 ]
 source ~/.secrets/secret_exports.sh
 
 
-## $PATH shenanigans:
+## [ $PATH shenanigans 🥾 ]
 # -> prepend to $PATH.
 # GNU utils 🔛🔝
 path=('/opt/homebrew/opt/coreutils/libexec/gnubin' $path)
@@ -84,4 +84,3 @@ path+=('/Applications/Docker.app/Contents/Resources/bin')
 path+=('/Applications/IntelliJ IDEA.app/Contents/MacOS')
 # nvm's node binaries manually symlinked.
 path+=("$NVM_DIR/current")
-
