@@ -219,10 +219,17 @@ alias ld='lazydocker'
 
 
 ## [ Functions 🧮 ]
+# Recompile the Zsh's completion dump file.
 recompile-zsh-completions() {
     rm -f "$ZCOMPDUMP" "${ZCOMPDUMP}.zwc"
     compinit -d "$ZCOMPDUMP"
     zcompile "$ZCOMPDUMP"
+}
+
+# Recompile the `bat` theme cache.
+rebuild-bat-cache() {
+    bat cache --clear
+    bat cache --build
 }
 
 # Generate a random alphanumeric string.
