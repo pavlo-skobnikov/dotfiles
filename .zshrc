@@ -5,7 +5,7 @@
 # zprof                     # At the bottom of the .zshrc.
 
 
-## Navigation options.
+## [ Navigation options 🧭 ]
 setopt AUTO_CD              # Go to folder path without using cd.
 
 setopt AUTO_PUSHD           # Push the old directory onto the stack on cd.
@@ -17,7 +17,7 @@ setopt CDABLE_VARS          # Change directory to a path stored in a variable.
 setopt EXTENDED_GLOB        # Use extended globbing syntax.
 
 
-## History options.
+## [ History options 📜 ]
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
@@ -29,90 +29,65 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
 
-## Vim mode configuration.
-bindkey -v
-export KEYTIMEOUT=1 # Make the mode switch quicker.
+## [ Completions 🧩 ]
+# Add community completions.
+# NOTE: Requires `zsh-completions` to be installed.
+if [ -d "$HOMEBREW_PREFIX/share/zsh-completions" ]; then
+    fpath+=("$HOMEBREW_PREFIX/share/zsh-completions")
+fi
 
-# Add text objects for quotes and brackets to Zsh's Vim emulation.
-# NOTE: Forward search is not emulated.
-autoload -Uz select-bracketed select-quoted
-zle -N select-quoted
-zle -N select-bracketed
-for km in viopp visual; do
-    bindkey -M $km -- '-' vi-up-line-or-history
-    for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
-        bindkey -M $km $c select-quoted
-    done
-    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-        bindkey -M $km $c select-bracketed
-    done
-done
+autoload -Uz compaudit compinit
 
-# Mimic tpope's surround plugin.
-autoload -Uz surround
-zle -N delete-surround surround
-zle -N add-surround surround
-zle -N change-surround surround
-bindkey -M vicmd gsr change-surround
-bindkey -M vicmd gsd delete-surround
-bindkey -M vicmd gsa add-surround
-bindkey -M visual gs add-surround
+# Automatically fix insecure directories before running compinit
+compaudit -z
 
-
-## Completions.
-autoload -Uz compinit
-
-# Use dumped file and skip recompiling every time.
 ZCOMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
 
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
-    compinit
-fi
+# Recompile the completion dump file if it's older than 24 hours OR if it doesn't exist.
+if [[ ! -f "$ZCOMPDUMP" ]] || [[ "$(date '+%Y-%m-%d')" != "$(stat -c '%y' "$ZCOMPDUMP" 2>/dev/null | cut -d' ' -f1)" ]]; then
+    echo "Recompiling completion dump file..."
+    echo "This may take a moment 😴..."
 
-# Only compile if .zcompdump is newer or .zwc doesn't exist.
-if [[ -s "$ZCOMPDUMP" && (! -s "${ZCOMPDUMP}.zwc" || "$ZCOMPDUMP" -nt "${ZCOMPDUMP}.zwc") ]]; then
-  zcompile "$ZCOMPDUMP"
-fi
+    compinit -d "$ZCOMPDUMP"
 
-# Load completions, skipping security checks for speed.
-compinit -C -d "$ZCOMPDUMP"
+    # Compile a dump file for faster loading next time.
+    if [[ -s "$ZCOMPDUMP" && (! -s "${ZCOMPDUMP}.zwc" || "$ZCOMPDUMP" -nt "${ZCOMPDUMP}.zwc") ]]; then
+        zcompile "$ZCOMPDUMP"
+    fi
+else
+    # Skip security checks for faster startup.
+    compinit -C -d "$ZCOMPDUMP"
+fi
 
 # Complete hidden paths.
 _comp_options+=(globdots)
 
-# Case insensitive path-completion.
-zstyle ':completion:*' matcher-list \
-  'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
-  'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
-  'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
-  'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+# Disable sort when completing `git checkout`.
+zstyle ':completion:*:git-checkout:*' sort false
 
-# Partial completion suggestions.
-zstyle ':completion:*' list-suffixes zstyle ':completion:*' expand prefix suffix 
+# Set descriptions format to enable group support.
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
 
-# Define completers.
-zstyle ':completion:*' completer _extensions _complete _approximate
+# Set list-colors to enable filename colorizing.
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Cache completions for improved speed.
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$HOME/.zcompcache"
+# Force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix.
+zstyle ':completion:*' menu no
 
-# Highlight the current selection from completion options.
-zstyle ':completion:*' menu select
+# Preview directory's content with eza when completing cd.
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
-# Add description to completion list groups.
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %B%d%b --%f'
-zstyle ':completion:*' group-name ''
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin.
+# Reference: Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
-# Display errors when using _approximate completer.
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %B%d%b (errors: %e) -!%f'
-
-# Extra information and warnings for no completion matches.
-zstyle ':completion:*:messages' format ' %F{magenta} -- %Binfo: %d%b --%f'
-zstyle ':completion:*:warnings' format ' %F{red}-- %Berror: no matches found%b --%f'
+# Switch group using `<` and `>`.
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 
-## Custom simple prompt.
+## [ Custom simple prompt 💬 ]
 local bb='%K{black} %k' # [B]lock [b]lack.
 local bw='%K{white} %k' # [B]lock [w]hite.
 
@@ -126,12 +101,12 @@ set_cursor_and_vi_mode_prompt() {
 
     function zle-keymap-select {
         if [[ ${KEYMAP} == vicmd ]] ||
-                [[ $1 = 'block' ]]; then
+        [[ $1 = 'block' ]]; then
             echo -ne $cursor_block
         elif [[ ${KEYMAP} == main ]] ||
-                [[ ${KEYMAP} == viins ]] ||
-                [[ ${KEYMAP} = '' ]] ||
-                [[ $1 = 'beam' ]]; then
+        [[ ${KEYMAP} == viins ]] ||
+        [[ ${KEYMAP} = '' ]] ||
+        [[ $1 = 'beam' ]]; then
             echo -ne $cursor_beam
         fi
     }
@@ -149,7 +124,40 @@ set_cursor_and_vi_mode_prompt() {
 set_cursor_and_vi_mode_prompt
 
 
-## Tool setups.
+## [ Vim mode configuration 💻 ]
+bindkey -v
+export KEYTIMEOUT=1 # Make the mode switch quicker.
+
+# Add text objects for quotes and brackets to Zsh's Vim emulation.
+autoload -Uz select-bracketed select-quoted
+
+zle -N select-quoted
+zle -N select-bracketed
+
+for km in viopp visual; do
+    bindkey -M $km -- '-' vi-up-line-or-history
+    for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+        bindkey -M $km $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $km $c select-bracketed
+    done
+done
+
+# Add surround plugin.
+autoload -Uz surround
+
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+
+bindkey -M vicmd gsr change-surround
+bindkey -M vicmd gsd delete-surround
+bindkey -M vicmd gsa add-surround
+bindkey -M visual gsa add-surround
+
+
+## [ Tool setups 🧰 ]
 # Fzf.
 source <(fzf --zsh)
 
@@ -170,7 +178,23 @@ nvm() {
 }
 
 
-## Aliases.
+## [ Load plugins 📦 ]
+# List of plugin scripts to load.
+plugins_list=(
+    # `fzf-tab` plugin.
+    "$HOMEBREW_PREFIX/opt/fzf-tab/share/fzf-tab/fzf-tab.zsh"
+    # `fast-syntax-highlighting` plugin.
+    "$HOMEBREW_PREFIX/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+)
+
+# Loop over the list of plugin scripts and source them if the file exists.
+for plugin in $plugins_list; do
+    # echo "Loading plugin: $plugin"
+    [[ -f "$plugin" ]] && source "$plugin"
+done
+
+
+## [ Aliases 👤 ]
 # Require confirmation for the following commands.
 alias cp='cp -i'
 alias mv='mv -i'
@@ -194,21 +218,33 @@ alias lg='lazygit'
 alias ld='lazydocker'
 
 
-## Functions.
-recompile-zsh-completions() { # A utility function to quickly regenerate completions for Zsh.
-    rm -f ~/.zcompdump
-    compinit
+## [ Functions 🧮 ]
+recompile-zsh-completions() {
+    rm -f "$ZCOMPDUMP" "${ZCOMPDUMP}.zwc"
+    compinit -d "$ZCOMPDUMP"
+    zcompile "$ZCOMPDUMP"
 }
 
-# A utility function to generate a random alphanumeric string.
-# $1 is the length of the random string.
+# Generate a random alphanumeric string.
+#   - $1 is the length of the random string.
 gen-rand-str() {
     head -c "$1" /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | cut -c1-"$1"
 }
 
-# A utility function to start a Neovim server for remote commands.
+# Set the `fast-syntax-highlighting` Zsh plugin theme.
+set-fast-theme() {
+    if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+        fast-theme XDG:catppuccin-frappe
+    else
+        # Default to light theme if key doesn't exist or has any other value
+        fast-theme XDG:catppuccin-latte
+    fi
+}
+
+# Start a Neovim server for remote commands.
 nvim-server() {
     local servers_dir="/tmp/nvim"
+
     # Ensure the directory exists.
     mkdir -p "$servers_dir"
 
@@ -220,15 +256,18 @@ nvim-server() {
 }
 
 
-## Keymaps configuration.
+## [ Keymaps configuration ⌨️ ]
 # Load completion-related actions for configuration.
 zmodload zsh/complist
+
 bindkey -M viins '^n' menu-complete
 bindkey -M viins '^p' reverse-menu-complete
 
 # Edit the line in $EDITOR.
 autoload -Uz edit-command-line
+
 zle -N edit-command-line
+
 bindkey -M viins '^o' edit-command-line
 bindkey -M vicmd '^o' edit-command-line
 
@@ -239,7 +278,7 @@ bindkey -M viins '^f' fzf-cd-widget
 bindkey -M vicmd '^f' fzf-cd-widget
 
 # Go [b]ackwards down the directory stack.
-# Either 'till Tmux current session root or 'till '/'
+# Either 'till Tmux's session root or 'till '/'
 fzf-cd-backward-widget() {
     path_array=()
     local parent_path="$(dirname $(pwd))"
@@ -280,4 +319,3 @@ zle -N fzf-cd-backward-widget
 
 bindkey -M viins '^b' fzf-cd-backward-widget
 bindkey -M vicmd '^b' fzf-cd-backward-widget
-

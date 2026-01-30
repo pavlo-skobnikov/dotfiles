@@ -13,6 +13,10 @@ tap "homebrew/services"
 brew "zsh"
 brew "git"
 
+brew "zsh-completions"
+brew "fzf-tab"
+brew "zsh-fast-syntax-highlighting"
+
 # "Better" ...
 brew "eza"     # ... ls.
 brew "bat"     # ... cat.
