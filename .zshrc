@@ -36,11 +36,9 @@ if [ -d "$HOMEBREW_PREFIX/share/zsh-completions" ]; then
     fpath+=("$HOMEBREW_PREFIX/share/zsh-completions")
 fi
 
-autoload -Uz compaudit compinit
+autoload -Uz compinit
 
 # Automatically fix insecure directories before running compinit
-compaudit -z
-
 ZCOMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
 
 # Recompile the completion dump file if it's older than 24 hours OR if it doesn't exist.
@@ -48,7 +46,7 @@ if [[ ! -f "$ZCOMPDUMP" ]] || [[ "$(date '+%Y-%m-%d')" != "$(stat -c '%y' "$ZCOM
     echo "Recompiling completion dump file..."
     echo "This may take a moment 😴..."
 
-    compinit -d "$ZCOMPDUMP"
+    compinit -i -d "$ZCOMPDUMP"
 
     # Compile a dump file for faster loading next time.
     if [[ -s "$ZCOMPDUMP" && (! -s "${ZCOMPDUMP}.zwc" || "$ZCOMPDUMP" -nt "${ZCOMPDUMP}.zwc") ]]; then
@@ -222,7 +220,7 @@ alias ld='lazydocker'
 # Recompile the Zsh's completion dump file.
 recompile-zsh-completions() {
     rm -f "$ZCOMPDUMP" "${ZCOMPDUMP}.zwc"
-    compinit -d "$ZCOMPDUMP"
+    compinit -i -d "$ZCOMPDUMP"
     zcompile "$ZCOMPDUMP"
 }
 
