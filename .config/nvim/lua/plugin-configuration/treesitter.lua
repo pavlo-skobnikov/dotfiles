@@ -33,8 +33,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
   desc = 'Update installed Treesitter parsers on vim.pack plugin update',
 })
 
--- Set up Treesitter for syntaxt highlighting in buffers.
-vim.api.nvim_create_user_command('TSStartAndSetOptions', function()
+local function start_treesitter()
   -- Start Treesitter for the current buffer.
   vim.treesitter.start()
 
@@ -45,7 +44,16 @@ vim.api.nvim_create_user_command('TSStartAndSetOptions', function()
 
   -- Only fold by default *really deeply* nested code.
   vim.opt.foldlevel = 20
-end, { desc = 'Starts Treesitter highlighting for the buffer and sets relevant options' })
+end
+
+-- Set up Treesitter for syntaxt highlighting in buffers.
+vim.api.nvim_create_user_command(
+  'TSStartAndSetOptions',
+  function() start_treesitter() end,
+  { desc = 'Starts Treesitter highlighting for the buffer and sets relevant options' }
+)
+
+local do_not_install_treesitter_grammar_cache = {}
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = treesitter.get_available(),
@@ -56,7 +64,19 @@ vim.api.nvim_create_autocmd('FileType', {
     if vim.tbl_contains(treesitter.get_installed(), filetype) then
       vim.cmd [[ TSStartAndSetOptions ]]
     else
-      vim.notify("No Treesitter parser installed for current filetype although it's available", vim.log.levels.WARN)
+      -- Ski
+      if do_not_install_treesitter_grammar_cache[filetype] then return end
+
+      -- vim.notify("No Treesitter parser installed for current filetype although it's available", vim.log.levels.WARN)
+      local answer = vim.fn.confirm('Missing Treesitter grammar for filetype. Install?', '&Yes\n&No')
+
+      if answer == 1 then
+        treesitter.install({ filetype }):await(function()
+          start_treesitter()
+        end)
+      else
+        table.insert(do_not_install_treesitter_grammar_cache, filetype)
+      end
     end
   end,
   desc = 'Enable Treesitter-based highlighting, folding, and indentation for supported filetypes',
