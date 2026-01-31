@@ -266,6 +266,8 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>qn', '<Cmd>cnewer<Cr>', { desc = 'Newer li
 vim.keymap.set({ 'n', 'x' }, '<Leader>q/', "<Cmd>Pick list scope='quickfix'<Cr>", { desc = 'Search list' })
 
 -- Tools 🧰
+vim.keymap.set({ 'n', 'x' }, '<Leader>tc', '<Cmd>TmuxFocusOrOpen claude<Cr>', { desc = 'claude' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>tC', '<Cmd>TmuxFocusOrOpen claude --continue<Cr>', { desc = 'claude --continue' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>td', '<Cmd>TmuxFocusOrOpen lazydocker<Cr>', { desc = 'lazydocker' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>ts', '<Cmd>TmuxFocusOrOpen lazysql<Cr>', { desc = 'lazysql' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>tt', '<Cmd>TmuxFocusOrOpen tv<Cr>', { desc = 'television' })
