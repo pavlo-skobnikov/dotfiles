@@ -1,6 +1,6 @@
 require('oil').setup {
   -- Manually define keymaps.
-  use_default_keymaps = true,
+  use_default_keymaps = false,
   keymaps = {
     ['g?'] = { 'actions.show_help', mode = 'n' },
     ['H'] = { 'actions.open_cwd', mode = 'n' },
