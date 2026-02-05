@@ -141,8 +141,6 @@ require 'plugin-configuration.mason'
 
 -- [[ Keymaps ⌨️ ]]
 
-vim.keymap.set('i', '<C-x><C-s>', '<Cmd>Pick spellsuggest<Cr>', { desc = 'Spelling suggestions' })
-
 vim.keymap.set({ 'n', 'x' }, '<C-p>', '<C-^>', { desc = 'Switch to last accessed buffer' })
 
 vim.keymap.set({ 'n', 'x' }, '<C-d>', '<C-d>zz', { desc = 'Half-page down and center' })
@@ -155,9 +153,6 @@ vim.keymap.set({ 'n', 'x' }, '<C-b>', 'zH', { desc = 'Half-screen left' })
 vim.keymap.set({ 'n', 'x' }, 'gd', "<Cmd>Pick lsp scope='definition'<Cr>", { desc = 'Go to definition' })
 vim.keymap.set({ 'n', 'x' }, 'gD', "<Cmd>Pick lsp scope='declaration'<Cr>", { desc = 'Go to declaration' })
 vim.keymap.set({ 'n', 'x' }, 'gy', "<Cmd>Pick lsp scope='type_definition'<Cr>", { desc = 'Go to type definition' })
-
-vim.keymap.set({ 'n', 'x' }, 'g.', '"+', { desc = 'Use system clipboard' })
-vim.keymap.set({ 'n', 'x' }, 'gb', '"_', { desc = 'Use blackhole register' })
 
 vim.keymap.set('n', 'gE', '<Cmd>set opfunc=v:lua.NormalOperatorFunction<Cr>g@', { desc = 'Execute {cmd}' })
 vim.keymap.set('x', 'gE', ':normal ', { desc = 'Execute {cmd}' })
