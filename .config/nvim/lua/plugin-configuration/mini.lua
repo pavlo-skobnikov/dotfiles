@@ -95,6 +95,9 @@ require('mini.icons').setup {}
 local pick = require 'mini.pick'
 
 pick.setup {
+  -- Take up the full width of the editor.
+  -- NOTE: You really need this for those Java applications 😭
+  window = { config = function() return { width = vim.opt.columns:get() } end },
   -- Keys for performing actions. See `:h MiniPick-actions`.
   mappings = {
     caret_left = '<C-f>',
