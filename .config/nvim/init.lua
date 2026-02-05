@@ -186,7 +186,7 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>cr', vim.lsp.buf.rename, { desc = 'Rename'
 vim.keymap.set(
   { 'n', 'x' },
   '<Leader>cd',
-  "<Cmd>Pick diagnostic scope='buffer'<Cr>",
+  "<Cmd>Pick diagnostic scope='current'<Cr>",
   { desc = 'Search document diagnostics' }
 )
 vim.keymap.set(
@@ -270,7 +270,6 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>tc', '<Cmd>TmuxFocusOrOpen claude<Cr>', { 
 vim.keymap.set({ 'n', 'x' }, '<Leader>tC', '<Cmd>TmuxFocusOrOpen claude --continue<Cr>', { desc = 'claude --continue' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>td', '<Cmd>TmuxFocusOrOpen lazydocker<Cr>', { desc = 'lazydocker' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>ts', '<Cmd>TmuxFocusOrOpen lazysql<Cr>', { desc = 'lazysql' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>tt', '<Cmd>TmuxFocusOrOpen tv<Cr>', { desc = 'television' })
 
 -- Undotree ↩️
 vim.keymap.set({ 'n', 'x' }, '<Leader>u', '<Cmd>Undotree<Cr>', { desc = 'Undotree' })
