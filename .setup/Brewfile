@@ -1,19 +1,19 @@
 # vim: ft=ruby
 
-## Taps 🚰
+## [ Taps 🚰 ]
 tap "homebrew/core"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
-## Formalae 🏎️
+## [ Formalae 🏎️ ]
 
-# Some essentials.
+# Some essentials ✨
 brew "zsh"
 brew "git"
 
-# Zsh plugins.
+# Zsh plugins 🔌
 brew "zsh-completions"
 brew "zsh-fast-syntax-highlighting"
 brew "fzf-tab"
@@ -41,8 +41,9 @@ brew "lazygit"    # I'm so-o-o lazy 😴🛏️
 brew "lazydocker"
 
 
-## Casks 🍺
+## [ Casks 🍺 ]
 cask "karabiner-elements" # 🎹
+cask "homerow"            # 🏡
 cask "raycast"            # 🔍
 cask "voiceink"           # 🗣️
 
@@ -55,6 +56,6 @@ cask "ghostty"       # 👻
 cask "intellij-idea" # 💡
 
 
-## Apple Store stuff 🍏
+## [ Apple Store stuff 🍏 ]
 mas "Xcode", id: 497799835  # 📱
 mas "Things", id: 904280696 # 📑
