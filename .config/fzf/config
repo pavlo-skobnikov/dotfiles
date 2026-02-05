@@ -1,9 +1,11 @@
---style=minimal
---layout=default
+--layout=reverse
 --height 100%
 --ansi
---preview-window 'right:50%'
+--preview-window 'down:50%'
+--preview-border 'sharp'
 --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-k:preview-half-page-up,ctrl-j:preview-half-page-down
---color='pointer:blue,prompt:blue,marker:magenta'
---color='current-bg:black,current-fg:white'
-
+--color='spinner:red,hl:bright-red'
+--color='header:red,info:magenta,pointer:bright-red'
+--color='marker:magenta,fg+:blue,prompt:bright-magenta,hl+:bright-red'
+--color='current-bg:-1,current-fg:magenta'
+--color='border:blue,label:bright-blue'
