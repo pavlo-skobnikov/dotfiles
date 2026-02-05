@@ -129,9 +129,6 @@ pick.setup {
     scroll_down = '<C-j>',
     scroll_up = '<C-k>',
     scroll_right = '<C-l>',
-
-    toggle_info = '<C-i>',
-    toggle_preview = '<C-o>',
   },
 }
 
