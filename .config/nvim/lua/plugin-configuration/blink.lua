@@ -49,9 +49,13 @@ require('blink-cmp').setup {
   -- List of enabled completion providers.
   sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
 
-  -- Auto-show the completion menu in the cmdline.
   cmdline = {
-    completion = { menu = { auto_show = true } },
+    completion = {
+      -- Auto-show the completion menu in the cmdline.
+      menu = { auto_show = true },
+      -- Do not preselect any completions.
+      list = { selection = { preselect = false } },
+    },
     keymap = {
       preset = 'none',
 
