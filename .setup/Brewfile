@@ -42,10 +42,11 @@ brew "lazydocker"
 
 
 ## [ Casks 🍺 ]
-cask "karabiner-elements" # 🎹
-cask "homerow"            # 🏡
-cask "raycast"            # 🔍
-cask "voiceink"           # 🗣️
+cask "karabiner-elements"        # 🎹
+cask "homerow"                   # 🏡
+cask "nikitabobko/tap/aerospace" # 🔮
+cask "raycast"                   # 🔍
+cask "voiceink"                  # 🗣️
 
 cask "arc"      # 🔗
 cask "obsidian" # 🪨
