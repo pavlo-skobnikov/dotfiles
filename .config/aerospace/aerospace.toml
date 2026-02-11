@@ -98,3 +98,59 @@ ctrl-cmd-t = 'layout floating tiling'
 
 # Close all windows but the current one 🚫
 ctrl-cmd-x = 'close-all-windows-but-current'
+
+# [ Automatic window-workspace assignment on startup 🚀 ]
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = ['move-node-to-workspace 2', 'layout accordion horizontal']
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.culturedcode.ThingsMac'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = ['move-node-to-workspace 4', 'layout accordion horizontal']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+if.during-aerospace-startup = true
+check-further-callbacks = true
+run = ['move-node-to-workspace 5', 'layout accordion horizontal']
