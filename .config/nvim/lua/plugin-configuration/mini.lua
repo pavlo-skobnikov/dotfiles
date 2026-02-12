@@ -77,11 +77,11 @@ clue.setup {
     clue.gen_clues.z(),
 
     -- Leader key definitions.
-    { mode = { 'n', 'x' }, keys = '<Leader>a', desc = '+Arglist' },
-    { mode = { 'n', 'x' }, keys = '<Leader>c', desc = '+Code' },
+    { mode = { 'n', 'x' }, keys = '<Leader>a', desc = '+Actions' },
     { mode = { 'n', 'x' }, keys = '<Leader>f', desc = '+Files' },
     { mode = { 'n', 'x' }, keys = '<Leader>g', desc = '+Git' },
     { mode = { 'n', 'x' }, keys = '<Leader>l', desc = '+Loclist' },
+    { mode = { 'n', 'x' }, keys = '<Leader>m', desc = '+Marks' },
     { mode = { 'n', 'x' }, keys = '<Leader>q', desc = '+Qflist' },
     { mode = { 'n', 'x' }, keys = '<Leader>s', desc = '+Symbols' },
     { mode = { 'n', 'x' }, keys = '<Leader>t', desc = '+Tools' },

@@ -141,7 +141,7 @@ require 'plugin-configuration.mason'
 
 -- [[ Keymaps ⌨️ ]]
 
-vim.keymap.set({ 'n', 'x' }, '<C-p>', '<C-^>', { desc = 'Switch to last accessed buffer' })
+vim.keymap.set({ 'n', 'x' }, '<Tab>', '<C-^>', { desc = 'Switch to last accessed buffer' })
 
 vim.keymap.set({ 'n', 'x' }, '<C-d>', '<C-d>zz', { desc = 'Half-page down and center' })
 vim.keymap.set({ 'n', 'x' }, '<C-u>', '<C-u>zz', { desc = 'Half-page up and center' })
@@ -150,9 +150,12 @@ vim.keymap.set({ 'n', 'x' }, '<C-f>', 'zL', { desc = 'Half-screen right' })
 vim.keymap.set({ 'n', 'x' }, '<C-b>', 'zH', { desc = 'Half-screen left' })
 
 -- [ Goto 🏃‍♂️ ]
+vim.keymap.set({ 'n', 'x' }, 'gy', '"+', { desc = 'Use system clipboard' })
+vim.keymap.set({ 'n', 'x' }, 'gb', '"_', { desc = 'Use blackhole register' })
+
 vim.keymap.set({ 'n', 'x' }, 'gd', "<Cmd>Pick lsp scope='definition'<Cr>", { desc = 'Go to definition' })
 vim.keymap.set({ 'n', 'x' }, 'gD', "<Cmd>Pick lsp scope='declaration'<Cr>", { desc = 'Go to declaration' })
-vim.keymap.set({ 'n', 'x' }, 'gy', "<Cmd>Pick lsp scope='type_definition'<Cr>", { desc = 'Go to type definition' })
+vim.keymap.set({ 'n', 'x' }, 'gY', "<Cmd>Pick lsp scope='type_definition'<Cr>", { desc = 'Go to type definition' })
 
 vim.keymap.set('n', 'gE', '<Cmd>set opfunc=v:lua.NormalOperatorFunction<Cr>g@', { desc = 'Execute {cmd}' })
 vim.keymap.set('x', 'gE', ':normal ', { desc = 'Execute {cmd}' })
@@ -164,69 +167,42 @@ vim.keymap.set({ 'n', 'x' }, 'g/', '<Cmd>Pick buf_lines<Cr>', { desc = 'Search b
 
 -- [ Leader 👑 ]
 
--- Argument list ❗
-vim.keymap.set({ 'n', 'x' }, '<Leader>aa', '<Cmd>$argadd % | argdedupe<Cr>', { desc = 'Add file to argslist' })
-
-vim.keymap.set({ 'n', 'x' }, '<Leader>ah', '<Cmd>1argument<Cr>', { desc = 'Go to 1st arg' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>aj', '<Cmd>2argument<Cr>', { desc = 'Go to 2nd arg' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>ak', '<Cmd>3argument<Cr>', { desc = 'Go to 3rd arg' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>al', '<Cmd>4argument<Cr>', { desc = 'Go to 4th arg' })
-
-vim.keymap.set({ 'n', 'x' }, '<Leader>a/', '<Cmd>Pick arguments<Cr>', { desc = 'Search args' })
-
--- Code 👨‍💻
-vim.keymap.set({ 'n', 'x' }, '<Leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>cr', vim.lsp.buf.rename, { desc = 'Rename' })
+-- (Code) actions 👨‍💻
+vim.keymap.set({ 'n', 'x' }, '<Leader>aa', vim.lsp.buf.code_action, { desc = 'Code action' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>ar', vim.lsp.buf.rename, { desc = 'Rename' })
 
 vim.keymap.set(
   { 'n', 'x' },
-  '<Leader>cd',
+  '<Leader>ad',
   "<Cmd>Pick diagnostic scope='current'<Cr>",
   { desc = 'Search document diagnostics' }
 )
 vim.keymap.set(
   { 'n', 'x' },
-  '<Leader>cD',
+  '<Leader>aD',
   "<Cmd>Pick diagnostic scope='all'<Cr>",
   { desc = 'Search workspace diagnostics' }
 )
 
 vim.keymap.set(
   { 'n', 'x' },
-  '<Leader>cs',
+  '<Leader>as',
   function() vim.lsp.buf.typehierarchy 'subtypes' end,
   { desc = 'Inspect subtypes' }
 )
 vim.keymap.set(
   { 'n', 'x' },
-  '<Leader>cS',
+  '<Leader>aS',
   function() vim.lsp.buf.typehierarchy 'supertypes' end,
   { desc = 'Inspect supertypes' }
 )
 
-vim.keymap.set({ 'n', 'x' }, '<Leader>ci', vim.lsp.buf.incoming_calls, { desc = 'View incoming calls' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>co', vim.lsp.buf.outgoing_calls, { desc = 'View outgoing calls' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>ai', vim.lsp.buf.incoming_calls, { desc = 'Navigate incoming calls' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>ao', vim.lsp.buf.outgoing_calls, { desc = 'Navigate outgoing calls' })
 
--- Symbols 🤑
-vim.keymap.set(
-  { 'n', 'x' },
-  '<Leader>ss',
-  "<Cmd>Pick lsp scope='document_symbol'<Cr>",
-  { desc = 'Search document symbols' }
-)
-vim.keymap.set(
-  { 'n', 'x' },
-  '<Leader>sS',
-  "<Cmd>Pick lsp scope='workspace_symbol_live'<Cr>",
-  { desc = 'Search project symbols' }
-)
-vim.keymap.set({ 'n', 'x' }, '<Leader>sr', "<Cmd>Pick lsp scope='references'<Cr>", { desc = 'Search project symbols' })
-vim.keymap.set(
-  { 'n', 'x' },
-  '<Leader>si',
-  "<Cmd>Pick lsp scope='implementation'<Cr>",
-  { desc = 'Go to implementation' }
-)
+-- Chatbots 🤖
+vim.keymap.set({ 'n', 'x' }, '<Leader>c', '<Cmd>TmuxFocusOrOpen claude<Cr>', { desc = 'claude' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>C', '<Cmd>TmuxFocusOrOpen claude --continue<Cr>', { desc = 'claude --continue' })
 
 -- Explore file tree 🌳
 vim.keymap.set({ 'n', 'x' }, '<Leader>e', '<Cmd>Oil<Cr>', { desc = 'Explore current directory' })
@@ -245,10 +221,20 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>gf', "<Cmd>Pick git_commits path='%'<Cr>",
 vim.keymap.set({ 'n', 'x' }, '<Leader>gh', '<Cmd>Pick git_hunks<Cr>', { desc = 'Search unstaged hunks' })
 
 -- Jumps list 🦘
-vim.keymap.set({ 'n', 'x' }, '<Leader>l', "<Cmd>Pick list scope='jump'<Cr>", { desc = 'Search loclist' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>j', "<Cmd>Pick list scope='jump'<Cr>", { desc = 'Search jumplist' })
 
 -- Location list 📍
 vim.keymap.set({ 'n', 'x' }, '<Leader>l', "<Cmd>Pick list scope='location'<Cr>", { desc = 'Search loclist' })
+
+-- Marks (using arglist) ❗
+vim.keymap.set({ 'n', 'x' }, '<Leader>ma', '<Cmd>$argadd % | argdedupe<Cr>', { desc = 'Add file to argslist' })
+
+vim.keymap.set({ 'n', 'x' }, '<Leader>m1', '<Cmd>1argument<Cr>', { desc = 'Go to 1st arg' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>m2', '<Cmd>2argument<Cr>', { desc = 'Go to 2nd arg' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>m3', '<Cmd>3argument<Cr>', { desc = 'Go to 3rd arg' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>m4', '<Cmd>4argument<Cr>', { desc = 'Go to 4th arg' })
+
+vim.keymap.set({ 'n', 'x' }, '<Leader>m/', '<Cmd>Pick arguments<Cr>', { desc = 'Search args' })
 
 -- Quickfix 🚨
 vim.keymap.set({ 'n', 'x' }, '<Leader>qq', '<Cmd>copen<Cr>', { desc = 'Open/focus list' })
@@ -260,9 +246,31 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>qo', '<Cmd>colder<Cr>', { desc = 'Older li
 vim.keymap.set({ 'n', 'x' }, '<Leader>qn', '<Cmd>cnewer<Cr>', { desc = 'Newer list' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>q/', "<Cmd>Pick list scope='quickfix'<Cr>", { desc = 'Search list' })
 
+-- Symbols 🤑
+vim.keymap.set(
+  { 'n', 'x' },
+  '<Leader>ss',
+  "<Cmd>Pick lsp scope='document_symbol'<Cr>",
+  { desc = 'Search document symbols' }
+)
+vim.keymap.set(
+  { 'n', 'x' },
+  '<Leader>sS',
+  "<Cmd>Pick lsp scope='workspace_symbol_live'<Cr>",
+  { desc = 'Search project symbols' }
+)
+vim.keymap.set({ 'n', 'x' }, '<Leader>sr', "<Cmd>Pick lsp scope='references'<Cr>", { desc = 'Find references' })
+vim.keymap.set(
+  { 'n', 'x' },
+  '<Leader>si',
+  "<Cmd>Pick lsp scope='implementation'<Cr>",
+  { desc = 'Go to implementation' }
+)
+
+vim.keymap.set({ 'n', 'x' }, '<Leader>sh', vim.lsp.buf.document_highlight, { desc = 'Highlight usages' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>sH', vim.lsp.buf.document_highlight, { desc = 'Remove symbol highlights' })
+
 -- Tools 🧰
-vim.keymap.set({ 'n', 'x' }, '<Leader>tc', '<Cmd>TmuxFocusOrOpen claude<Cr>', { desc = 'claude' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>tC', '<Cmd>TmuxFocusOrOpen claude --continue<Cr>', { desc = 'claude --continue' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>td', '<Cmd>TmuxFocusOrOpen lazydocker<Cr>', { desc = 'lazydocker' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>ts', '<Cmd>TmuxFocusOrOpen lazysql<Cr>', { desc = 'lazysql' })
 
