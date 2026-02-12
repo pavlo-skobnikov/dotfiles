@@ -39,6 +39,7 @@ brew "tmux"   # Session, windows, panes, and the other goodness 🧘
 
 brew "lazygit"    # I'm so-o-o lazy 😴🛏️
 brew "lazydocker"
+brew "lazysql"
 
 
 ## [ Casks 🍺 ]
