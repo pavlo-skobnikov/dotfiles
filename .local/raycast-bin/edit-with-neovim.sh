@@ -11,63 +11,65 @@ set -euo pipefail
 # @raycast.icon ⌨️
 
 # Documentation:
-# @raycast.description Open Neovim in a new tmux window within Ghostty to edit selected text.
+# @raycast.description Open Neovim in Tmux within Ghostty to edit selected text.
 # @raycast.author paulie
 # @raycast.authorURL https://raycast.com/paulie
 
 # This script is a simplified adaptation of the `vim-anywhere` project by
 # Chris Knadler. REFERENCE: https://github.com/cknadler/vim-anywhere
 #
-# This script quickly opens a Neovim session in a new tmux window inside Ghostty,
-# containing the currently selected text from another application for editing.
-# After saving and quitting, the buffer is copied into the system clipboard.
+# This script opens a tmux session called "nvim-anywhere", creates a temporary
+# file in the "/tmp/nvim/anywhere" directory with the currently
+# selected text, and starts Neovim in that file. After editing, it pipes the
+# contents of the file back into the system clipboard and switches back to the
+# originally focused application when starting this script.
 
-# Save the currently-focused application to later switch back to it.
-current_app=$(osascript -e 'tell application "System Events"' \
-    -e 'copy (name of first application process whose frontmost is true) as text' \
-    -e 'end tell')
+# The directory to store edit files across editing script runs.
+edit_files_path="/tmp/nvim/anywhere"
 
-# This directory will hold the result text edited by Neovim.
-compose_dir="/tmp/nvim/anywhere"
+# A unique edit ID for the current script run => basically a timestamp.
+edit_id="$(date -u +%Y_%m_%dT%H_%M_%SZ)"
+
+# The path to the edit file for the current script run.
+edit_file="$edit_files_path/$edit_id.md"
 
 # Ensure the compose directory exists.
-mkdir -p "$compose_dir"
+mkdir -p "$edit_files_path"
 
-# Create a unique compose file named with the current timestamp.
-compose_file="$compose_dir/$(date +'%Y-%m-%d-%H-%M-%S').md"
+# Save the currently focused application to restore it later after finishing the edit.
+focused_app=$(osascript -e 'tell application "System Events" to get name of (first process whose frontmost is true)')
 
-# Use Apple script to copy the current selection to the clipboard.
-osascript -e 'tell application "System Events" to keystroke "c" using command down'
+# Copy the current selection to the clipboard by triggering `Command+c`.
+osascript -e 'tell application "System Events" to keystroke "c" using command down' &
+sleep 0.2
 
-# Wait a moment to ensure the clipboard has the copied text. This is fragile
-# but often works in practice.
-sleep 0.1
-
-# Focus the Ghostty application.
+# Focus Ghostty.
 osascript -e 'tell application "Ghostty" to activate'
 
 # Pipes the clipboard contents to the compose file.
-pbpaste >"$compose_file"
+pbpaste >"$edit_file"
 
-# Create a unique signal name (incl. PID) for Tmux to avoid race conditions.
-signal_name="neovim_finished_$$"
+# Create or switch to the nvim-anywhere session.
+session="nvim-anywhere"
+if ! tmux has-session -t "$session" 2>/dev/null; then
+    tmux new-session -ds "$session" -c "$edit_files_path"
+else
+    tmux switch-client -t "$session"
+fi
 
 # Create a new tmux window named "nvim-anywhere", run Neovim with the compose file,
 # and signal completion via tmux wait-for when Neovim exits.
-tmux new-window -n nvim-anywhere -c "$(dirname "$compose_file")" \
-    "nvim '$compose_file'; tmux wait-for -S '$signal_name'"
+signal_name="nvim_anywhere_finished__$edit_id"
+tmux new-window -n "$edit_id" "nvim '$edit_file'; tmux wait-for -S '$signal_name'"
 
 # Wait for the signal to ensure Neovim has exited.
 tmux wait-for "$signal_name"
 
 # Copy the contents of the compose file into the system clipboard.
-cat "$compose_file" | pbcopy
+cat "$edit_file" | pbcopy
 
-# Switch back to the previous application.
-# `open -a` is not always reliable for bringing Finder to the front.
-if [ "$current_app" = "Finder" ]; then
-    osascript -e 'tell application "Finder" to activate'
-else
-    # `open -a` is generally more reliable for other applications.
-    open -a "$current_app"
-fi
+# Restore focus to the originally focused application.
+osascript -e "tell application \"$focused_app\" to activate"
+
+# Switch back to the previous session in tmux.
+tmux switch-client -l
