@@ -1,30 +1,48 @@
 #!/bin/bash
+set -euo pipefail
 
-if [ $# -lt 1 ]; then
+print_help() {
+    local script_name="$(basename $0)"
+
     cat <<EOF
+
     Script to create or switch to a tmux window with a specified terminal application.
 
-    Usage: open-or-switch-tmux-window-app.sh <APPLICATION_NAME>
-    Example: open-or-switch-tmux-window-app.sh 'lazygit'
-EOF
+    Usage: $script_name <APPLICATION_NAME> # Create/switch to a Tmux window with the given tool.
+           $script_name --help             # Print this message.
 
-    exit 1
+    Example: $script_name 'lazygit'
+EOF
+}
+
+# Run some validations.
+if [ -z "$TMUX" ]; then
+    echo "Error: not in a Tmux session"
+    exit 2
+elif [[ $# -lt 1 ]]; then
+    echo "Error: not enough arguments"
+    exit 2
+elif [[ $# -gt 1 ]]; then
+    echo "Error: too many arguments"
+    exit 2
 fi
 
-APP_NAME="$1"
+# Print help if requested.
+if [ "$1" == "--help" ]; then
+    print_help
+    exit 0
+fi
+
+app_name="$1"
 
 # Check if we're in a tmux session.
-if [ -z "$TMUX" ]; then
-    echo "Error: Not in a tmux session"
-    exit 1
-fi
 
 # List all windows in the session and check if one contains the app.
-WINDOW_INDEX="$(tmux list-windows | grep -i "$APP_NAME" | cut -d':' -f1 | head -n1)"
+window_index="$(tmux list-windows | grep -i "$app_name" | cut -d':' -f1 | head -n1)"
 
-if [ -n "$WINDOW_INDEX" ]; then
+if [ -n "$window_index" ]; then
     # Window with the application exists, switch to it.
-    tmux select-window -t "$WINDOW_INDEX"
+    tmux select-window -t "$window_index"
 else
-    tmux new-window "$APP_NAME"
+    tmux new-window "$app_name"
 fi
