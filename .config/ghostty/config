@@ -22,10 +22,10 @@ command = /opt/homebrew/bin/zsh --login  -c "/opt/homebrew/bin/tmux new-session 
 # Key Bindings ⌨️
 macos-option-as-alt = true
 
-# Title
+# Title 📚
 title = "Ghostty 👻"
 
-# Ensure passthrough of some key combinations to get picked up by Tmux.
+# Ensure passthrough of some key combinations to get picked up by Tmux 🎹
 keybind = ctrl+tab=esc:[27;5;9~
 
 keybind = ctrl+1=text:\x1b[27;5;49~

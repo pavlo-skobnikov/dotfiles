@@ -41,6 +41,10 @@ brew "lazygit"    # I'm so-o-o lazy 😴🛏️
 brew "lazydocker"
 brew "lazysql"
 
+# Extras... 🛸
+brew "tree-sitter-cli" # A utility tool for tree-sitter grammars.
+brew "tldr"            # Simplified and community-driven man pages.
+brew "mac-cleanup-go"  # A CLI tool to clean up MacOS caches, logs, etc.
 
 ## [ Casks 🍺 ]
 cask "karabiner-elements"        # 🎹
