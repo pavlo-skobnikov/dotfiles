@@ -5,8 +5,8 @@ require('mini.ai').setup {
   custom_textobjects = {
     d = gen_ai_spec.diagnostic(),
     i = gen_ai_spec.indent(),
-    l = gen_ai_spec.line(),
-    n = gen_ai_spec.number(),
+    L = gen_ai_spec.line(),
+    D = gen_ai_spec.number(),
   },
 }
 
@@ -33,7 +33,14 @@ require('mini.surround').setup {
 -- [ Git gutter 🌊 ]
 local diff = require 'mini.diff'
 
-diff.setup {}
+diff.setup {
+  mappings = {
+    goto_first = '[G',
+    goto_prev = '[g',
+    goto_next = ']g',
+    goto_last = ']G',
+  },
+}
 
 ---@diagnostic disable-next-line: missing-parameter
 vim.api.nvim_create_user_command('DiffToggleHunkOverlay', function() diff.toggle_overlay() end, {
