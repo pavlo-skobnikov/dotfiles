@@ -197,8 +197,8 @@ vim.keymap.set(
   { desc = 'Inspect supertypes' }
 )
 
-vim.keymap.set({ 'n', 'x' }, '<Leader>ai', vim.lsp.buf.incoming_calls, { desc = 'Navigate incoming calls' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>ao', vim.lsp.buf.outgoing_calls, { desc = 'Navigate outgoing calls' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>ac', vim.lsp.buf.incoming_calls, { desc = 'Navigate incoming calls' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>aC', vim.lsp.buf.outgoing_calls, { desc = 'Navigate outgoing calls' })
 
 -- Chatbots 🤖
 vim.keymap.set({ 'n', 'x' }, '<Leader>c', '<Cmd>TmuxFocusOrOpen claude<Cr>', { desc = 'claude' })

@@ -147,6 +147,10 @@ xmap gx <Plug>(Exchange)
 nmap gxc <Plug>(ExchangeClear)
 nmap gxx <Plug>(ExchangeLine)
 
+" Reset hunk.
+nmap gH <Action>(Vcs.RollbackChangedLines)
+xmap gH <Action>(Vcs.RollbackChangedLines)
+
 
 "" Unimpaired maps section 🦅
 
