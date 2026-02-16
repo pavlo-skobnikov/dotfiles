@@ -1,0 +1,203 @@
+# [ General settings 🔧 ]
+layouts:
+  - tall
+  - fullscreen
+  # - tall-right
+  - wide
+  # - two-pane
+  # - middle-wide
+  # - 3column-left
+  # - middle-wide # The legacy name of "3column-middle"
+  # - 3column-right
+  # - 4column-left
+  # - 4column-right
+  - column
+  # - row
+  # - floating
+  # - widescreen-tall
+  # - widescreen-tall-right
+  # - bsp
+
+window-margins: true
+window-margin-size: 8
+
+floating: []
+
+hide-menu-bar-icon: true
+
+mouse-follows-focus: true
+focus-follows-mouse: false
+
+enables-layout-hud: true
+enables-layout-hud-on-space-change: false
+
+follow-space-thrown-windows: false
+
+window-resize-step: 5
+
+screen-padding-left: 4
+screen-padding-right: 4
+screen-padding-top: 0
+screen-padding-bottom: 4
+
+restore-layouts-on-launch: true
+
+# [ Keybindings 🔑 ]
+mod1:
+  - control
+  - command
+
+mod2:
+  - control
+  - option
+
+# Commands 👮‍♂️
+# Special key values:
+#   - space
+#   - enter
+#   - up
+#   - right
+#   - down
+#   - left
+# Special characters require quotes, for ex.:
+#   - '.'
+#   - ','
+
+# Focus/swap windows within a space 🌌
+focus-ccw:
+  mod: mod1
+  key: h
+
+focus-cw:
+  mod: mod1
+  key: l
+
+focus-main:
+  mod: mod1
+  key: m
+
+swap-ccw:
+  mod: mod2
+  key: h
+
+swap-cw:
+  mod: mod2
+  key: l
+
+swap-main:
+  mod: mod2
+  key: m
+
+# Resize windows => [i]n/[o]ut 📏
+shrink-main:
+  mod: mod1
+  key: i
+
+expand-main:
+  mod: mod1
+  key: o
+
+# Throw a window to a space 🧑‍🔧
+throw-space-1:
+  mod: mod2
+  key: 1
+
+throw-space-2:
+  mod: mod2
+  key: 2
+
+throw-space-3:
+  mod: mod2
+  key: 3
+
+throw-space-4:
+  mod: mod2
+  key: 4
+
+throw-space-5:
+  mod: mod2
+  key: 5
+
+throw-space-6:
+  mod: mod2
+  key: 6
+
+throw-space-7:
+  mod: mod2
+  key: 7
+
+throw-space-8:
+  mod: mod2
+  key: 8
+
+throw-space-9:
+  mod: mod2
+  key: 9
+
+throw-space-10:
+  mod: mod2
+  key: 0
+
+# Focus/swap windows across screens 🖥️
+focus-screen-ccw:
+  mod: mod1
+  key: p
+
+focus-screen-cw:
+  mod: mod1
+  key: n
+
+swap-screen-ccw:
+  mod: mod2
+  key: p
+
+swap-screen-cw:
+  mod: mod2
+  key: n
+
+# Select layouts 🖼️
+select-tall-layout:
+  mod: mod1
+  key: t
+
+select-wide-layout:
+  mod: mod1
+  key: w
+
+select-fullscreen-layout:
+  mod: mod1
+  key: f
+
+select-column-layout:
+  mod: mod1
+  key: c
+
+# Rerun the current layout's algorithm 🏗️
+reevaluate-windows:
+  mod: mod1
+  key: r
+
+# Toggle the floating state of the currently focused window 🎯
+toggle-float:
+  mod: mod1
+  key: enter
+
+# Display the layout HUD ℹ️
+display-current-layout:
+  mod: mod2
+  key: i
+
+# Turn on or off tiling entirely 📺
+toggle-tiling:
+  mod: mod2
+  key: t
+
+# Turn on or off focus-follows-mouse 🐀
+toggle-focus-follows-mouse:
+  mod: mod2
+  key: x
+
+# Quit and reopen Amethyst 🧰
+relaunch-amethyst:
+  mod: mod2
+  key: r
