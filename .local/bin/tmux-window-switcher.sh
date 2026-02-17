@@ -35,14 +35,12 @@ fi
 
 app_name="$1"
 
-# Check if we're in a tmux session.
-
 # List all windows in the session and check if one contains the app.
-window_index="$(tmux list-windows | grep -i "$app_name" | cut -d':' -f1 | head -n1)"
+window_index="$(tmux list-windows | grep -i "$app_name" | cut -d':' -f1 | head -n1 2>/dev/null || true)"
 
+# Switch to or create the Tmux window.
 if [ -n "$window_index" ]; then
-    # Window with the application exists, switch to it.
     tmux select-window -t "$window_index"
 else
-    tmux new-window "$app_name"
+    tmux new-window "$@"
 fi
