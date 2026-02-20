@@ -12,7 +12,7 @@ theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 cursor-color = cell-foreground
 
 window-padding-balance = true
-window-padding-color = extend
+window-padding-color = background
 
 window-theme = system
 
