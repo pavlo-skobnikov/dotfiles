@@ -102,19 +102,9 @@ xmap <C-b> zH
 nnoremap <C-l> :nohlsearch<Cr>
 
 "" Goto section 🚎
-" Use system clipboard.
-nnoremap gy "+
-xnoremap gy "+
-onoremap gy "+
-
-" Use blackhole register.
-nnoremap gb "_
-xnoremap gb "_
-onoremap gb "_
-
 " Go to type definition.
-nmap gY <Action>(GotoTypeDeclaration)
-xmap gY <Action>(GotoTypeDeclaration)
+nmap gy <Action>(GotoTypeDeclaration)
+xmap gy <Action>(GotoTypeDeclaration)
 
 " Execute ':normal ...'.
 nnoremap gE :echo Select first!<Cr>

@@ -145,12 +145,9 @@ vim.keymap.set({ 'n', 'x' }, '<C-f>', 'zL', { desc = 'Half-screen right' })
 vim.keymap.set({ 'n', 'x' }, '<C-b>', 'zH', { desc = 'Half-screen left' })
 
 -- [ Goto 🏃‍♂️ ]
-vim.keymap.set({ 'n', 'x' }, 'gy', '"+', { desc = 'Use system clipboard' })
-vim.keymap.set({ 'n', 'x' }, 'gb', '"_', { desc = 'Use blackhole register' })
-
 vim.keymap.set({ 'n', 'x' }, 'gd', "<Cmd>Pick lsp scope='definition'<Cr>", { desc = 'Go to definition' })
 vim.keymap.set({ 'n', 'x' }, 'gD', "<Cmd>Pick lsp scope='declaration'<Cr>", { desc = 'Go to declaration' })
-vim.keymap.set({ 'n', 'x' }, 'gY', "<Cmd>Pick lsp scope='type_definition'<Cr>", { desc = 'Go to type definition' })
+vim.keymap.set({ 'n', 'x' }, 'gy', "<Cmd>Pick lsp scope='type_definition'<Cr>", { desc = 'Go to type definition' })
 
 vim.keymap.set('n', 'gE', '<Cmd>set opfunc=v:lua.NormalOperatorFunction<Cr>g@', { desc = 'Execute {cmd}' })
 vim.keymap.set('x', 'gE', ':normal ', { desc = 'Execute {cmd}' })
