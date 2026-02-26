@@ -124,11 +124,6 @@ vim.opt.listchars = {
   trail = '·',
 }
 
--- Configure Netrw.
-vim.g.netrw_banner = 0
-vim.g.netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
-vim.g.netrw_localcopydircmd = 'cp -r'
-
 -- Load External plugin configurations ⚙️
 require 'plugin-configuration.catppuccin'
 require 'plugin-configuration.treesitter'
