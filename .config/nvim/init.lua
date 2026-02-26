@@ -275,7 +275,7 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>u', '<Cmd>Undotree<Cr>', { desc = 'Undotre
 -- Quick search actions 🔍
 vim.keymap.set({ 'n', 'x' }, "<Leader>'", '<Cmd>Pick resume<Cr>', { desc = 'Resume last picker' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>,', '<Cmd>Pick buffers<Cr>', { desc = 'Switch buffers' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>.', '<Cmd>Pick files<Cr>', { desc = 'Find files' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>.', "<Cmd>Pick files tool='fd'<Cr>", { desc = 'Find files' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>/', '<Cmd>Pick grep_live<Cr>', { desc = 'Grep project' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>:', '<Cmd>Pick history<Cr>', { desc = 'Search :history' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>\\', ':<C-u>Pick ', { desc = 'Pick a picker' })

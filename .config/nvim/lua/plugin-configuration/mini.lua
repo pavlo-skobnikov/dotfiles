@@ -96,7 +96,11 @@ clue.setup {
 }
 
 -- [ Icons 🖼️ ]
-require('mini.icons').setup {}
+local icons = require 'mini.icons'
+
+icons.setup {}
+
+icons.mock_nvim_web_devicons()
 
 -- [ Fuzzy picker 🦙 ]
 local pick = require 'mini.pick'
@@ -107,35 +111,17 @@ pick.setup {
   window = { config = function() return { width = vim.opt.columns:get() } end },
   -- Keys for performing actions. See `:h MiniPick-actions`.
   mappings = {
-    caret_left = '<C-f>',
-    caret_right = '<C-b>',
-
-    choose = '<CR>',
-    choose_in_split = '<C-s>',
-    choose_in_tabpage = '<C-t>',
-    choose_in_vsplit = '<C-v>',
+    mark = '<C-y>',
     choose_marked = '<C-q>',
 
-    delete_char = '<BS>',
-    delete_char_right = '<Del>',
-    delete_left = '<C-u>',
-    delete_word = '<C-w>',
-
-    mark = '<C-x>',
-    mark_all = '<C-a>',
-
-    move_down = '<C-n>',
-    move_start = '<C-s>',
-    move_up = '<C-p>',
-
-    paste = '<C-r>',
-
     refine = '<C-Space>',
+    refine_marked = '',
 
-    scroll_left = '<C-h>',
     scroll_down = '<C-j>',
     scroll_up = '<C-k>',
-    scroll_right = '<C-l>',
+
+    toggle_info = '<C-o>',
+    toggle_preview = '<C-i>',
   },
 }
 
