@@ -260,7 +260,7 @@ vim.keymap.set(
 )
 
 vim.keymap.set({ 'n', 'x' }, '<Leader>sh', vim.lsp.buf.document_highlight, { desc = 'Highlight usages' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>sH', vim.lsp.buf.document_highlight, { desc = 'Remove symbol highlights' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>sH', vim.lsp.buf.clear_references, { desc = 'Remove symbol highlights' })
 
 -- Tools 🧰
 vim.keymap.set({ 'n', 'x' }, '<Leader>td', '<Cmd>TmuxFocusOrOpen lazydocker<Cr>', { desc = 'lazydocker' })
