@@ -111,6 +111,9 @@ pick.setup {
   window = { config = function() return { width = vim.opt.columns:get() } end },
   -- Keys for performing actions. See `:h MiniPick-actions`.
   mappings = {
+    caret_left = '<C-b>',
+    caret_right = '<C-f>',
+
     mark = '<C-y>',
     choose_marked = '<C-q>',
 
