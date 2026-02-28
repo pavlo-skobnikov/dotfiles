@@ -259,6 +259,7 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>sH', vim.lsp.buf.clear_references, { desc 
 -- Tools 🧰
 vim.keymap.set({ 'n', 'x' }, '<Leader>td', '<Cmd>TmuxFocusOrOpen lazydocker<Cr>', { desc = 'lazydocker' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>ts', '<Cmd>TmuxFocusOrOpen lazysql<Cr>', { desc = 'lazysql' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>tt', '<Cmd>TmuxFocusOrOpen zsh<Cr>', { desc = 'Terminal (zsh)' })
 
 -- Undotree ↩️
 vim.keymap.set({ 'n', 'x' }, '<Leader>u', '<Cmd>Undotree<Cr>', { desc = 'Undotree' })
