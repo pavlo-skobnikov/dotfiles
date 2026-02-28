@@ -23,8 +23,8 @@ require('blink-cmp').setup {
     ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
     ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
 
-    ['<C-j>'] = { 'scroll_documentation_up', 'fallback' },
-    ['<C-k>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<C-k>'] = { 'scroll_documentation_up', 'fallback' },
 
     ['<C-h>'] = { 'snippet_backward', 'fallback' },
     ['<C-l>'] = { 'snippet_forward', 'fallback' },
