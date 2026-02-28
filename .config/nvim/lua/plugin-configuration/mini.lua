@@ -239,5 +239,55 @@ pick.registry.arguments = function()
   }
 end
 
+pick.registry.qflist_history = function()
+  -- Exit early if no quickfix history is available.
+  local last_nr = vim.fn.getqflist({ nr = '$' }).nr
+  if last_nr == 0 then
+    vim.notify('Quickfix history is empty', vim.log.levels.INFO)
+    return
+  end
+
+  -- Build the items list (in a reverse order, so the newer entries are at the top)
+  local current_nr = vim.fn.getqflist({ nr = 0 }).nr
+  local items = {}
+
+  for i = last_nr, 1, -1 do
+    local info = vim.fn.getqflist { nr = i, id = 0, title = 0, size = 0 }
+    local indicator = (i == current_nr) and '*' or ' '
+    local title = (info.title and info.title ~= '') and info.title or '[No Title]'
+
+    table.insert(items, {
+      -- Display the command that created the quickfix list and the number of entries.
+      text = string.format('%s %d: %s (%d items)', indicator, i, title, info.size),
+      -- Store the target number so we can access it in the `choose` callback
+      nr = i,
+    })
+  end
+
+  -- Start the picker.
+  MiniPick.start {
+    source = {
+      name = 'Quickfix History',
+      items = items,
+      choose = function(item)
+        -- `mini.pick` automatically closes the picker UI before this runs
+        local target_nr = item.nr
+        local current = vim.fn.getqflist({ nr = 0 }).nr
+
+        -- Navigate back or forward in the history stack.
+        if target_nr < current then
+          vim.cmd((current - target_nr) .. 'colder')
+        elseif target_nr > current then
+          vim.cmd((target_nr - current) .. 'cnewer')
+        end
+
+        -- Open the quickfix window to show the newly selected list
+        vim.cmd 'copen'
+        vim.notify(string.format('Switched to Quickfix List #%d', target_nr), vim.log.levels.INFO)
+      end,
+    },
+  }
+end
+
 -- [ Extra stuff 🎉 ]
 extra.setup {}

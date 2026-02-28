@@ -229,14 +229,8 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>m4', '<Cmd>4argument<Cr>', { desc = 'Go to
 vim.keymap.set({ 'n', 'x' }, '<Leader>m/', '<Cmd>Pick arguments<Cr>', { desc = 'Search args' })
 
 -- Quickfix 🚨
-vim.keymap.set({ 'n', 'x' }, '<Leader>qq', '<Cmd>copen<Cr>', { desc = 'Open/focus list' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qc', '<Cmd>cclose<Cr>', { desc = 'Close list' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qf', ':<C-u>Cfilter', { desc = 'Filter entries' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qd', ':<C-u>cdo ', { desc = 'Do {cmd} over list' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qh', '<Cmd>chistory<Cr>', { desc = 'List history' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qo', '<Cmd>colder<Cr>', { desc = 'Older list' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>qn', '<Cmd>cnewer<Cr>', { desc = 'Newer list' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>q/', "<Cmd>Pick list scope='quickfix'<Cr>", { desc = 'Search list' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>q', "<Cmd>Pick list scope='quickfix'<Cr>", { desc = 'Search qflist' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>Q', '<Cmd>Pick qflist_history<Cr>', { desc = 'Search qflist history' })
 
 -- Symbols 🤑
 vim.keymap.set(
