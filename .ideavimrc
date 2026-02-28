@@ -112,12 +112,12 @@ xnoremap gE :normal
 onoremap gE :normal 
 
 " Replace w/ ':substitute/...'.
-nnoremap gR :echo Select first!<Cr>'
+nnoremap gR :echo Select first!<Cr>
 xnoremap gR :substitute/
 onoremap gR :substitute/
 
 " Organize alphabetically.
-nnoremap go :echo Select first!<Cr>'
+nnoremap go :echo Select first!<Cr>
 xnoremap go :sort<Cr>
 onoremap go :sort<Cr>
 
@@ -180,11 +180,11 @@ nnoremap ]<Space> mzo<esc>`z
 vnoremap ]<Space> <esc>O<esc>gv
 
 " Increase/decrease selection.
-nmap [v <Action>(EditorUnSelectWord)
-xmap [v <Action>(EditorUnSelectWord)
+nmap [r <Action>(EditorUnSelectWord)
+xmap [r <Action>(EditorUnSelectWord)
 
-nmap ]v <Action>(EditorSelectWord)
-xmap ]v <Action>(EditorSelectWord)
+nmap ]r <Action>(EditorSelectWord)
+xmap ]r <Action>(EditorSelectWord)
 
 
 "" Multicursor section 🎶
