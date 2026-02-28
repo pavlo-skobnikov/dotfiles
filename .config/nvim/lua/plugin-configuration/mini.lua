@@ -224,17 +224,38 @@ pick.registry.directories = function()
 end
 
 pick.registry.arguments = function()
-  MiniPick.start {
+  local items = vim
+    ---@diagnostic disable-next-line: param-type-mismatch
+    .iter(ipairs(vim.fn.argv()))
+    :map(function(ind, arg)
+      return {
+        -- Display the entries in the following format: `<INDEX>: <ARG>`
+        text = ind .. ': ' .. arg,
+        nr = ind,
+        arg = arg,
+      }
+    end)
+    :totable()
+
+  pick.start {
     mappings = {
       -- Delete the selected argument, refresh the items, and continue.
       delete_arg = {
         char = '<C-d>',
-        func = get_selections_removing_function(function(_, item) vim.cmd.argdelete(item) end),
+        func = get_selections_removing_function(function(_, item) vim.cmd.argdelete(item.arg) end),
       },
     },
     source = {
-      items = vim.fn.argv,
+      choose = function(item)
+        -- Manually feed keys because `vim.cmd` isn't switching buffers from
+        -- within this callback for some reason.
+        local command = ':<C-u>argument ' .. item.nr .. '<Cr>'
+        local escaped_command = vim.api.nvim_replace_termcodes(command, true, true, true)
+
+        vim.api.nvim_feedkeys(escaped_command, 'n', false)
+      end,
       name = 'Arguments',
+      items = items,
     },
   }
 end
@@ -265,12 +286,11 @@ pick.registry.qflist_history = function()
   end
 
   -- Start the picker.
-  MiniPick.start {
+  pick.start {
     source = {
       name = 'Quickfix History',
       items = items,
       choose = function(item)
-        -- `mini.pick` automatically closes the picker UI before this runs
         local target_nr = item.nr
         local current = vim.fn.getqflist({ nr = 0 }).nr
 

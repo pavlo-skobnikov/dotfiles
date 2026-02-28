@@ -219,14 +219,8 @@ vim.keymap.set({ 'n', 'x' }, '<Leader>j', "<Cmd>Pick list scope='jump'<Cr>", { d
 vim.keymap.set({ 'n', 'x' }, '<Leader>l', "<Cmd>Pick list scope='location'<Cr>", { desc = 'Search loclist' })
 
 -- Marks (using arglist) ❗
-vim.keymap.set({ 'n', 'x' }, '<Leader>ma', '<Cmd>$argadd % | argdedupe<Cr>', { desc = 'Add file to argslist' })
-
-vim.keymap.set({ 'n', 'x' }, '<Leader>m1', '<Cmd>1argument<Cr>', { desc = 'Go to 1st arg' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>m2', '<Cmd>2argument<Cr>', { desc = 'Go to 2nd arg' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>m3', '<Cmd>3argument<Cr>', { desc = 'Go to 3rd arg' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>m4', '<Cmd>4argument<Cr>', { desc = 'Go to 4th arg' })
-
-vim.keymap.set({ 'n', 'x' }, '<Leader>m/', '<Cmd>Pick arguments<Cr>', { desc = 'Search args' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>m', '<Cmd>Pick arguments<Cr>', { desc = 'Search args' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>M', '<Cmd>$argadd % | argdedupe<Cr>', { desc = 'Add file to argslist' })
 
 -- Quickfix 🚨
 vim.keymap.set({ 'n', 'x' }, '<Leader>q', "<Cmd>Pick list scope='quickfix'<Cr>", { desc = 'Search qflist' })
@@ -269,5 +263,4 @@ vim.keymap.set({ 'n', 'x' }, "<Leader>'", '<Cmd>Pick resume<Cr>', { desc = 'Resu
 vim.keymap.set({ 'n', 'x' }, '<Leader>,', '<Cmd>Pick buffers<Cr>', { desc = 'Switch buffers' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>.', "<Cmd>Pick files tool='fd'<Cr>", { desc = 'Find files' })
 vim.keymap.set({ 'n', 'x' }, '<Leader>/', '<Cmd>Pick grep_live<Cr>', { desc = 'Grep project' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>:', '<Cmd>Pick history<Cr>', { desc = 'Search :history' })
-vim.keymap.set({ 'n', 'x' }, '<Leader>\\', ':<C-u>Pick ', { desc = 'Pick a picker' })
+vim.keymap.set({ 'n', 'x' }, '<Leader>:', '<Cmd>Pick history<Cr>', { desc = 'Search command/search history' })
