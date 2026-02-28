@@ -1,5 +1,7 @@
+local extra = require 'mini.extra'
+
 -- [ Text changes 📒 ]
-local gen_ai_spec = require('mini.extra').gen_ai_spec
+local gen_ai_spec = extra.gen_ai_spec
 
 require('mini.ai').setup {
   custom_textobjects = {
@@ -111,10 +113,7 @@ pick.setup {
   window = { config = function() return { width = vim.opt.columns:get() } end },
   -- Keys for performing actions. See `:h MiniPick-actions`.
   mappings = {
-    caret_left = '<C-b>',
-    caret_right = '<C-f>',
-
-    mark = '<C-y>',
+    mark = '<C-i>',
     choose_marked = '<C-q>',
 
     refine = '<C-Space>',
@@ -124,7 +123,7 @@ pick.setup {
     scroll_up = '<C-k>',
 
     toggle_info = '<C-o>',
-    toggle_preview = '<C-i>',
+    toggle_preview = '<C-y>',
   },
 }
 
@@ -134,19 +133,28 @@ pick.registry.git_files = nil
 pick.registry.visit_labels = nil
 pick.registry.visit_paths = nil
 
----Creates a picker "action" for the currently selected item via the processing
----function. After processing, the picker will not be closed.
-local function get_selection_processing_function(func)
+---Creates a picker "action" for the currently selected item or marked items via
+---the processing function. After processing, the picker will not be closed.
+local function get_selections_removing_function(func)
   return function()
     -- Retrieve the matched items.
     local matches = pick.get_picker_matches()
     if matches == nil then return true end
 
-    -- Process the current selection.
-    func(matches.current)
+    -- If there are multiple marked items, apply the function to all of them.
+    -- Otherwise, process the currently selected (highlighted) item.
+    if #matches.marked > 1 then
+      vim.iter(ipairs(matches.marked_inds)):each(function(ind) func(ind, matches.all[ind]) end)
 
-    -- Remove it from the picker entries.
-    table.remove(matches.all, matches.current_ind)
+      -- Remove the items from the larget indices first to avoid index issues.
+      table.sort(matches.marked_inds, function(a, b) return a > b end)
+      vim.iter(matches.marked_inds):each(function(item) table.remove(matches.all, item) end)
+    else
+      func(matches.current_ind, matches.current)
+      table.remove(matches.all, matches.current_ind)
+    end
+
+    -- Set the updated item list into the picker.
     pick.set_picker_items(matches.all)
 
     return false
@@ -159,12 +167,50 @@ pick.registry.buffers = function(local_opts, opts)
   opts.mappings = opts.mappings or {}
   opts.mappings.delete_buf = {
     char = '<C-d>',
-    func = get_selection_processing_function(
-      function(current) vim.api.nvim_buf_delete(current.bufnr, { force = true }) end
+    func = get_selections_removing_function(
+      function(_, item) vim.api.nvim_buf_delete(item.bufnr, { force = true }) end
     ),
   }
 
   pick.builtin.buffers(local_opts, opts)
+end
+
+pick.registry.list = function(local_opts, opts)
+  opts = opts or {}
+  opts.mappings = opts.mappings or {}
+
+  if local_opts.scope == 'quickfix' then
+    opts.mappings.delete_qflist_entry = {
+      char = '<C-d>',
+      func = get_selections_removing_function(function(ind, _)
+        local qflist_entries = vim.fn.getqflist()
+
+        table.remove(qflist_entries, ind)
+        vim.fn.setqflist(qflist_entries, 'r')
+      end),
+    }
+
+    opts.mappings.qflist_filter = {
+      char = '<C-f>',
+      func = function()
+        local term = vim.fn.input 'Filter quickfix for term: '
+
+        -- Support filtering out items with a leading exclamation mark.
+        if term:sub(1, 1) == '!' then
+          vim.cmd('Cfilter! ' .. term:sub(2))
+        elseif term:sub(1, 2) == '\\!' then
+          vim.cmd('Cfilter! ' .. term:sub(2))
+        else
+          vim.cmd('Cfilter ' .. term)
+        end
+
+        pick.stop()
+        extra.pickers.list(local_opts, opts)
+      end,
+    }
+  end
+
+  extra.pickers.list(local_opts, opts)
 end
 
 -- Custom pickers 📦
@@ -183,7 +229,7 @@ pick.registry.arguments = function()
       -- Delete the selected argument, refresh the items, and continue.
       delete_arg = {
         char = '<C-d>',
-        func = get_selection_processing_function(function(current) vim.cmd.argdelete(current) end),
+        func = get_selections_removing_function(function(_, item) vim.cmd.argdelete(item) end),
       },
     },
     source = {
@@ -194,4 +240,4 @@ pick.registry.arguments = function()
 end
 
 -- [ Extra stuff 🎉 ]
-require('mini.extra').setup {}
+extra.setup {}
