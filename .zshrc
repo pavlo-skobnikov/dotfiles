@@ -248,7 +248,7 @@ set-fast-theme() {
 
 # Start a Neovim server for remote commands.
 nvim-server() {
-    local servers_dir="/tmp/nvim"
+    local servers_dir="/tmp/nvim/servers"
 
     # Ensure the directory exists.
     mkdir -p "$servers_dir"
