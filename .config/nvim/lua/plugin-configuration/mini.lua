@@ -166,7 +166,7 @@ pick.registry.buffers = function(local_opts, opts)
   opts = opts or {}
   opts.mappings = opts.mappings or {}
   opts.mappings.delete_buf = {
-    char = '<C-d>',
+    char = '<C-x>',
     func = get_selections_removing_function(
       function(_, item) vim.api.nvim_buf_delete(item.bufnr, { force = true }) end
     ),
@@ -181,7 +181,7 @@ pick.registry.list = function(local_opts, opts)
 
   if local_opts.scope == 'quickfix' then
     opts.mappings.delete_qflist_entry = {
-      char = '<C-d>',
+      char = '<C-x>',
       func = get_selections_removing_function(function(ind, _)
         local qflist_entries = vim.fn.getqflist()
 
@@ -241,7 +241,7 @@ pick.registry.arguments = function()
     mappings = {
       -- Delete the selected argument, refresh the items, and continue.
       delete_arg = {
-        char = '<C-d>',
+        char = '<C-x>',
         func = get_selections_removing_function(function(_, item) vim.cmd.argdelete(item.arg) end),
       },
     },
