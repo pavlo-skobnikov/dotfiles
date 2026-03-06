@@ -1,0 +1,44 @@
+# Theme 🖼️
+[general]
+import = ["~/.config/alacritty/active-theme.toml"]
+
+# Fonts 🖋️
+[font]
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Thin" }
+bold = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font Mono", style = "Regular Italic" }
+size = 14
+
+# Make cursor text color match foreground color 🎨
+[colors.cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[window]
+# Center content 🎬
+dynamic_padding = true
+
+# Use option as alt key 🎯
+option_as_alt = "Both"
+
+# Startup command 🚀
+[terminal.shell]
+program = "/opt/homebrew/bin/zsh"
+args = ["--login", "-c", "/opt/homebrew/bin/tmux new-session -A -s home -c ~/"]
+
+# Ensure passthrough of some key combinations to get picked up by Tmux 🎹
+[keyboard]
+bindings = [
+  { key = "Tab", mods = "Control", chars = "\u001b[27;5;9~" },
+  { key = "Key1", mods = "Control", chars = "\u001b[27;5;49~" },
+  { key = "Key2", mods = "Control", chars = "\u001b[27;5;50~" },
+  { key = "Key3", mods = "Control", chars = "\u001b[27;5;51~" },
+  { key = "Key4", mods = "Control", chars = "\u001b[27;5;52~" },
+  { key = "Key5", mods = "Control", chars = "\u001b[27;5;53~" },
+  { key = "Key6", mods = "Control", chars = "\u001b[27;5;54~" },
+  { key = "Key7", mods = "Control", chars = "\u001b[27;5;55~" },
+  { key = "Key8", mods = "Control", chars = "\u001b[27;5;56~" },
+  { key = "Key9", mods = "Control", chars = "\u001b[27;5;57~" },
+  { key = "Key0", mods = "Control", chars = "\u001b[27;5;48~" },
+]

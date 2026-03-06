@@ -5,3 +5,5 @@
 **/assets/*
 **/automatic_backups/*
 
+# Symlinked items.
+.config/alacritty/active-theme.toml

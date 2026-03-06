@@ -29,6 +29,17 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
 
+## [ Set colors for terminal tools 🎨 ]
+if [ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]; then
+    ln --symbolic --force ~/.config/alacritty/themes/catppuccin-latte.toml ~/.config/alacritty/active-theme.toml
+else
+    ln --symbolic --force ~/.config/alacritty/themes/catppuccin-frappe.toml ~/.config/alacritty/active-theme.toml
+fi
+
+# Force Alacritty to pick up the active theme.
+touch ~/.config/alacritty/alacritty.toml
+
+
 ## [ Completions 🧩 ]
 # Add community completions.
 # NOTE: Requires `zsh-completions` to be installed.
