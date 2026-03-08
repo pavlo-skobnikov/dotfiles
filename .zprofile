@@ -31,6 +31,9 @@ export PAGER='less'
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
+# Starship configuration.
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+
 # Fzf configuration.
 export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"'
 export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/config"

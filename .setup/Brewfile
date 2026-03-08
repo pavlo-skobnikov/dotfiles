@@ -33,9 +33,10 @@ brew "nvm"       # Because what do you mean you don't have JS on the back-end?
 
 brew "tesseract" # 🤖👀
 
-brew "neovim" # Modernity? In my terminal? Impossible 🤯
-brew "fzf"    # Fuzzy search, fuzzy life 🌳
-brew "tmux"   # Session, windows, panes, and the other goodness 🧘
+brew "starship" # A promt to explore the ~stars~ 🌠
+brew "neovim"   # Modernity? In my terminal? Impossible 🤯
+brew "fzf"      # Fuzzy search, fuzzy life 🌳
+brew "tmux"     # Session, windows, panes, and the other goodness 🧘
 
 brew "lazygit"    # I'm so-o-o lazy 😴🛏️
 brew "lazydocker"

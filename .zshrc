@@ -33,9 +33,11 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 if [ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]; then
     ln --symbolic --force ~/.config/alacritty/themes/catppuccin-latte.toml ~/.config/alacritty/active-theme.toml
     ln --symbolic --force ~/.config/fzf/config-latte ~/.config/fzf/config
+    ln --symbolic --force ~/.config/starship/starship-latte.toml ~/.config/starship/starship.toml
 else
     ln --symbolic --force ~/.config/alacritty/themes/catppuccin-frappe.toml ~/.config/alacritty/active-theme.toml
     ln --symbolic --force ~/.config/fzf/config-frappe ~/.config/fzf/config
+    ln --symbolic --force ~/.config/starship/starship-frappe.toml ~/.config/starship/starship.toml
 fi
 
 # Force Alacritty to pick up the active theme.
@@ -98,12 +100,10 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 
-## [ Custom simple prompt 💬 ]
-local bb='%K{black} %k' # [B]lock [b]lack.
-local bw='%K{white} %k' # [B]lock [w]hite.
+## [ Customize the prompt 💬 ]
 
-precmd() { printf '\n'; print -rP "$bw$bb 📁 %d $bb$bw" }
-export PS1=" %F{green}%%%f "
+# Use the starship prompt.
+eval "$(starship init zsh)"
 
 # Switch cursors shapes for NORMAL and INSERT modes.
 set_cursor_and_vi_mode_prompt() {
