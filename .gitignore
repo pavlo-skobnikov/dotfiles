@@ -7,3 +7,4 @@
 
 # Symlinked items.
 .config/alacritty/active-theme.toml
+.config/fzf/config

@@ -1,0 +1,12 @@
+--layout=reverse
+--height 100%
+--ansi
+--preview-window 'right:50%'
+--preview-border 'sharp'
+--bind ctrl-i:toggle,ctrl-a:toggle-all,ctrl-g:first,ctrl-q:accept-non-empty
+--bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-k:preview-half-page-up,ctrl-j:preview-half-page-down
+--color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284
+--color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF
+--color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284
+--color=selected-bg:#51576D
+--color=border:#737994,label:#C6D0F5
