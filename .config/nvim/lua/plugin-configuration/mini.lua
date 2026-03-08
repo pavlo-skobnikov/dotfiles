@@ -113,6 +113,9 @@ pick.setup {
   window = { config = function() return { width = vim.opt.columns:get() } end },
   -- Keys for performing actions. See `:h MiniPick-actions`.
   mappings = {
+    caret_left = '<C-b>',
+    caret_right = '<C-f>',
+
     mark = '<C-i>',
     choose_marked = '<C-q>',
 
@@ -191,7 +194,7 @@ pick.registry.list = function(local_opts, opts)
     }
 
     opts.mappings.qflist_filter = {
-      char = '<C-f>',
+      char = '<C-o>',
       func = function()
         local term = vim.fn.input 'Filter quickfix for term: '
 
