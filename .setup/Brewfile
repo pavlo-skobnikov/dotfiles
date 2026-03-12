@@ -23,6 +23,7 @@ brew "eza"     # ... ls.
 brew "bat"     # ... cat.
 brew "ripgrep" # ... grep.
 brew "fd"      # ... find.
+brew "delta"   # ... git pager.
 
 brew "coreutils" # The religiously correct set ot utils 🙏
 brew "moreutils" # The devilishly enticing extensions to the coreutils 😈
