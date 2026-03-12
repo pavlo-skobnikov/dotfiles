@@ -7,8 +7,5 @@
 echo "Chmod +x-ing scripts at [\$DOTFILES/.local/bin]..."
 chmod -R +x "$DOTFILES/.local/bin/"
 
-echo "Removing stow links for [\$DOTFILES] at [\$HOME]..."
-stow --dir "$DOTFILES" --target "$HOME" --delete .
-
-echo "Stowing [\$DOTFILES] at [\$HOME]..."
-stow --dir "$DOTFILES" --target "$HOME" .
+echo "Restowing links for [\$DOTFILES] at [\$HOME]..."
+stow --restow --dir "$DOTFILES" --target "$HOME" .
