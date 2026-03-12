@@ -16,3 +16,15 @@
 
 [core]
     autocrlf = input
+    pager = git delta
+
+[interactive]
+    diffFilter = git delta --color-only
+
+[delta]
+    navigate = true
+
+[alias]
+    delta = !delta --syntax-theme="$(if [ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]; \
+        then echo 'catppuccin-latte'; \
+        else echo 'catppuccin-frappe'; fi)"

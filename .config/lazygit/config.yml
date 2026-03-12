@@ -1,3 +1,6 @@
 gui:
   border: single
+git:
+  pagers:
+    - pager: git delta --paging=never --line-numbers
 
