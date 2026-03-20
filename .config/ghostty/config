@@ -4,7 +4,7 @@ font-family-bold = JetBrainsMono NFM Bold
 font-family-italic = JetBrainsMono NFM Italic
 font-family-bold-italic = JetBrainsMono NFM Bold Italic
 
-font-size = 14
+font-size = 14.5
 
 # Themeing 🎨
 theme = light:Catppuccin Latte,dark:Catppuccin Frappe
