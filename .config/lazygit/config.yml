@@ -2,5 +2,5 @@ gui:
   border: single
 git:
   pagers:
-    - pager: git delta --paging=never --line-numbers
+    - pager: ~/.config/lazygit/bin/delta-auto-detect-theme-wrapper.sh --paging=never --line-numbers
 
