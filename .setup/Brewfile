@@ -48,18 +48,17 @@ brew "tldr"            # Simplified and community-driven man pages.
 brew "mac-cleanup-go"  # A CLI tool to clean up MacOS caches, logs, etc.
 
 ## [ Casks 🍺 ]
-cask "font-jetbrains-mono-nerd-font" # 🪶
-cask "karabiner-elements"            # 🎹
-cask "homerow"                       # 🏡
-cask "raycast"                       # 🔍
-cask "voiceink"                      # 🗣️
+cask "karabiner-elements" # 🎹
+cask "homerow"            # 🏡
+cask "raycast"            # 🔍
+cask "voiceink"           # 🗣️
 
 cask "arc"      # 🔗
 cask "obsidian" # 🪨
 
 cask "docker" # 🐳
 
-cask "alacritty"     # ⚡
+cask "ghostty"       # 👻
 cask "intellij-idea" # 💡
 
 

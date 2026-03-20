@@ -31,15 +31,10 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 
 ## [ Set colors for terminal tools 🎨 ]
 if [ -z $(defaults read -g AppleInterfaceStyle 2> /dev/null) ]; then
-    ln --symbolic --force ~/.config/alacritty/themes/catppuccin-latte.toml ~/.config/alacritty/active-theme.toml
     ln --symbolic --force ~/.config/fzf/config-latte ~/.config/fzf/config
 else
-    ln --symbolic --force ~/.config/alacritty/themes/catppuccin-frappe.toml ~/.config/alacritty/active-theme.toml
     ln --symbolic --force ~/.config/fzf/config-frappe ~/.config/fzf/config
 fi
-
-# Force Alacritty to pick up the active theme.
-touch ~/.config/alacritty/alacritty.toml
 
 
 ## [ Completions 🧩 ]
