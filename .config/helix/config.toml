@@ -13,13 +13,13 @@ clipboard-provider = "pasteboard"
 end-of-line-diagnostics = "hint"
 inline-diagnostics.cursor-line = "warning"
 
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
 [editor.lsp]
 display-inlay-hints = true
-
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
 
 [editor.file-picker]
 hidden = false
@@ -54,7 +54,7 @@ enable = false
 # emulators (with some extra configurations) play nice together and not to annoy
 # me due to being too different.
 
-## NORMAL 🟢
+## NORMAL 🟡
 # Basic mappings 🔤
 [keys.normal]
 "esc" = "collapse_selection"
@@ -80,8 +80,8 @@ enable = false
 "-" = "rotate_selection_contents_backward"
 "+" = "rotate_selection_contents_forward"
 
-q = "replay_macro"
-Q = "record_macro"
+q = "record_macro"
+Q = "replay_macro"
 
 Y = ["extend_to_line_bounds", "yank"]
 
@@ -108,9 +108,6 @@ C = ["extend_to_line_bounds", "change_selection"]
 
 V = "extend_to_line_bounds"
 
-# n = ["extend_search_next", "merge_selections"]
-# N = ["extend_search_prev", "merge_selections"]
-
 # Remove [m]ain selection.
 M = "remove_primary_selection"
 
@@ -134,10 +131,18 @@ i = "no_op"
 
 # Unimpaired mode 🦅
 [keys.normal."["]
+q = "@<space>'<C-p><ret>"
+
+h = "earlier"
+
 s = "copy_selection_on_prev_line"
 m = "extend_search_prev"
 
 [keys.normal."]"]
+q = "@<space>'<C-n><ret>"
+
+h = "later"
+
 s = "copy_selection_on_next_line"
 m = "extend_search_next"
 
@@ -155,6 +160,8 @@ q = "no_op"
 ## SELECT 🔵
 # Basic mappings 🔤
 [keys.select]
+"space" = "@<esc><space>"
+
 "@" = "shell_append_output"
 
 "#" = ["search_selection", "search_prev"]
@@ -176,8 +183,8 @@ q = "no_op"
 "-" = "rotate_selection_contents_backward"
 "+" = "rotate_selection_contents_forward"
 
-q = "replay_macro"
-Q = "record_macro"
+q = "record_macro"
+Q = "replay_macro"
 
 Y = ["extend_to_line_bounds", "yank"]
 
@@ -193,7 +200,7 @@ S = "ensure_selections_forward"
 
 D = ["extend_to_line_bounds", "delete_selection"]
 
-G = "goto_file_end"
+G = "extend_to_file_end"
 
 ";" = "repeat_last_motion"
 
@@ -234,10 +241,18 @@ i = "no_op"
 
 # Unimpaired mode 🦅
 [keys.select."["]
+q = "@<esc><space>'<C-p><ret>"
+
+h = "earlier"
+
 s = "copy_selection_on_prev_line"
 m = "extend_search_prev"
 
 [keys.select."]"]
+q = "@<esc><space>'<C-n><ret>"
+
+h = "later"
+
 s = "copy_selection_on_next_line"
 m = "extend_search_next"
 
@@ -252,4 +267,126 @@ c = "wclose"
 q = "no_op"
 
 
-# TODO: Update space-based mappings.
+# Space-mode mappings 🌌
+[keys.normal.space]
+"," = "buffer_picker"
+"." = "file_picker_in_current_directory"
+
+T = "@<esc><space>/TODO: "
+
+# Clean up unnecessary mappings.
+"A-c" = "no_op"
+C = "no_op"
+F = "no_op"
+G = "no_op"
+b = "no_op"
+h = "no_op"
+r = "no_op"
+w = "no_op"
+
+# [A]ctions.
+[keys.normal.space.a]
+a = "code_action"
+r = "rename_symbol"
+c = ":lsp-workspace-command"
+
+d = "diagnostics_picker"
+D = "workspace_diagnostics_picker"
+
+# Chatbots 🤖
+[keys.normal.space.c]
+c = ":sh tmux-window-switcher.sh claude"
+C = ":sh tmux-window-switcher.sh claude --continue"
+
+# Debug 🪲
+[keys.normal.space.d]
+l = "dap_launch"
+r = "dap_restart"
+c = "dap_continue"
+p = "dap_pause"
+t = "dap_terminate"
+
+b = "dap_toggle_breakpoint"
+C = "dap_edit_condition"
+L = "dap_edit_log"
+e = "dap_enable_exceptions"
+E = "dap_disable_exceptions"
+
+i = "dap_step_in"
+o = "dap_step_out"
+n = "dap_next"
+
+v = "dap_variables"
+
+# Debug [s]witch
+[keys.normal.space.d.s]
+t = "dap_switch_thread"
+f = "dap_switch_stack_frame"
+
+# Debug [a]ctions.
+[keys.normal.space.d.a]
+s = "@:debug-start "
+r = "@:debug-remote "
+e = "@:debug-eval "
+
+# Explore file tree 🌳
+[keys.normal.space.e]
+e = [
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%{buffer_name}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+# [P]roject root.
+p = [
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -selection-path=/tmp/hx-lf "%sh{pwd}"',
+  ':open %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+# [C]hange work dir.
+c = [
+  ':sh rm -f /tmp/hx-lf',
+  ':insert-output lf -last-dir-path=/tmp/hx-lf "%sh{pwd}"',
+  ':cd %sh{if [ -s /tmp/hx-lf ]; then cat /tmp/hx-lf; fi }',
+  ':redraw',
+]
+
+# Files 🗃️
+[keys.normal.space.f]
+f = "file_picker_in_current_buffer_directory"
+c = "changed_file_picker"
+r = ":reload-all"
+# [Y]ank current file path to the system clipboard and echo it.
+y = ":sh echo %{buffer_name} | pbcopy; echo %{buffer_name}"
+
+# Git 🐙
+[keys.normal.space.g]
+g = ":sh tmux-window-switcher.sh lazygit"
+b = ":sh tmux new-window 'lazygit branch'"
+s = ":sh tmux new-window 'lazygit stash'"
+l = ":sh tmux new-window 'lazygit log'"
+f = ":sh tmux new-window 'lazygit --filter=\"%{buffer_name}\"'"
+
+# [A]nnotate w/ git blame.
+a = ":sh git blame -L %{cursor_line},+1 %{buffer_name}"
+# [O]pen current branch PR.
+o = ":sh gh pr view %sh{git branch --show-current} --web"
+
+# Options ⚙️
+[keys.normal.space.o]
+r = ":config-reload"
+c = ":config-open"
+w = ":config-open-workspace"
+
+# Symbols 🔣
+[keys.normal.space.s]
+S = "workspace_symbol_picker"
+s = "symbol_picker"
+h = "select_references_to_symbol_under_cursor"
+
+# Tools 🧰
+[keys.normal.space.t]
+t = ":sh tmux-window-switcher.sh zsh"
+d = ":sh tmux-window-switcher.sh lazydocker"
+s = ":sh tmux-window-switcher.sh lazysql"
