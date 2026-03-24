@@ -1,0 +1,255 @@
+# Basic options.
+theme = "catppuccin_frappe"
+
+[editor]
+mouse = false
+shell = ["/bin/zsh", "-c"]
+line-number = "relative"
+cursorline = true
+completion-timeout = 50
+rulers = [80, 100, 120]
+color-modes = true
+clipboard-provider = "pasteboard"
+end-of-line-diagnostics = "hint"
+inline-diagnostics.cursor-line = "warning"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.whitespace.render]
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+newline = "·"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
+
+[editor.smart-tab]
+enable = false
+
+
+# NOTE: The key mappings below are an awful amalgamation to make Helix and Vim
+# emulators (with some extra configurations) play nice together and not to annoy
+# me due to being too different.
+
+## NORMAL 🟢
+# Basic mappings 🔤
+[keys.normal]
+"esc" = "collapse_selection"
+
+"@" = "shell_append_output"
+
+"#" = ["search_selection", "search_prev"]
+
+"^" = "split_selection_on_newline"
+
+"*" = ["search_selection", "search_next"]
+
+"0" = [
+  "ensure_selections_forward",
+  "extend_to_line_end",
+  "flip_selections",
+  "extend_to_first_nonwhitespace",
+  "flip_selections",
+]
+
+"_" = '@"_'
+
+"-" = "rotate_selection_contents_backward"
+"+" = "rotate_selection_contents_forward"
+
+q = "replay_macro"
+Q = "record_macro"
+
+Y = ["extend_to_line_bounds", "yank"]
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+s = "flip_selections"
+S = "ensure_selections_forward"
+
+D = ["extend_to_line_bounds", "delete_selection"]
+
+G = "goto_file_end"
+
+";" = "repeat_last_motion"
+
+"\\" = "shell_pipe_to"
+
+"~" = "switch_to_uppercase"
+
+x = ["extend_line_down", "extend_to_line_bounds"]
+X = ["extend_line_up", "extend_to_line_bounds"]
+
+C = ["extend_to_line_bounds", "change_selection"]
+
+V = "extend_to_line_bounds"
+
+# n = ["extend_search_next", "merge_selections"]
+# N = ["extend_search_prev", "merge_selections"]
+
+# Remove [m]ain selection.
+M = "remove_primary_selection"
+
+
+# Goto mode 🚎
+[keys.normal.g]
+e = "move_prev_word_end"
+
+
+# Match (& multicursor) mode 🎯
+[keys.normal.m]
+"/" = "select_regex"
+"^" = "split_selection"
+"$" = "keep_selections"
+"|" = "remove_selections"
+
+# Clean up unnecessary mappings.
+a = "no_op"
+i = "no_op"
+
+
+# Unimpaired mode 🦅
+[keys.normal."["]
+s = "copy_selection_on_prev_line"
+m = "extend_search_prev"
+
+[keys.normal."]"]
+s = "copy_selection_on_next_line"
+m = "extend_search_next"
+
+
+# Window mode 🪟
+[keys.normal.C-w]
+"C-c" = "wclose"
+c = "wclose"
+
+# Clean up unnecessary mappings.
+"C-q" = "no_op"
+q = "no_op"
+
+
+## SELECT 🔵
+# Basic mappings 🔤
+[keys.select]
+"@" = "shell_append_output"
+
+"#" = ["search_selection", "search_prev"]
+
+"^" = "split_selection_on_newline"
+
+"*" = ["search_selection", "search_next"]
+
+"0" = [
+  "ensure_selections_forward",
+  "extend_to_line_end",
+  "flip_selections",
+  "extend_to_first_nonwhitespace",
+  "flip_selections",
+]
+
+"_" = '@"_'
+
+"-" = "rotate_selection_contents_backward"
+"+" = "rotate_selection_contents_forward"
+
+q = "replay_macro"
+Q = "record_macro"
+
+Y = ["extend_to_line_bounds", "yank"]
+
+i = "select_textobject_inner"
+
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+a = "select_textobject_around"
+
+s = "flip_selections"
+S = "ensure_selections_forward"
+
+D = ["extend_to_line_bounds", "delete_selection"]
+
+G = "goto_file_end"
+
+";" = "repeat_last_motion"
+
+"\\" = "shell_pipe_to"
+
+"~" = "switch_to_uppercase"
+
+x = ["extend_line_down", "extend_to_line_bounds"]
+X = ["extend_line_up", "extend_to_line_bounds"]
+
+C = ["extend_to_line_bounds", "change_selection"]
+
+V = "extend_to_line_bounds"
+
+n = ["extend_search_next", "merge_selections"]
+N = ["extend_search_prev", "merge_selections"]
+
+# Remove [m]ain selection.
+M = "remove_primary_selection"
+
+
+# Goto mode 🚎
+[keys.select.g]
+e = "move_prev_word_end"
+
+
+# Match (& multicursor) mode 🎯
+[keys.select.m]
+"/" = "select_regex"
+"^" = "split_selection"
+"$" = "keep_selections"
+"|" = "remove_selections"
+
+# Clean up unnecessary mappings.
+a = "no_op"
+i = "no_op"
+
+
+# Unimpaired mode 🦅
+[keys.select."["]
+s = "copy_selection_on_prev_line"
+m = "extend_search_prev"
+
+[keys.select."]"]
+s = "copy_selection_on_next_line"
+m = "extend_search_next"
+
+
+# Window mode 🪟
+[keys.select.C-w]
+"C-c" = "wclose"
+c = "wclose"
+
+# Clean up unnecessary mappings.
+"C-q" = "no_op"
+q = "no_op"
+
+
+# TODO: Update space-based mappings.
