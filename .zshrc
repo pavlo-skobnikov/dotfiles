@@ -216,10 +216,6 @@ alias cat='bat'
 # Always colorize ripgrep output.
 alias rg='rg --color=auto'
 
-alias nvim='nvim-server'
-alias vim='nvim'
-alias vi='nvim'
-
 alias lg='lazygit'
 alias ld='lazydocker'
 
@@ -252,20 +248,6 @@ set-fast-theme() {
         # Default to light theme if key doesn't exist or has any other value
         fast-theme XDG:catppuccin-latte
     fi
-}
-
-# Start a Neovim server for remote commands.
-nvim-server() {
-    local servers_dir="/tmp/nvim/servers"
-
-    # Ensure the directory exists.
-    mkdir -p "$servers_dir"
-
-    # Generate a random server name.
-    local server_name="nvim-server-$(gen-rand-str 16).sock"
-
-    # Start Neovim server name and pass arguments.
-    command nvim --listen "$servers_dir/$server_name" "$@"
 }
 
 
@@ -332,3 +314,26 @@ zle -N fzf-cd-backward-widget
 
 bindkey -M viins '^b' fzf-cd-backward-widget
 bindkey -M vicmd '^b' fzf-cd-backward-widget
+
+# [E]xplore directories and files.
+lf-cd-widget() {
+    local selected_dir=$(lf -print-last-dir)
+
+    # Exit if current directory matches the lf's one.
+    if [[ "$selected_dir" = "$(pwd)" ]]; then
+        zle redisplay
+        return 0
+    fi
+
+    # `cd` and reset prompt similar to native fzf cd widget.
+    zle push-line
+    BUFFER="builtin cd -- ${(q)selected_dir:a}"
+    zle accept-line
+    local ret=$?
+    zle reset-prompt
+    return $ret
+}
+zle -N lf-cd-widget
+
+bindkey -M viins '^E' lf-cd-widget
+bindkey -M vicmd '^E' lf-cd-widget
